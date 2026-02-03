@@ -24,10 +24,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                       SetSize="800 500">
     <BoxContainer Orientation="Horizontal">
         <BoxContainer Orientation="Vertical" MinWidth="200" Margin="10 10 15 10">
-            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 5">
-                <Label Text="Battery: " StyleClasses="LabelSubText"/>
-                <Label Name="BatteryStatusLabel" StyleClasses="LabelSubText" MinWidth="120"/>
-            </BoxContainer>
+            <controls:StripeBack>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Name="BatteryStatusLabel" StyleClasses="LabelSubText" MinWidth="120"/>
+                </BoxContainer>
+            </controls:StripeBack>
             <Label Text="{Loc 'reagent-dispenser-window-amount-to-dispense-label'}" HorizontalAlignment="Center" />
             <ui:ButtonGrid
                 Name="AmountGrid"

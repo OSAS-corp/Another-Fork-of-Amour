@@ -17,26 +17,31 @@ namespace Content.Goobstation.Client.Chemistry.UI;
 public sealed partial class EnergyReagentCardControl : Control
 {
     public string ReagentId { get; }
-//    public float PowerCostPerUnit { get; } // Orion-Edit
+    public float PowerCostPerUnit { get; }
     public bool IsDisabled => MainButton.Disabled;
     public Action<string>? OnPressed;
 
-    public EnergyReagentCardControl(EnergyReagentInventoryItem item, float powerCost, int amount)
+    public EnergyReagentCardControl(EnergyReagentInventoryItem item)
     {
         RobustXamlLoader.Load(this);
 
         ReagentId = item.ReagentId;
-//        PowerCostPerUnit = item.PowerCostPerUnit; // Orion-Edit
+        PowerCostPerUnit = item.PowerCostPerUnit;
         ColorPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = item.ReagentColor };
         ReagentNameLabel.Text = item.ReagentLabel;
-
-        // Orion-Start
-        var totalCost = powerCost * amount;
-        FillLabel.Text = Loc.GetString("energy-reagent-dispenser-window-cost", ("cost", MathF.Round(totalCost, 0)));
-        // Orion-End
+//        FillLabel.Text = $"{item.PowerCostPerUnit}J/u"; // Orion-Edit
 
         MainButton.OnPressed += args => OnPressed?.Invoke(ReagentId);
     }
+
+    // Orion-Start
+    public void UpdateCostLabel(int amount)
+    {
+        var totalCost = PowerCostPerUnit * amount;
+        FillLabel.Text = Loc.GetString("energy-reagent-dispenser-window-cost", ("cost", MathF.Round(totalCost, 0)));
+    }
+    // Orion-End
+
     public void SetDisabled(bool disabled, string tooltip = "")
     {
         if (disabled)
