@@ -1,0 +1,9 @@
+- type: roleLoadout
+  id: BaseCrew
+  groups:
+  - Trinkets
+  - Animals
+  - Undershirt
+  - Underwear
+  - Socks
+  - Wrists

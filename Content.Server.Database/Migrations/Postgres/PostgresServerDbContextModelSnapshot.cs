@@ -1228,6 +1228,18 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("character varying(256)")
                         .HasColumnName("entity_name");
 
+                    b.Property<bool>("EntityNameOverridden")
+                        .HasColumnType("boolean")
+                        .HasColumnName("entity_name_overridden");
+
+                    b.Property<bool>("IsBase")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_base");
+
+                    b.Property<string>("OverriddenGroups")
+                        .HasColumnType("text")
+                        .HasColumnName("overridden_groups");
+
                     b.Property<int>("ProfileId")
                         .HasColumnType("integer")
                         .HasColumnName("profile_id");
