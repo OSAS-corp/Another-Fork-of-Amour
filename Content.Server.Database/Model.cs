@@ -748,11 +748,30 @@ namespace Content.Server.Database
         /// </summary>
         public string RoleName { get; set; } = string.Empty;
 
+        // Amour edit start
+        /// <summary>
+        /// If true, this entry represents the profile's base (global) loadout.
+        /// </summary>
+        public bool IsBase { get; set; }
+
+        /// <summary>
+        /// Comma-separated list of group IDs that are overridden for this role.
+        /// </summary>
+        public string? OverriddenGroups { get; set; }
+        // Amour edit end
+
         /// <summary>
         /// Custom name of the role loadout if it supports it.
         /// </summary>
         [MaxLength(256)]
         public string? EntityName { get; set; }
+
+        // Amour edit start
+        /// <summary>
+        /// Whether <see cref="EntityName"/> is overridden for this role.
+        /// </summary>
+        public bool EntityNameOverridden { get; set; }
+        // Amour edit end
 
         /// <summary>
         /// Store the saved loadout groups. These may get validated and removed when loaded at runtime.

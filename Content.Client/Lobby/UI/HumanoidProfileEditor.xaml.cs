@@ -272,6 +272,12 @@ namespace Content.Client.Lobby.UI
 
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
+        // Amour edit start
+        // Loadout buttons per role (jobs / antags). Used to highlight roles whose loadouts differ from base.
+        private readonly Dictionary<string, Button> _jobLoadoutButtons = new();
+        private readonly Dictionary<string, Button> _antagLoadoutButtons = new();
+        // Amour edit end
+
         private readonly Dictionary<string, BoxContainer> _jobCategories;
 
         private Direction _previewRotation = Direction.North;
@@ -674,6 +680,8 @@ namespace Content.Client.Lobby.UI
                 Profile = Profile?.WithPreferenceUnavailable((PreferenceUnavailableMode) args.Id);
                 SetDirty();
             };
+
+            BaseLoadoutButton.OnPressed += _ => OpenBaseLoadout(); // Amour edit
 
             _jobCategories = new Dictionary<string, BoxContainer>();
 
@@ -1198,9 +1206,86 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        // Amour edit start
+        private bool RoleLoadoutDiffersFromBase(string roleId)
+        {
+            if (Profile == null)
+                return false;
+
+            var baseLoadout = Profile.BaseLoadout;
+
+            if (!Profile.Loadouts.TryGetValue(roleId, out var roleLoadout))
+                return false;
+
+            if (roleLoadout.EntityNameOverridden)
+            {
+                var baseName = baseLoadout.EntityName ?? string.Empty;
+                var roleName = roleLoadout.EntityName ?? string.Empty;
+                if (baseName != roleName)
+                    return true;
+            }
+
+            foreach (var groupId in roleLoadout.OverriddenGroups)
+            {
+                if (!baseLoadout.SelectedLoadouts.TryGetValue(groupId, out var baseGroupLoadouts))
+                    continue;
+
+                if (!roleLoadout.SelectedLoadouts.TryGetValue(groupId, out var roleGroupLoadouts))
+                {
+                    if (baseGroupLoadouts.Count > 0)
+                        return true;
+                    continue;
+                }
+
+                var baseSet = baseGroupLoadouts.Select(l => l.Prototype.Id).ToHashSet();
+                var roleSet = roleGroupLoadouts.Select(l => l.Prototype.Id).ToHashSet();
+
+                if (!baseSet.SetEquals(roleSet))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void UpdateRoleLoadoutButtonHighlight(string roleId)
+        {
+            if (_jobLoadoutButtons.TryGetValue(roleId, out var jobBtn))
+                UpdateRoleLoadoutButtonHighlight(jobBtn, roleId);
+
+            if (_antagLoadoutButtons.TryGetValue(roleId, out var antagBtn))
+                UpdateRoleLoadoutButtonHighlight(antagBtn, roleId);
+        }
+
+        private void UpdateAllRoleLoadoutButtonHighlights()
+        {
+            foreach (var (roleId, btn) in _jobLoadoutButtons)
+                UpdateRoleLoadoutButtonHighlight(btn, roleId);
+
+            foreach (var (roleId, btn) in _antagLoadoutButtons)
+                UpdateRoleLoadoutButtonHighlight(btn, roleId);
+        }
+
+        private void UpdateRoleLoadoutButtonHighlight(Button btn, string roleId)
+        {
+            var differs = RoleLoadoutDiffersFromBase(roleId);
+
+            // Reuse an existing caution style for a visible highlight.
+            if (differs)
+            {
+                if (!btn.StyleClasses.Contains(StyleBase.ButtonCaution))
+                    btn.StyleClasses.Add(StyleBase.ButtonCaution);
+            }
+            else
+            {
+                btn.StyleClasses.Remove(StyleBase.ButtonCaution);
+            }
+        }
+        // Amour edit end
+
         public void RefreshAntags()
         {
             AntagList.DisposeAllChildren();
+            _antagLoadoutButtons.Clear(); // Amour edit
             var items = new[]
             {
                 ("humanoid-profile-editor-antag-preference-yes-button", 0),
@@ -1257,8 +1342,10 @@ namespace Content.Client.Lobby.UI
                     Margin = new Thickness(3f, 0f, 0f, 0f),
                 };
 
+                var antagRoleId = LoadoutSystem.GetAntagPrototype(antag.ID); // Amour edit
+
                 // Goob start
-                if (!_prototypeManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetAntagPrototype(antag.ID), out var roleLoadoutProto))
+                if (!_prototypeManager.TryIndex<RoleLoadoutPrototype>(antagRoleId, out var roleLoadoutProto))
                 {
                     loadoutWindowBtn.Disabled = true;
                 }
@@ -1268,7 +1355,7 @@ namespace Content.Client.Lobby.UI
                     {
                         RoleLoadout? loadout = null;
 
-                        Profile?.Loadouts.TryGetValue(LoadoutSystem.GetAntagPrototype(antag.ID), out loadout);
+                        Profile?.Loadouts.TryGetValue(antagRoleId, out loadout);
                         loadout = loadout?.Clone();
 
                         if (loadout == null)
@@ -1280,6 +1367,12 @@ namespace Content.Client.Lobby.UI
                         OpenLoadout(null, loadout, roleLoadoutProto, Loc.GetString(antag.Name));
                     };
                 }
+
+                // Amour edit start
+                // Track & highlight role loadout button if this role has per-role overrides.
+                _antagLoadoutButtons[antagRoleId] = loadoutWindowBtn;
+                UpdateRoleLoadoutButtonHighlight(loadoutWindowBtn, antagRoleId);
+                // Amour edit end
 
                 antagContainer.AddChild(loadoutWindowBtn);
                 // Goob end
@@ -1432,6 +1525,7 @@ namespace Content.Client.Lobby.UI
             JobList.DisposeAllChildren();
             _jobCategories.Clear();
             _jobPriorities.Clear();
+            _jobLoadoutButtons.Clear();
             var firstCategory = true;
 
             // Get all displayed departments
@@ -1575,8 +1669,10 @@ namespace Content.Client.Lobby.UI
                     var collection = IoCManager.Instance!;
                     var protoManager = collection.Resolve<IPrototypeManager>();
 
+                    var jobRoleId = LoadoutSystem.GetJobPrototype(job.ID);
+
                     // If no loadout found then disabled button
-                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID), out var roleLoadoutProto))
+                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(jobRoleId, out var roleLoadoutProto))
                     {
                         loadoutWindowBtn.Disabled = true;
                     }
@@ -1588,7 +1684,7 @@ namespace Content.Client.Lobby.UI
                             RoleLoadout? loadout = null;
 
                             // Clone so we don't modify the underlying loadout.
-                            Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
+                            Profile?.Loadouts.TryGetValue(jobRoleId, out loadout);
                             loadout = loadout?.Clone();
 
                             if (loadout == null)
@@ -1601,6 +1697,10 @@ namespace Content.Client.Lobby.UI
                         };
                     }
 
+                    // Track & highlight role loadout button if this role has per-role overrides.
+                    _jobLoadoutButtons[jobRoleId] = loadoutWindowBtn;
+                    UpdateRoleLoadoutButtonHighlight(loadoutWindowBtn, jobRoleId);
+
                     _jobPriorities.Add((job.ID, selector));
                     jobContainer.AddChild(selector);
                     jobContainer.AddChild(loadoutWindowBtn);
@@ -1609,6 +1709,66 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateJobPriorities();
+        }
+
+        // Amour edit start
+        private void OpenBaseLoadout()
+        {
+            if (Profile == null)
+                return;
+
+            var collection = IoCManager.Instance!;
+            var protoManager = collection.Resolve<IPrototypeManager>();
+
+            if (!protoManager.TryIndex<RoleLoadoutPrototype>(HumanoidCharacterProfile.BaseLoadoutProtoId, out var baseProto))
+                return;
+
+            var session = _playerManager.LocalSession;
+            if (session == null)
+                return;
+
+            var baseLoadout = Profile.BaseLoadout.Clone();
+            baseLoadout.Role = HumanoidCharacterProfile.BaseLoadoutProtoId;
+            baseLoadout.SetDefault(Profile, session, protoManager);
+
+            _loadoutWindow?.Dispose();
+            _loadoutWindow = new LoadoutWindow(Profile, baseLoadout, baseProto, session, collection);
+            _loadoutWindow.Title = Loc.GetString("loadout-window-base");
+
+            _loadoutWindow.OnNameChanged += name =>
+            {
+                if (Profile == null)
+                    return;
+
+                baseLoadout.EntityName = string.IsNullOrWhiteSpace(name) ? null : name;
+                baseLoadout.EntityNameOverridden = !string.IsNullOrWhiteSpace(name);
+                Profile = Profile.WithBaseLoadout(baseLoadout);
+                SetDirty();
+            };
+
+            _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
+            {
+                if (Profile == null)
+                    return;
+
+                baseLoadout.AddLoadout(loadoutGroup, loadoutProto, protoManager);
+                Profile = Profile.WithBaseLoadout(baseLoadout);
+                _loadoutWindow.RefreshLoadouts(baseLoadout, session, collection);
+                SetDirty();
+            };
+
+            _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
+            {
+                if (Profile == null)
+                    return;
+
+                baseLoadout.RemoveLoadout(loadoutGroup, loadoutProto, protoManager);
+                Profile = Profile.WithBaseLoadout(baseLoadout);
+                _loadoutWindow.RefreshLoadouts(baseLoadout, session, collection);
+                SetDirty();
+            };
+
+            _loadoutWindow.OpenCentered();
         }
 
         private void OpenLoadout(JobPrototype? jobProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto, string? title = null)
@@ -1623,35 +1783,100 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
-            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
+            var roleId = roleLoadout.Role.Id;
+
+            // Override loadout (delta) stored on profile.
+            var hadOverride = Profile.Loadouts.TryGetValue(roleId, out var overrideLoadout);
+            overrideLoadout ??= new RoleLoadout(roleId);
+
+            // Only force defaults when this override entry is brand new.
+            // Otherwise we would wipe the user's saved per-role changes every time the window is opened.
+            overrideLoadout.SetDefault(Profile, session, _prototypeManager, force: !hadOverride);
+
+            // Effective loadout (base + overrides) shown in UI.
+            var effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
+
+            _loadoutWindow = new LoadoutWindow(Profile, effective, roleLoadoutProto, session, collection, showRevertToBase: true)
             {
                 Title = title ?? jobProto?.ID + "-loadout",
             };
 
-            // Refresh the buttons etc.
-            _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
+            _loadoutWindow.RefreshLoadouts(effective, session, collection);
             _loadoutWindow.OpenCenteredLeft();
+
+            _loadoutWindow.OnRevertToBase += () =>
+            {
+                if (Profile == null)
+                    return;
+
+                // Clear per-role overrides so this role inherits from the base loadout again.
+                foreach (var group in roleLoadoutProto.Groups)
+                {
+                    overrideLoadout.SelectedLoadouts.Remove(group);
+                    overrideLoadout.OverriddenGroups.Remove(group);
+                }
+
+                if (roleLoadoutProto.CanCustomizeName)
+                {
+                    overrideLoadout.EntityName = null;
+                    overrideLoadout.EntityNameOverridden = false;
+                }
+
+                // If nothing is overridden anymore, drop the override entry entirely.
+                Profile = overrideLoadout.OverriddenGroups.Count == 0 && !overrideLoadout.EntityNameOverridden
+                    ? Profile.WithoutLoadout(roleId)
+                    : Profile.WithLoadout(overrideLoadout);
+
+                effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(effective, session, collection);
+                UpdateRoleLoadoutButtonHighlight(roleId);
+                SetDirty();
+                ReloadPreview();
+            };
 
             _loadoutWindow.OnNameChanged += name =>
             {
-                roleLoadout.EntityName = name;
-                Profile = Profile.WithLoadout(roleLoadout);
+                if (Profile == null)
+                    return;
+
+                overrideLoadout.EntityName = string.IsNullOrWhiteSpace(name) ? null : name;
+                overrideLoadout.EntityNameOverridden = true;
+                Profile = Profile.WithLoadout(overrideLoadout);
+                effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(effective, session, collection);
+                UpdateRoleLoadoutButtonHighlight(roleId);
                 SetDirty();
             };
 
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {
-                roleLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
-                _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
-                Profile = Profile?.WithLoadout(roleLoadout);
+                if (Profile == null)
+                    return;
+
+                EnsureGroupOverridden(overrideLoadout, effective, loadoutGroup); 
+
+                overrideLoadout.AddLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                Profile = Profile.WithLoadout(overrideLoadout);
+                effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(effective, session, collection);
+                UpdateRoleLoadoutButtonHighlight(roleId);
+                SetDirty();
                 ReloadPreview();
             };
 
             _loadoutWindow.OnLoadoutUnpressed += (loadoutGroup, loadoutProto) =>
             {
-                roleLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
-                _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
-                Profile = Profile?.WithLoadout(roleLoadout);
+                if (Profile == null)
+                    return;
+
+                EnsureGroupOverridden(overrideLoadout, effective, loadoutGroup); 
+
+                overrideLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
+                Profile = Profile.WithLoadout(overrideLoadout);
+                effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
+                _loadoutWindow.RefreshLoadouts(effective, session, collection);
+                UpdateRoleLoadoutButtonHighlight(roleId);
+                SetDirty();
                 ReloadPreview();
             };
 
@@ -1669,6 +1894,24 @@ namespace Content.Client.Lobby.UI
 
             UpdateJobPriorities();
         }
+
+        private static void EnsureGroupOverridden(
+            RoleLoadout overrideLoadout,
+            RoleLoadout effective,
+            ProtoId<LoadoutGroupPrototype> loadoutGroup)
+        {
+            if (overrideLoadout.OverriddenGroups.Contains(loadoutGroup))
+                return;
+
+            // Inherit selections from base until the first modification.
+            if (effective.SelectedLoadouts.TryGetValue(loadoutGroup, out var sel))
+                overrideLoadout.SelectedLoadouts[loadoutGroup] = new List<Loadout>(sel);
+            else
+                overrideLoadout.SelectedLoadouts[loadoutGroup] = new List<Loadout>();
+
+            overrideLoadout.OverriddenGroups.Add(loadoutGroup);
+        }
+        // Amour edit end
 
         private void OnFlavorTextChange(string content)
         {

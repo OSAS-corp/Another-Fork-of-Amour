@@ -175,6 +175,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 <BoxContainer Orientation="Vertical">
                     <!-- Jobs -->
                     <OptionButton Name="PreferenceUnavailableButton" />
+                    <!-- Amour edit -->
+                    <Button Name="BaseLoadoutButton" Text="{Loc loadout-window-base}" Margin="0 5" />
                     <ScrollContainer VerticalExpand="True">
                         <BoxContainer Name="JobList" Orientation="Vertical" />
                     </ScrollContainer>

@@ -381,13 +381,22 @@ namespace Content.Server.Database
             }
 
             var loadouts = new Dictionary<string, RoleLoadout>();
+            // Amour edit start
+            RoleLoadout? baseLoadout = null;
 
             foreach (var role in profile.Loadouts)
             {
                 var loadout = new RoleLoadout(role.RoleName)
                 {
                     EntityName = role.EntityName,
+                    EntityNameOverridden = role.EntityNameOverridden,
+                    OverriddenGroups = string.IsNullOrWhiteSpace(role.OverriddenGroups)
+                        ? new HashSet<ProtoId<LoadoutGroupPrototype>>()
+                        : role.OverriddenGroups.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(s => new ProtoId<LoadoutGroupPrototype>(s.Trim()))
+                            .ToHashSet(),
                 };
+                // Amour edit end
 
                 foreach (var group in role.Groups)
                 {
@@ -401,7 +410,12 @@ namespace Content.Server.Database
                     }
                 }
 
-                loadouts[role.RoleName] = loadout;
+                // Amour edit start
+                if (role.IsBase)
+                    baseLoadout = loadout;
+                else
+                    loadouts[role.RoleName] = loadout;
+                // Amour edit end
             }
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
@@ -444,6 +458,7 @@ namespace Content.Server.Database
                 (PreferenceUnavailableMode) profile.PreferenceUnavailable,
                 antags.ToHashSet(),
                 traits.ToHashSet(),
+                baseLoadout,
                 loadouts,
                 barkVoice, // Goob Station - Barks
                 voice // Amour - TTS
@@ -517,12 +532,39 @@ namespace Content.Server.Database
 
             profile.Loadouts.Clear();
 
+            // Amour edit start
+            // Save base loadout.
+            var baseEntry = new ProfileRoleLoadout
+            {
+                RoleName = humanoid.BaseLoadout.Role,
+                IsBase = true,
+                EntityName = humanoid.BaseLoadout.EntityName,
+                EntityNameOverridden = humanoid.BaseLoadout.EntityNameOverridden,
+                OverriddenGroups = string.Join(',', humanoid.BaseLoadout.OverriddenGroups.Select(g => g.Id)),
+            };
+
+            foreach (var (group, groupLoadouts) in humanoid.BaseLoadout.SelectedLoadouts)
+            {
+                var profileGroup = new ProfileLoadoutGroup { GroupName = group };
+                foreach (var loadout in groupLoadouts)
+                    profileGroup.Loadouts.Add(new ProfileLoadout { LoadoutName = loadout.Prototype });
+                baseEntry.Groups.Add(profileGroup);
+            }
+
+            profile.Loadouts.Add(baseEntry);
+            // Amour edit end
+
             foreach (var (role, loadouts) in humanoid.Loadouts)
             {
                 var dz = new ProfileRoleLoadout
                 {
                     RoleName = role,
-                    EntityName = loadouts.EntityName ?? string.Empty,
+                    // Amour edit start
+                    IsBase = false,
+                    EntityName = loadouts.EntityName,
+                    EntityNameOverridden = loadouts.EntityNameOverridden,
+                    OverriddenGroups = string.Join(',', loadouts.OverriddenGroups.Select(g => g.Id)),
+                    // Amour edit end
                 };
 
                 foreach (var (group, groupLoadouts) in loadouts.SelectedLoadouts)

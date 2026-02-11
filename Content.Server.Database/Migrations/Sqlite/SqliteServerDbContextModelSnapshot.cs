@@ -1167,6 +1167,18 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("entity_name");
 
+                    b.Property<bool>("EntityNameOverridden")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("entity_name_overridden");
+
+                    b.Property<bool>("IsBase")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("is_base");
+
+                    b.Property<string>("OverriddenGroups")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("overridden_groups");
+
                     b.Property<int>("ProfileId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("profile_id");

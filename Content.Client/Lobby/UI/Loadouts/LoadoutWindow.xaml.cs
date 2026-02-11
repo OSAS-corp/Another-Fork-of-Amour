@@ -68,6 +68,7 @@ public sealed partial class LoadoutWindow : FancyWindow
     public event Action<string>? OnNameChanged;
     public event Action<ProtoId<LoadoutGroupPrototype>, ProtoId<LoadoutPrototype>>? OnLoadoutPressed;
     public event Action<ProtoId<LoadoutGroupPrototype>, ProtoId<LoadoutPrototype>>? OnLoadoutUnpressed;
+    public event Action? OnRevertToBase; // Amour edit
 
     private List<LoadoutGroupContainer> _groups = new();
 
@@ -76,10 +77,15 @@ public sealed partial class LoadoutWindow : FancyWindow
     // CCvar.
     private int _maxLoadoutNameLength;
 
-    public LoadoutWindow(HumanoidCharacterProfile profile, RoleLoadout loadout, RoleLoadoutPrototype proto, ICommonSession session, IDependencyCollection collection)
+    // Amour edit start
+    public LoadoutWindow(HumanoidCharacterProfile profile, RoleLoadout loadout, RoleLoadoutPrototype proto, ICommonSession session, IDependencyCollection collection, bool showRevertToBase = false)
     {
         RobustXamlLoader.Load(this);
         Profile = profile;
+
+        RevertToBaseButton.Visible = showRevertToBase;
+        RevertToBaseButton.OnPressed += _ => OnRevertToBase?.Invoke();
+        // Amour edit end
         var protoManager = collection.Resolve<IPrototypeManager>();
         var configManager = collection.Resolve<IConfigurationManager>();
 

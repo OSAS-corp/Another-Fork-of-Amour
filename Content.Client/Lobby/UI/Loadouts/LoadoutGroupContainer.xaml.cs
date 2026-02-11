@@ -222,6 +222,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
     /// <returns>A fully initialized LoadoutContainer for UI display.</returns>
     private LoadoutContainer CreateLoadoutUI(LoadoutPrototype proto, HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession session, IDependencyCollection collection, LoadoutSystem loadoutSystem)
     {
+        var protoMan = collection.Resolve<IPrototypeManager>();
         var selected = loadout.SelectedLoadouts[_groupProto.ID];
 
         var pressed = selected.Any(e => e.Prototype == proto.ID);
@@ -234,6 +235,13 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
 
         cont.Select.Pressed = pressed;
 
+        // Amour edit start
+        if (pressed)
+        {
+            cont.SourceType = DetermineLoadoutSourceType(proto.ID, loadout, profile);
+        }
+        // Amour edit end
+
         cont.Select.OnPressed += args =>
         {
             if (args.Button.Pressed)
@@ -244,4 +252,24 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
 
         return cont;
     }
+
+    // Amour edit start
+    private LoadoutSourceType DetermineLoadoutSourceType(
+        ProtoId<LoadoutPrototype> loadoutId,
+        RoleLoadout roleLoadout,
+        HumanoidCharacterProfile profile)
+    {
+        // Check if this group is NOT overridden and the loadout comes from base
+        if (!roleLoadout.OverriddenGroups.Contains(_groupProto.ID))
+        {
+            if (profile.BaseLoadout.SelectedLoadouts.TryGetValue(_groupProto.ID, out var baseSelected))
+            {
+                if (baseSelected.Any(l => l.Prototype == loadoutId))
+                    return LoadoutSourceType.InheritedFromBase;
+            }
+        }
+
+        return LoadoutSourceType.UserSelected;
+    }
+    // Amour edit end
 }

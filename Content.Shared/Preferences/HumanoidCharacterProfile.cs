@@ -109,8 +109,29 @@ namespace Content.Shared.Preferences
         /// </summary>
         public IReadOnlyDictionary<string, RoleLoadout> Loadouts => _loadouts;
 
+        // Amour edit start
+        /// <summary>
+        /// Prototype ID for the base crew loadout.
+        /// </summary>
+        public const string BaseLoadoutProtoId = "BaseCrew";
+
+        /// <summary>
+        /// Base loadout applied to all crew job loadouts, unless overridden.
+        /// Stored separately from per-role overrides.
+        /// </summary>
+        public RoleLoadout BaseLoadout => _baseLoadout;
+        // Amour edit end
+
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
+
+        // Amour edit start
+        /// <summary>
+        /// Base loadout applied to all crew jobs.
+        /// </summary>
+        [DataField]
+        private RoleLoadout _baseLoadout = new(BaseLoadoutProtoId);
+        // Amour edit end
 
         [DataField]
         public string Name { get; set; } = "John Doe";
@@ -251,6 +272,7 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode preferenceUnavailable,
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
+            RoleLoadout? baseLoadout, // Amour edit
             Dictionary<string, RoleLoadout> loadouts,
             ProtoId<BarkPrototype> barkVoice, // Goob Station - Barks
             ProtoId<TTSVoicePrototype> voice) // Amour - TTS
@@ -282,6 +304,7 @@ namespace Content.Shared.Preferences
             PreferenceUnavailable = preferenceUnavailable;
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
+            _baseLoadout = baseLoadout ?? new RoleLoadout(BaseLoadoutProtoId); // Amour edit
             _loadouts = loadouts;
             BarkVoice = barkVoice; // Goob Station - Barks
             Voice = voice; // Amour - TTS
@@ -330,7 +353,8 @@ namespace Content.Shared.Preferences
                 other.PreferenceUnavailable,
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
-                new Dictionary<string, RoleLoadout>(other.Loadouts),
+                other.BaseLoadout.Clone(), // Amour edit
+                other.Loadouts.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.Clone()), // Amour edit - deep copy loadouts
                 other.BarkVoice, // Goob Station - Barks
                 other.Voice) // Amour - TTS
         {
@@ -722,6 +746,7 @@ namespace Content.Shared.Preferences
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
+            if (!BaseLoadout.Equals(other.BaseLoadout)) return false; // Amour edit
             if (FlavorText != other.FlavorText) return false;
             // Orion-Start
             if (OocFlavorText != other.OocFlavorText) return false;
@@ -1040,6 +1065,12 @@ namespace Content.Shared.Preferences
             // Checks prototypes exist for all loadouts and dump / set to default if not.
             var toRemove = new ValueList<string>();
 
+            // Amour edit start
+            // Validate base loadout.
+            _baseLoadout.Role = BaseLoadoutProtoId;
+            _baseLoadout.EnsureValid(this, session, collection);
+            // Amour edit end
+
             foreach (var (roleName, loadouts) in _loadouts)
             {
                 if (!prototypeManager.HasIndex<RoleLoadoutPrototype>(roleName))
@@ -1123,6 +1154,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_jobPriorities);
             hashCode.Add(_antagPreferences);
             hashCode.Add(_traitPreferences);
+            hashCode.Add(_baseLoadout);
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
@@ -1158,6 +1190,13 @@ namespace Content.Shared.Preferences
             _loadouts[loadout.Role.Id] = loadout;
         }
 
+        // Amour edit start
+        public void SetBaseLoadout(RoleLoadout loadout)
+        {
+            _baseLoadout = loadout;
+        }
+        // Amour edit end
+
         public HumanoidCharacterProfile WithLoadout(RoleLoadout loadout)
         {
             // Deep copies so we don't modify the DB profile.
@@ -1177,6 +1216,36 @@ namespace Content.Shared.Preferences
             return profile;
         }
 
+        // Amour edit start
+        /// <summary>
+        /// Removes the per-role loadout overrides for the specified role.
+        /// This makes the role inherit purely from <see cref="BaseLoadout"/> again.
+        /// </summary>
+        public HumanoidCharacterProfile WithoutLoadout(string roleId)
+        {
+            var copied = new Dictionary<string, RoleLoadout>();
+
+            foreach (var (key, value) in _loadouts)
+            {
+                if (key == roleId)
+                    continue;
+
+                copied[key] = value.Clone();
+            }
+
+            var profile = Clone();
+            profile._loadouts = copied;
+            return profile;
+        }
+
+        public HumanoidCharacterProfile WithBaseLoadout(RoleLoadout loadout)
+        {
+            var profile = Clone();
+            profile._baseLoadout = loadout.Clone();
+            return profile;
+        }
+        // Amour edit end
+
         public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager)
         {
             if (!_loadouts.TryGetValue(id, out var loadout))
@@ -1188,6 +1257,48 @@ namespace Content.Shared.Preferences
             loadout.SetDefault(this, session, protoManager);
             return loadout;
         }
+
+        // Amour edit start
+        public RoleLoadout GetEffectiveLoadout(string roleId, ICommonSession? session, IPrototypeManager protoManager)
+        {
+            var effective = new RoleLoadout(roleId);
+            effective.SetDefault(this, session, protoManager, force: true);
+
+            var baseCopy = _baseLoadout.Clone();
+            baseCopy.Role = BaseLoadoutProtoId;
+            baseCopy.SetDefault(this, session, protoManager);
+
+            if (protoManager.TryIndex<RoleLoadoutPrototype>(roleId, out var roleProto))
+            {
+                foreach (var group in roleProto.Groups)
+                {
+                    if (baseCopy.SelectedLoadouts.TryGetValue(group, out var baseSel))
+                        effective.SelectedLoadouts[group] = new List<Loadout>(baseSel);
+                }
+
+                // Inherit base name if role name not overridden.
+                if (baseCopy.EntityName != null)
+                    effective.EntityName = baseCopy.EntityName;
+            }
+
+            // Apply role overrides.
+            if (_loadouts.TryGetValue(roleId, out var overrides))
+            {
+                overrides.SetDefault(this, session, protoManager);
+
+                foreach (var group in overrides.OverriddenGroups)
+                {
+                    if (overrides.SelectedLoadouts.TryGetValue(group, out var sel))
+                        effective.SelectedLoadouts[group] = new List<Loadout>(sel);
+                }
+
+                if (overrides.EntityNameOverridden)
+                    effective.EntityName = overrides.EntityName;
+            }
+
+            return effective;
+        }
+        // Amour edit end
 
         // Orion-Start
         private string FormatTags(string inputTags)
