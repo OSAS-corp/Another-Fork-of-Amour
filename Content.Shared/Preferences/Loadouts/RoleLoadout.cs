@@ -448,7 +448,6 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
         if (!Role.Equals(other.Role) ||
             SelectedLoadouts.Count != other.SelectedLoadouts.Count ||
-            Points != other.Points ||
             EntityName != other.EntityName ||
             // Amour edit start
             EntityNameOverridden != other.EntityNameOverridden ||
@@ -478,6 +477,24 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Role, SelectedLoadouts, OverriddenGroups, Points, EntityName, EntityNameOverridden); // Amour edit
+        // Amour edit - use content-based hash for OverriddenGroups instead of reference
+        var overriddenGroupsHash = 0;
+        foreach (var group in OverriddenGroups.OrderBy(g => g.Id))
+        {
+            overriddenGroupsHash = HashCode.Combine(overriddenGroupsHash, group.GetHashCode());
+        }
+
+        var selectedLoadoutsHash = 0;
+        foreach (var (key, value) in SelectedLoadouts.OrderBy(x => x.Key.Id))
+        {
+            var valueHash = 0;
+            foreach (var loadout in value)
+            {
+                valueHash = HashCode.Combine(valueHash, loadout.GetHashCode());
+            }
+            selectedLoadoutsHash = HashCode.Combine(selectedLoadoutsHash, key.GetHashCode(), valueHash);
+        }
+        
+        return HashCode.Combine(Role, selectedLoadoutsHash, overriddenGroupsHash, EntityName, EntityNameOverridden);
     }
 }
