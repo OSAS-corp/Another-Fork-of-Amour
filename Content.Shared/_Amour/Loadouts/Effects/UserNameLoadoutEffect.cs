@@ -10,16 +10,8 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Amour.Loadouts.Effects;
 
-/// <summary>
-/// Loadout effect that restricts the loadout to specific users by their SS14 username.
-/// Used for personal/sponsor items that should only be available to specific players.
-/// </summary>
 public sealed partial class UserNameLoadoutEffect : LoadoutEffect
 {
-    /// <summary>
-    /// List of usernames that can use this loadout.
-    /// Case-insensitive comparison is used.
-    /// </summary>
     [DataField(required: true)]
     public List<string> AllowedUsers = new();
 

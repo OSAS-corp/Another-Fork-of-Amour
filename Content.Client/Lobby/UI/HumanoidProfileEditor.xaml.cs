@@ -1228,7 +1228,6 @@ namespace Content.Client.Lobby.UI
             if (Profile == null)
                 return false;
 
-            // Amour edit - synthetics are excluded from base loadout system entirely
             if (ExcludedFromBaseLoadoutRoles.Contains(roleId))
                 return false;
 
@@ -1244,7 +1243,6 @@ namespace Content.Client.Lobby.UI
                     baseCrewGroupIds.Add(g.Id);
             }
 
-            // Amour edit - ignore name difference for synthetics, clown, mime
             if (roleLoadout.EntityNameOverridden && !IgnoreNameDifferenceRoles.Contains(roleId))
             {
                 var baseName = baseLoadout.EntityName ?? string.Empty;

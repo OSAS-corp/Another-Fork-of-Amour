@@ -16,7 +16,6 @@ public sealed class AmourBooster
 
     public bool IsActive { get; set; } = false;
 
-    // Amour - Boosty Tier
     public string? TierName { get; set; }
 
     public int TierLevel { get; set; } = 0;
