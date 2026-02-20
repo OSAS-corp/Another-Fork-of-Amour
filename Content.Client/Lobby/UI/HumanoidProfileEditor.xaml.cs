@@ -1829,28 +1829,14 @@ namespace Content.Client.Lobby.UI
             _loadoutWindow.RefreshLoadouts(effective, session, collection);
             _loadoutWindow.OpenCenteredLeft();
 
-            // Amour
-            var baseCrewGroupIds = new HashSet<string>();
-            if (_prototypeManager.TryIndex<RoleLoadoutPrototype>(HumanoidCharacterProfile.BaseLoadoutProtoId, out var baseCrewProto))
-            {
-                foreach (var g in baseCrewProto.Groups)
-                    baseCrewGroupIds.Add(g.Id);
-            }
-
             _loadoutWindow.OnRevertToBase += () =>
             {
                 if (Profile == null)
                     return;
 
-                // Clear per-role overrides only for groups that exist in BaseCrew.
-                foreach (var group in roleLoadoutProto.Groups)
-                {
-                    if (!baseCrewGroupIds.Contains(group.Id))
-                        continue;
-
-                    overrideLoadout.SelectedLoadouts.Remove(group);
-                    overrideLoadout.OverriddenGroups.Remove(group);
-                }
+                // Clear all per-role overrides so BaseCrew values are inherited again.
+                overrideLoadout.SelectedLoadouts.Clear();
+                overrideLoadout.OverriddenGroups.Clear();
 
                 if (roleLoadoutProto.CanCustomizeName)
                 {
@@ -1908,7 +1894,8 @@ namespace Content.Client.Lobby.UI
                 EnsureGroupOverridden(overrideLoadout, effective, loadoutGroup);
                 overrideLoadout.RemoveLoadout(loadoutGroup, loadoutProto, _prototypeManager);
                 Profile = Profile.WithLoadout(overrideLoadout);
-            // Amour end
+
+                // Amour end
                 effective = Profile.GetEffectiveLoadout(roleId, session, _prototypeManager);
                 _loadoutWindow.RefreshLoadouts(effective, session, collection);
                 UpdateRoleLoadoutButtonHighlight(roleId);
