@@ -1823,7 +1823,7 @@ namespace Content.Client.Lobby.UI
             var showRevertToBase = !ExcludedFromBaseLoadoutRoles.Contains(roleId);
             _loadoutWindow = new LoadoutWindow(Profile, effective, roleLoadoutProto, session, collection, showRevertToBase: showRevertToBase)
             {
-                Title = title ?? jobProto?.ID + "-loadout",
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
             };
 
             _loadoutWindow.RefreshLoadouts(effective, session, collection);

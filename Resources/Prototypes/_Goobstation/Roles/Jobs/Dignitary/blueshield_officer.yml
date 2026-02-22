@@ -45,7 +45,7 @@
     - !type:AgeRequirement
       requiredAge: 21
 #  guides: # Orion-Edit: Removed because dont have this SOP
-#  - BlueshieldOfficer SOP
+#  - BlueshieldOfficerSOP
 #  - Command
 #  - Succession
   goobcoins: 45
