@@ -134,3 +134,23 @@
       state: m_waggingtail_leopard_primary
     - sprite: _Amour/Mobs/Customization/fluff_parts/marg_inal.rsi
       state: m_waggingtail_leopard_tertiary
+
+# Feda_Plevajecki
+- type: marking
+  id: Feda_Plevajecki_Fins
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  allowedUsers: [Feda_Plevajecki]
+  sprites:
+    - sprite: _Amour/Fluff/Feda_Plevajecki/shark.rsi
+      state: shark
+
+- type: marking
+  id: CatTailFeda
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Human, Felinid]
+  allowedUsers: [Feda_Plevajecki]
+  sprites:
+    - sprite: _Amour/Mobs/Customization/fluff_parts/shark.rsi
+      state: m_waggingtail_shark_primary
