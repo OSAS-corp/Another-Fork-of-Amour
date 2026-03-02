@@ -70786,33 +70786,6 @@ entities:
     - type: Transform
       pos: 1.3423085,63.44589
       parent: 2
-- proto: ClothingOuterArmorHereticAshCostume
-  entities:
-  - uid: 10169
-    components:
-    - type: Transform
-      parent: 10168
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingOuterArmorHereticFleshCostume
-  entities:
-  - uid: 10503
-    components:
-    - type: Transform
-      parent: 10502
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingOuterArmorHereticVoidCostume
-  entities:
-  - uid: 983
-    components:
-    - type: Transform
-      parent: 980
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingOuterArmorReflective
   entities:
   - uid: 10507
@@ -81329,7 +81302,7 @@ entities:
     - type: Transform
       pos: 53.61099,-3.2667153
       parent: 2
-- proto: DVSmartFridge
+- proto: SmartFridge
   entities:
   - uid: 12133
     components:
@@ -81341,7 +81314,7 @@ entities:
     - type: Transform
       pos: 20.5,-9.5
       parent: 2
-- proto: DVSmartFridgeMedical
+- proto: SmartFridgeMedical
   entities:
   - uid: 12135
     components:
