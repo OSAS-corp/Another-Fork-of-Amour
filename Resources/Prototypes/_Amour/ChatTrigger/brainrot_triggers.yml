@@ -60,7 +60,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot13
-  trigger: "[изи, ез, ez]"
+  trigger: "[изи; ез; ez]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
