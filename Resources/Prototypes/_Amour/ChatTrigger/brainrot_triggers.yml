@@ -1,7 +1,7 @@
 ﻿- type: brainrotBotTrigger
   id: Brainrot1
   trigger: "[фембой;фембоя;фембою;фембоем;фембои;фембоев;фембоям;фембоями;фембоях]"
-  description: brainrot-trigger-desc-brainrot1
+  description: brainrot-trigger-desc-brainrot21
 
 - type: brainrotBotTrigger
   id: Brainrot2
@@ -101,7 +101,7 @@
 - type: brainrotBotTrigger
   id: Brainrot21
   trigger: "[трап; трапы; трапу]"
-  description: "Лучше используй что-то вроде... трансвестит или мужеложец, договорились?"
+  description: brainrot-trigger-desc-brainrot21
 
 - type: brainrotBotTrigger
   id: Brainrot22
