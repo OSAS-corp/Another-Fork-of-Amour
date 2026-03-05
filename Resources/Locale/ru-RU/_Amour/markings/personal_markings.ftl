@@ -25,3 +25,4 @@ marking-knifeCappyTail2 = Гладкий хвост (KnifeCappy)
 
 # DIGGLER2009
 marking-CatTailMarginal = Леопардовый хвост (DIGGLER2009)
+marking-CatEarsMarginal = Уши леопарда (DIGGLER2009)

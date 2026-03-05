@@ -124,6 +124,18 @@
 
 # DIGGLER2009
 - type: marking
+  id: CatEarsMarginal
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Felinid]
+  allowedUsers: [DIGGLER2009, Raindrop]
+  sprites:
+    - sprite: _Amour/Mobs/Customization/fluff_parts/cat_ears_marginal.rsi
+      state: ears_outer
+    - sprite: _Amour/Mobs/Customization/fluff_parts/cat_ears_marginal.rsi
+      state: ears_inner
+
+- type: marking
   id: CatTailMarginal
   bodyPart: Tail
   markingCategory: Tail
