@@ -185,7 +185,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot38
-  trigger: "[ок; окей]"
+  trigger: ок
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
