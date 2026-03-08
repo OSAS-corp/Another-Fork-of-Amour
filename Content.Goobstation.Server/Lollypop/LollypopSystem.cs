@@ -126,7 +126,7 @@ public sealed class LollypopSystem : EntitySystem
         if (ent.Comp.DeleteOnEmpty)
         {
             var args = new FullyEatenEvent(ent.Comp.HeldBy!.Value);
-            _food.OnFoodFullyEaten(food.Owner!, ref args);
+            _food.OnFoodFullyEaten((ent.Owner, food), ref args); // Amour fix: was food.Owner (EntityUid) which caused Comp=null -> NullReferenceException in OnFoodFullyEaten
         }
 
 

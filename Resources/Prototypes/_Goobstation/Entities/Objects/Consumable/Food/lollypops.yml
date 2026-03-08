@@ -15,6 +15,10 @@
   abstract: true
   components:
   - type: Food
+  - type: SolutionContainerManager # Amour fix
+    solutions:
+      food:
+        maxVol: 1
   - type: Tag
     tags:
     - FoodSnack
