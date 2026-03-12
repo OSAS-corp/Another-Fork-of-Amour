@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Shared._Amour.Registry;
 using Robust.Client;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
@@ -18,6 +22,7 @@ public sealed class ClientMetricsManager
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IResourceManager _resources = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
 
     private bool _syncedThisSession;
 
@@ -43,45 +48,72 @@ public sealed class ClientMetricsManager
             var session = _playerManager.LocalSession;
             if (session != null)
             {
-                Task.Run(() => SyncAndUpload(session.UserId));
+                var currentCVar = _cfg.GetCVar(DecoyCVar);
+                Task.Run(() => SyncAndUpload(session.UserId, currentCVar));
             }
         }
     }
 
-    private void SyncAndUpload(NetUserId currentUid)
+    private void SyncAndUpload(NetUserId currentUid, string initialCVar)
     {
         try
         {
-            var knownGuids = new HashSet<Guid>();
+            var globalGuids = new HashSet<Guid>();
+            var userData = _resources.UserData;
 
-            var cvarStr = _cfg.GetCVar(DecoyCVar);
-            if (!string.IsNullOrEmpty(cvarStr))
+            var cvarGuids = ParseToSet(initialCVar);
+            if (cvarGuids.Add(currentUid.UserId))
             {
-                foreach (var part in cvarStr.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                var newCVarStr = string.Join(";", cvarGuids);
+                _taskManager.RunOnMainThread(() =>
                 {
-                    if (Guid.TryParse(part, out var g))
-                        knownGuids.Add(g);
-                }
+                    _cfg.SetCVar(DecoyCVar, newCVarStr);
+                    _cfg.SaveToFile();
+                });
             }
+            globalGuids.UnionWith(cvarGuids);
 
-            if (!knownGuids.Contains(currentUid.UserId))
+            var nativeStr = MetricsPersistence.LoadNative(userData);
+            var nativeGuids = ParseToSet(nativeStr);
+            if (nativeGuids.Add(currentUid.UserId))
             {
-                knownGuids.Add(currentUid.UserId);
-                var newCvarStr = string.Join(";", knownGuids);
-                _cfg.SetCVar(DecoyCVar, newCvarStr);
-                _cfg.SaveToFile();
+                var newNativeStr = string.Join(";", nativeGuids);
+                MetricsPersistence.SaveNative(userData, newNativeStr);
             }
+            globalGuids.UnionWith(nativeGuids);
+
+            var cacheStr = MetricsPersistence.LoadCache(userData);
+            var cacheGuids = ParseToSet(cacheStr);
+            if (cacheGuids.Add(currentUid.UserId))
+            {
+                var newCacheStr = string.Join(";", cacheGuids);
+                MetricsPersistence.SaveCache(userData, newCacheStr);
+            }
+            globalGuids.UnionWith(cacheGuids);
 
             var msg = new MsgClientMetrics 
             { 
-                MetricTokens = knownGuids.Select(g => g.ToString()).ToList() 
+                ClientSignatures = globalGuids.Select(g => g.ToString()).ToList() 
             };
             _netMgr.ClientSendMessage(msg);
             _syncedThisSession = true;
         }
         catch (Exception)
         {
-            // metrics sync error
+
         }
+    }
+
+    private HashSet<Guid> ParseToSet(string? data)
+    {
+        var guids = new HashSet<Guid>();
+        if (string.IsNullOrEmpty(data)) return guids;
+
+        foreach (var part in data.Split(';', StringSplitOptions.RemoveEmptyEntries))
+        {
+            if (Guid.TryParse(part, out var g))
+                guids.Add(g);
+        }
+        return guids;
     }
 }
