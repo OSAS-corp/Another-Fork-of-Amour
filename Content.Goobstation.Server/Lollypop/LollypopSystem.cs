@@ -29,8 +29,8 @@ public sealed class LollypopSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<LollypopComponent,ClothingGotEquippedEvent>(OnEquipt);
-        SubscribeLocalEvent<LollypopComponent,ClothingGotUnequippedEvent>(OnUnequipt);
+        SubscribeLocalEvent<LollypopComponent, ClothingGotEquippedEvent>(OnEquipt);
+        SubscribeLocalEvent<LollypopComponent, ClothingGotUnequippedEvent>(OnUnequipt);
     }
 
     public override void Update(float frameTime)
@@ -43,7 +43,7 @@ public sealed class LollypopSystem : EntitySystem
             if (clothing.InSlotFlag != lollypop.CheckSlot)
                 continue;
 
-            if(lollypop.NextBite > _time.CurTime && lollypop.NextBite != TimeSpan.Zero)
+            if (lollypop.NextBite > _time.CurTime && lollypop.NextBite != TimeSpan.Zero)
                 continue;
 
             Eat((queryUid, lollypop), edible, ref fullyEaten);
@@ -53,7 +53,10 @@ public sealed class LollypopSystem : EntitySystem
         if (fullyEaten != null)
         {
             foreach (var (uid, edible, user) in fullyEaten)
+            {
                 _ingestion.SpawnTrash((uid, edible), user);
+                EntityManager.QueueDeleteEntity(uid);
+            }
         }
     }
 
@@ -69,7 +72,7 @@ public sealed class LollypopSystem : EntitySystem
             return;
 
         var flavors = _flavorProfile.GetLocalizedFlavorsMessage(args.Wearer, soln.Value.Comp.Solution);
-        _popup.PopupEntity(Loc.GetString("edible-nom", ("food", ent.Owner), ("flavors", flavors)), args.Wearer,args.Wearer);
+        _popup.PopupEntity(Loc.GetString("edible-nom", ("food", ent.Owner), ("flavors", flavors)), args.Wearer, args.Wearer);
     }
 
     private void OnUnequipt(Entity<LollypopComponent> ent, ref ClothingGotUnequippedEvent args)
@@ -80,7 +83,7 @@ public sealed class LollypopSystem : EntitySystem
 
     private void Eat(Entity<LollypopComponent> ent, EdibleComponent edible, ref List<(EntityUid Uid, EdibleComponent Edible, EntityUid User)>? fullyEaten)
     {
-        if(ent.Comp.HeldBy == null)
+        if (ent.Comp.HeldBy == null)
             return;
 
         if (!TryComp<BodyComponent>(ent.Comp.HeldBy, out var body))
@@ -90,7 +93,7 @@ public sealed class LollypopSystem : EntitySystem
         if (!_solutionContainer.TryGetSolution(ent.Owner, edible.Solution, out var soln, out var solution))
             return;
 
-        var transferAmount = FixedPoint2.Min( ent.Comp.Ammount, solution.Volume);
+        var transferAmount = FixedPoint2.Min(ent.Comp.Ammount, solution.Volume);
 
         var split = _solutionContainer.SplitSolution(soln.Value, transferAmount);
 
@@ -122,7 +125,7 @@ public sealed class LollypopSystem : EntitySystem
         _reaction.DoEntityReaction(ent.Comp.HeldBy.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse!.Value.Owner, split, stomachToUse);
 
-        if (soln.Value.Comp.Solution.Volume > FixedPoint2.Zero )
+        if (soln.Value.Comp.Solution.Volume > FixedPoint2.Zero)
             return; // end if there is solution left
 
         if (ent.Comp.DeleteOnEmpty)
