@@ -68,8 +68,8 @@ public class ChatInputBox : PanelContainer
         };
         StickerButton.OnStickerSelected += sticker => 
         {
-            // Only insert sticker if still in OOC channel
-            if (ActiveChannel == ChatChannel.OOC)
+            // Insert sticker if in OOC or Admin channels
+            if (ActiveChannel == ChatChannel.OOC || ActiveChannel == ChatChannel.Admin || ActiveChannel == ChatChannel.AdminChat)
                 StickerInputHelper.InsertSticker(Input, sticker);
         };
         Container.AddChild(StickerButton);
@@ -88,8 +88,8 @@ public class ChatInputBox : PanelContainer
     private void UpdateActiveChannel(ChatSelectChannel selectedChannel)
     {
         ActiveChannel = (ChatChannel) selectedChannel;
-        // Amour edit: Stickers are only available in OOC to prevent IC/OOC mixing
-        StickerButton.Visible = (ActiveChannel == ChatChannel.OOC);
+        // Amour edit: Stickers are available in OOC and Admin chat
+        StickerButton.Visible = (ActiveChannel == ChatChannel.OOC || ActiveChannel == ChatChannel.Admin || ActiveChannel == ChatChannel.AdminChat);
     }
 
     private static string GetChatboxInfoPlaceholder()

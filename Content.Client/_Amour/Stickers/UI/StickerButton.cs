@@ -56,7 +56,8 @@ public sealed class StickerButton : Button
 
     private void OnClick(ButtonEventArgs args)
     {
-        var window = new StickerSelectorWindow();
+        var window = StickerSelectorWindow.GetInstance();
+        window.ClearHandlers();
         window.OnStickerSelected += s => OnStickerSelected?.Invoke(s);
         window.OpenCentered();
     }

@@ -17,17 +17,39 @@ namespace Content.Client._Amour.Stickers.UI;
 [GenerateTypedNameReferences]
 public sealed partial class StickerSelectorWindow : DefaultWindow
 {
+    private static StickerSelectorWindow? _instance;
+    
     public event Action<StickerPrototype>? OnStickerSelected;
     
     private readonly StickerSystem _stickerSystem;
 
-    public StickerSelectorWindow()
+    private StickerSelectorWindow()
     {
         RobustXamlLoader.Load(this);
         
         _stickerSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<StickerSystem>();
         
         PopulateStickers();
+        
+        OnClose += () =>
+        {
+            ClearHandlers();
+        };
+    }
+    
+    public static StickerSelectorWindow GetInstance()
+    {
+        if (_instance == null || _instance.Disposed)
+        {
+            _instance = new StickerSelectorWindow();
+        }
+        
+        return _instance;
+    }
+    
+    public void ClearHandlers()
+    {
+        OnStickerSelected = null;
     }
 
     private void PopulateStickers()

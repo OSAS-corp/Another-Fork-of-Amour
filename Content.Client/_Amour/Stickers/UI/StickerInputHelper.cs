@@ -7,7 +7,7 @@ public static class StickerInputHelper
 {
     public static void InsertSticker(LineEdit input, StickerPrototype sticker)
     {
-        input.InsertAtCursor($"[sticker={sticker.ID}] ");
+        input.InsertAtCursor($"#{sticker.ID}# ");
         input.GrabKeyboardFocus();
     }
 }

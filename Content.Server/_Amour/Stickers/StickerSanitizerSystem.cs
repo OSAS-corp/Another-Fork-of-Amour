@@ -12,8 +12,8 @@ public sealed class StickerSanitizerSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private static readonly Regex TexRegex = new(@"(?:\\\[|\[)tex\s+path\s*=\s*""(.+?)""(?:\\\]|\])", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static readonly Regex StickerRegex = new(@"(?:\\\[|\[)sticker\s*=\s*([a-zA-Z0-9_\-\.]+)(?:\\\]|\])", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex TexRegex = new(@"\[tex\s+path\s*=\s*""(.+?)""\]", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex StickerRegex = new(@"#([a-zA-Z0-9_\-\.]+)#", RegexOptions.Compiled);
 
     private HashSet<string>? _validTexturePaths;
 
