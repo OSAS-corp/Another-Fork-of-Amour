@@ -5,7 +5,7 @@ chat-trigger-grammarnazi-title = Grammarnazi
 chat-trigger-grammarnazi-message = Пиши грамотно:
 
 chat-trigger-brainrot-title = Осторожно, ваш мозг гниет
-chat-trigger-brainrot-message = Если вы считаете, что произошла ошибка, нажмите "всё равно отпраить" и обратитесь в наш дискорд.
+chat-trigger-brainrot-message = Если вы считаете, что произошла ошибка, нажмите "всё равно отправить" и обратитесь в наш дискорд.
 chat-trigger-brainrot-trigger-prefix = Триггер:
 
 brainrot-trigger-desc-generic =
