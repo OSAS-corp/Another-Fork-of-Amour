@@ -37,3 +37,19 @@
 - type: sticker
   id: vocal
   texture: /Textures/Interface/Emotes/vocal.png
+  
+- type: sticker
+  id: happy
+  texture: /Textures/_Amour/Interface/Emotes/happy.png
+  
+#- type: sticker
+#  id: loveyou
+#  texture: /Textures/_Amour/Interface/Emotes/loveyou.png
+
+#- type: sticker
+#  id: ok
+#  texture: /Textures/_Amour/Interface/Emotes/ok.png
+  
+- type: sticker
+  id: stareyard
+  texture: /Textures/_Amour/Interface/Emotes/stareyard.png
