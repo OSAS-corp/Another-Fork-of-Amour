@@ -242,3 +242,8 @@
   id: Brainrot49
   trigger: изольки
   description: brainrot-trigger-desc-generic
+  
+- type: brainrotBotTrigger
+  id: Brainrot50
+  trigger: [го; гоу]
+  description: brainrot-trigger-desc-generic
