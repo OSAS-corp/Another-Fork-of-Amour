@@ -172,7 +172,7 @@
   id: HorseEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Felinid, Reptilian]
+  speciesRestriction: [Human, Felinid]
   allowedUsers: [Kogenbaum, Andrey_Advey, Shoryo_Moeri, Feda_Plevajecki, DaBlyat]
   sprites:
     - sprite: _Amour/Mobs/Customization/fluff_parts/horse_parts.rsi
@@ -182,7 +182,7 @@
   id: HorseTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human, Felinid, Reptilian]
+  speciesRestriction: [Human, Felinid]
   allowedUsers: [Kogenbaum, Andrey_Advey, Shoryo_Moeri, Feda_Plevajecki, DaBlyat]
   sprites:
     - sprite: _Amour/Mobs/Customization/fluff_parts/horse_parts.rsi
