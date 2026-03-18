@@ -1,4 +1,4 @@
-﻿- type: brainrotBotTrigger
+- type: brainrotBotTrigger
   id: Brainrot1
   trigger: "[фембой;фембоя;фембою;фембоем;фембои;фембоев;фембоям;фембоями;фембоях]"
   description: brainrot-trigger-desc-brainrot21
@@ -245,5 +245,5 @@
   
 - type: brainrotBotTrigger
   id: Brainrot50
-  trigger: [го; гоу]
+  trigger: "[го; гоу]"
   description: brainrot-trigger-desc-generic
