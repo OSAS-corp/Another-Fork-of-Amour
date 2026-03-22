@@ -2,7 +2,7 @@
   id: WonderBox
   mapName: 'WonderBox Station'
   mapPath: /Maps/_Amour/WonderBox.yml
-  minPlayers: 0
+  minPlayers: 25
   stations:
     WonderBoxStation:
       stationProto: StandardNanotrasenStation
@@ -20,54 +20,57 @@
             Captain: [ 1, 1 ]
             NanotrasenRepresentative: [ 1, 1 ]
             BlueshieldOfficer: [ 1, 1 ]
-            Bartender: [ 2, 2 ]
+            Bartender: [ 3, 2 ]
             Botanist: [ 3, 3 ]
             HeadOfPersonnel: [ 1, 1 ]
-            Janitor: [ 4, 4 ]
-            Chef: [ 2, 2 ]
-            Chaplain: [ 2, 2 ]
+            Janitor: [ 5, 4 ]
+            Chef: [ 3, 2 ]
+            Chaplain: [ 2, 1 ]
             Librarian: [ 3, 3 ]
-            ServiceWorker: [ 5, 5 ]
+            ServiceWorker: [ 7, 5 ]
             Reporter: [ 3, 3 ]
             RadioHost: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
-            StationEngineer: [ 10, 10 ]
-            AtmosphericTechnician: [ 4, 4 ]
+            StationEngineer: [ 10, 8 ]
+            AtmosphericTechnician: [ 4, 3 ]
             TechnicalAssistant: [ 5, 5 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            MedicalDoctor: [ 5, 5 ]
-            Paramedic: [ 4, 4 ]
+            MedicalDoctor: [ 7, 5 ]
+            Paramedic: [ 3, 2 ]
             MedicalIntern: [ 4, 4 ]
             Chemist: [ 3, 3 ]
-            Virologist: [ 1, 1 ]
+            Virologist: [ 2, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 8, 8 ]
-            ResearchAssistant: [ 5, 5 ]
+            Scientist: [ 10, 6 ]
+            ResearchAssistant: [ 6, 5 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
-            SecurityOfficer: [ 6, 6 ]
+            SecurityOfficer: [ 7, 5 ]
             Warden: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            SecurityCadet: [ 6, 6 ]
+            SecurityCadet: [ 7, 4 ]
             Detective: [ 1, 1 ]
-            Brigmedic: [ 1, 1 ]
+            Brigmedic: [ 2, 1 ]
             #supply
-            CargoTechnician: [ 6, 6 ]
+            CargoTechnician: [ 6, 5 ]
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageSpecialist: [ 7, 4 ]
             #civilian
             Passenger: [ -1, -1 ]
-            Clown: [ 1, 1 ]
+            Clown: [ 2, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 3, 3 ]
             Boxer: [ 2, 2 ]
             Zookeeper: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
+            Borg: [ 5, 2 ]
 
-
-
+        # For Goob blob
+        - type: StationBlobConfig
+          stageBegin: 40
+          stageCritical: 450
+          stageTheEnd: 900
