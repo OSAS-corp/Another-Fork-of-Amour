@@ -165,6 +165,7 @@
 
 using Content.Server._Goobstation.Antag;
 using Content.Server._Orion.ServerProtection;
+using Content.Server._Orion.ServerProtection.Administration;
 using Content.Server._Orion.ServerProtection.Chat;
 using Content.Server._Orion.ServerProtection.Emoting;
 using Content.Server._RMC14.LinkAccount;
@@ -254,9 +255,11 @@ namespace Content.Server.IoC
             IoCManager.Register<LinkAccountManager>(); // RMC - Patreon
             IoCManager.Register<IBoostyTierManager, BoostyTierManager>(); // Amour - Boosty subscription tiers
             // Orion-Start
+            IoCManager.Register<ServerProtectionAuditManager>();
             IoCManager.Register<ServerProtectionPunishmentSystem>();
             IoCManager.Register<ChatProtectionSystem>();
             IoCManager.Register<EmoteProtectionSystem>();
+            IoCManager.Register<AdminActionProtectionSystem>();
             // Orion-End
             IoCManager.Register<TTSManager>(); // WD EDIT TTS
             IoCManager.Register<Content.Server._Amour.Registry.ClientMetricsManager>(); // Amour edit

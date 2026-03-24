@@ -14,12 +14,7 @@
   description: A plain old lollypop. It's still in a wrapper.
   abstract: true
   components:
-  - type: Food
   - type: SpaceGarbage
-  - type: SolutionContainerManager # Amour fix
-    solutions:
-      food:
-        maxVol: 1
   - type: Tag
     tags:
     - FoodSnack
