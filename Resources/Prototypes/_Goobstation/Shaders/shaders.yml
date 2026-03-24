@@ -29,3 +29,5 @@
   id: Dodge
   kind: source
   path: "/Textures/_Goobstation/Shaders/dodge.swsl"
+  params:
+    progress: 0.0
