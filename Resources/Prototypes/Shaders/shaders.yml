@@ -27,6 +27,11 @@
   path: "/Textures/Shaders/circle_mask.swsl"
   params:
     CircleRadius: 15.0
+
+- type: shader
+  id: Dodge
+  kind: source
+  path: "/Textures/_Goobstation/Shaders/dodge.swsl"
     CircleMinDist: 0.0
     CirclePow: 0.5
     CircleMax: 4.0
