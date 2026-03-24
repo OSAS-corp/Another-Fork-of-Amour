@@ -54,9 +54,11 @@ public abstract class SharedAnimatedEmotesSystem : EntitySystem
     {
         _stamina.TakeStaminaDamage(uid, FlipStaminaCost, logDamage: false);
 
+/* // Orion-Edit: Stop matrix
         var immunity = EnsureComp<ProjectileImmunityComponent>(uid);
         immunity.ExpireTime = _timing.CurTime + FlipDuration;
         immunity.DodgeEffect = FlipDodgeEffect;
         Dirty(uid, immunity);
+*/
     }
 }
