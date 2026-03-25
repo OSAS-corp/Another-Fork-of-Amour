@@ -42,9 +42,9 @@
     CirclePow: 0.5
     CircleMax: 4.0
     CircleMult: 0.5
+
 - type: shader
-  id: WorldGradientCircle
-  kind: source
+  id: WorldGradientCircle  kind: source
   path: "/Textures/Shaders/world_gradient_circle.swsl"
 
 - type: shader
