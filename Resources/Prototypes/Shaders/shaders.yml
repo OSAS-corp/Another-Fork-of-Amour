@@ -32,16 +32,16 @@
   id: Dodge
   kind: source
   path: "/Textures/_Goobstation/Shaders/dodge.swsl"
-    CircleMinDist: 0.0
-    CirclePow: 0.5
-    CircleMax: 4.0
-    CircleMult: 0.5
 
 - type: shader
   id: GradientCircleMask
   kind: source
   path: "/Textures/Shaders/gradient_circle_mask.swsl"
-
+  params:
+    CircleMinDist: 0.0
+    CirclePow: 0.5
+    CircleMax: 4.0
+    CircleMult: 0.5
 - type: shader
   id: WorldGradientCircle
   kind: source
