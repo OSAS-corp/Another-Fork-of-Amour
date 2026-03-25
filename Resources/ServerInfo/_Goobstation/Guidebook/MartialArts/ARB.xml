@@ -1,0 +1,76 @@
+<Document>
+
+  # Армейский рукопашный бой (АРБ)
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingBeltArmyHandCombat" Caption=""/>
+  </Box>
+
+  Армейский рукопашный бой — это жесткая прикладная дисциплина, ориентированная на быстрое подавление цели. Мастера стиля наносят повышенный урон кулаками и мастерски используют изматывающие комбинации.
+
+  ## Комбо-приёмы
+
+  ### Удар локтем
+  Наносит урон выносливости и ушибы.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+  </Box>
+
+  ### Удар коленом
+  Наносит урон выносливости.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+  </Box>
+
+  ### Болевой замок
+  Наносит урон выносливости и перехватывает предметы из рук.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+  </Box>
+
+  ### Подсечка
+  Сбивает цель с ног на 3 секунды и заставляет выронить вещи.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+  </Box>
+
+  ### Бросок через бедро
+  Отправляет цель в полет, выбивая предметы.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+  </Box>
+
+  ### Рычаг
+  Работает только на поверженных противников. Наносит урон выносливости, обезоруживает их и удерживает в рычаге руки, пока они не смогут подняться.
+  Рычаг руки работает аналогично нокдауну и захвату за горло, а его длительность зависит от их сопротивляемости урону выносливости.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+  </Box>
+
+  ### Колесо
+  Работает только на противниках, удерживаемых в руках. Перекидывает противника через плечо, нанося огромный урон выносливости, и заставляет пользователя снова подняться на ноги.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+  </Box>
+
+  ### Удушение
+  Удушение в стойке. Наносит урон удушьем и по выносливости, заставляет выронить предметы.
+  <Box>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
+  </Box>
+
+</Document>
