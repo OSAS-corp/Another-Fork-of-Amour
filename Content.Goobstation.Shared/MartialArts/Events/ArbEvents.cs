@@ -3,20 +3,20 @@
 
 namespace Content.Goobstation.Shared.MartialArts.Events;
 
-// Залом руки с дизармом: Disarm → Harm
+// Залом руки с дизармом
 public sealed class ArbArmLockPerformedEvent : EntityEventArgs;
 
-// Подсечка стоя с опрокидыванием: Harm → Harm → Disarm
+// Подсечка стоя с опрокидыванием
 public sealed class ArbSweepPerformedEvent : EntityEventArgs;
 
-// Удушающий стоя в партере: Disarm → Harm → Harm
+// Удушающий стоя в партере
 public sealed class ArbChokePerformedEvent : EntityEventArgs;
 
-// Удар локтём: Harm → Harm
+// Удар локтём
 public sealed class ArbElbowStrikePerformedEvent : EntityEventArgs;
 
-// Удар коленом: Harm → Disarm
+// Удар коленом
 public sealed class ArbKneeStrikePerformedEvent : EntityEventArgs;
 
-// Бросок через бедро: Disarm → Harm → Disarm
+// Бросок через бедро
 public sealed class ArbHipThrowPerformedEvent : EntityEventArgs;
