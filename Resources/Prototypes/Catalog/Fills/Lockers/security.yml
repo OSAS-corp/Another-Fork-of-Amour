@@ -175,7 +175,7 @@
     #  prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
-      id: ClothingBeltArmyHandCombat
+    - id: ClothingBeltArmyHandCombat
       prob: 0.5
     - id: ClothingHeadsetAltSecurityRegular # Goobstation
     - id: PanicButton # Goobstation
@@ -441,7 +441,7 @@
 #      amount: 3   # Orion-Edit: Removed
     # Orion-Start
     - id: WeaponEarthGovLaserSniper
-    - id: WeaponEarthGovLaserCarbine  
+    - id: WeaponEarthGovLaserCarbine
     - id: WeaponEarthGovXRay
     # Orion-End
     - id: WeaponTemperatureGun # Goobstation
