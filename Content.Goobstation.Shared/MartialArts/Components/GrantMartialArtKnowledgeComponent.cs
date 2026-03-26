@@ -86,10 +86,8 @@ public sealed partial class GrantSleepingCarpComponent : GrantMartialArtKnowledg
 {
     [DataField]
     public override MartialArtsForms MartialArtsForm { get; set; } = MartialArtsForms.SleepingCarp;
-
     [DataField]
     public int MaximumUses = 1;
-
     public int CurrentUses = 0;
 }
 
@@ -116,14 +114,4 @@ public sealed partial class GrantHellRipComponent : GrantMartialArtKnowledgeComp
     public override MartialArtsForms MartialArtsForm { get; set; } = MartialArtsForms.HellRip;
 
     public override LocId? LearnMessage { get; set; } = "hellrip-success-learned";
-}
-
-// ARB
-[RegisterComponent]
-public sealed partial class GrantArbComponent : GrantMartialArtKnowledgeComponent
-{
-    [DataField]
-    public override MartialArtsForms MartialArtsForm { get; set; } = MartialArtsForms.ArmyHandCombat;
-
-    public override LocId? LearnMessage { get; set; } = "arb-success-learned";
 }

@@ -25,7 +25,6 @@ public sealed partial class MartialArtBlockedComponent : Component
     [DataField]
     public MartialArtsForms Form;
 }
-
 public abstract partial class GrabStagesOverrideComponent : Component
 {
     public readonly GrabStage StartingStage = GrabStage.Soft;
@@ -51,6 +50,7 @@ public sealed partial class MartialArtsKnowledgeComponent : GrabStagesOverrideCo
     [DataField]
     [AutoNetworkedField]
     public string OriginalFistDamageType;
+
 }
 
 public enum MartialArtsForms
@@ -62,5 +62,4 @@ public enum MartialArtsForms
     KungFuDragon,
     Ninjutsu,
     HellRip,
-    ArmyHandCombat, // ARB
 }

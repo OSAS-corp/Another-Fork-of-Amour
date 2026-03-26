@@ -117,7 +117,6 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         InitializeKravMaga();
         InitializeSleepingCarp();
         InitializeCqc();
@@ -127,16 +126,19 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         InitializeNinjutsu();
         InitializeHellRip();
         InitializeCanPerformCombo();
-        InitializeArmyHandCombat(); // ARB
 
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, CheckGrabOverridesEvent>(CheckGrabStageOverride);
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, ShotAttemptedEvent>(OnShotAttempt);
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, ComboAttackPerformedEvent>(OnComboAttackPerformed);
+
         SubscribeLocalEvent<KravMagaSilencedComponent, SpeakAttemptEvent>(OnSilencedSpeakAttempt);
+
         SubscribeLocalEvent<MartialArtModifiersComponent, GetMeleeAttackRateEvent>(OnGetMeleeAttackRate);
         SubscribeLocalEvent<MartialArtModifiersComponent, RefreshMovementSpeedModifiersEvent>(OnGetMovespeed);
+
         SubscribeLocalEvent<StatusEffectContainerComponent, BeforeStaminaDamageEvent>(OnBeforeStatusStamina);
+
         SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<InteractHandEvent>(OnInteract);
     }
@@ -188,10 +190,10 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
 
             double? nextUpdate = null;
             var refreshSpeed = false;
-
             for (var i = multiplier.Data.Count - 1; i >= 0; i--)
             {
                 var data = multiplier.Data[i];
+
                 if (_timing.CurTime < data.EndTime)
                 {
                     nextUpdate = nextUpdate == null
@@ -245,6 +247,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 true,
                 status);
 
+            // So that it doesn't update constantly
             timer.LastMoveTime = _timing.CurTime;
         }
     }
@@ -272,6 +275,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
 
         if (knowledge.MartialArtsForm == MartialArtsForms.Ninjutsu)
             OnNinjutsuHug(args.User, args.Target);
+
+        // Including this in combos clutters combo counter
+        // RaiseLocalEvent(args.User, new ComboAttackPerformedEvent(args.User, args.Target, args.User, ComboAttackType.Hug));
     }
 
     private void OnComboAttackPerformed(Entity<MartialArtsKnowledgeComponent> ent, ref ComboAttackPerformedEvent args)
@@ -309,7 +315,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 .Select(x => KeyValuePair.Create(x.Key, multiplier))
                 .ToDictionary(),
             FlatReduction = specifier.DamageDict
-                .Select(x => KeyValuePair.Create(x.Key, -modifier))
+                .Select(x => KeyValuePair.Create(x.Key, -modifier)) // Minus mod because it subtracts values from damage
                 .ToDictionary(),
         };
     }
@@ -327,7 +333,6 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
     {
         var mult = 1f;
         var mod = 0f;
-
         foreach (var data in ent.Comp.Data.Where(x => (x.Type & type) != 0))
         {
             if (armed is true)
@@ -342,7 +347,6 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                     && (data.Type & MartialArtModifierType.Armed) != 0)
                     continue;
             }
-
             mult *= data.Multiplier;
             mod += data.Modifier;
         }
@@ -383,6 +387,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 break;
         }
 
+
         if (args.Weapon != ent
             || !_proto.TryIndex<MartialArtPrototype>(comp.MartialArtsForm.ToString(), out var martialArtsPrototype))
             return;
@@ -401,7 +406,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         if (TerminatingOrDeleted(ent))
             return;
 
-        if (TryComp<CanPerformComboComponent>(ent, out var comboComponent))
+        if(TryComp<CanPerformComboComponent>(ent, out var comboComponent))
             comboComponent.AllowedCombos.Clear();
 
         RemCompDeferred<DragonKungFuTimerComponent>(ent);
@@ -416,7 +421,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
 
     private void OnSilencedSpeakAttempt(Entity<KravMagaSilencedComponent> ent, ref SpeakAttemptEvent args)
     {
-        _popupSystem.PopupEntity(Loc.GetString("popup-grabbed-cant-speak"), ent, ent);
+        _popupSystem.PopupEntity(Loc.GetString("popup-grabbed-cant-speak"),
+            ent,
+            ent); // You cant speak while someone is choking you
         args.Cancel();
     }
 
@@ -424,7 +431,6 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
     {
         if (ent.Comp.MartialArtsForm != MartialArtsForms.SleepingCarp)
             return;
-
         _popupSystem.PopupClient(Loc.GetString("gun-disabled"), ent, ent);
         args.Cancel();
     }
@@ -433,10 +439,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
     {
         if (!_netManager.IsServer)
             return;
-
         var userName = Identity.Entity(user, EntityManager);
         var targetName = Identity.Entity(target, EntityManager);
-
+        // Orion-Edit-Start: Localization
         string locComboName;
         if (Loc.TryGetString(comboName, out var name))
             locComboName = name;
@@ -444,25 +449,30 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
             locComboName = Loc.GetString("martial-arts-combo-" + comboName.Replace(" ", ""));
         else
             locComboName = Loc.GetString("martial-arts-combo-" + comboName);
-
         _popupSystem.PopupEntity(Loc.GetString("martial-arts-action-sender",
-            ("user", userName),
-            ("name", targetName),
-            ("move", locComboName)),
-            user,
-            user);
-
+                    ("user", userName), // added
+                    ("name", targetName),
+                    ("move", locComboName)), // comboName -> locComboName
+                    user,
+                    user);
         _popupSystem.PopupEntity(Loc.GetString("martial-arts-action-receiver",
             ("name", userName),
-            ("move", locComboName)),
+            ("move", locComboName)), // comboName -> locComboName
             target,
             target);
+        // Orion-Edit-End
     }
 
     #endregion
 
     #region Helper Methods
 
+    /// <summary>
+    /// Tries to grant a martial art to a user. Use this method.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="comp"></param>
+    /// <returns></returns>
     private bool TryGrantMartialArt(EntityUid user, GrantMartialArtKnowledgeComponent comp)
     {
         if (!_netManager.IsServer || MetaData(user).EntityLifeStage >= EntityLifeStage.Terminating)
@@ -481,7 +491,9 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         }
 
         if (!HasComp<CanPerformComboComponent>(user))
+        {
             return GrantMartialArt(comp, user);
+        }
 
         if (!TryComp<MartialArtsKnowledgeComponent>(user, out var cqc))
         {
@@ -522,11 +534,29 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
                 EnsureComp<NinjutsuSneakAttackComponent>(user);
                 break;
             case MartialArtsForms.CloseQuartersCombat:
-                var itcryeverytime = new CanDoCQCEvent();
+                var itcryeverytime =
+                    new CanDoCQCEvent();
+                  /*
+                var riposte = EnsureComp<RiposteeComponent>(user);
+                riposte.Data.TryAdd("CQC",
+                    new(0.1f,
+                    false,
+                    null,
+                    true,
+                    new SoundPathSpecifier("/Audio/Weapons/genhit1.ogg"),
+                    TimeSpan.Zero,
+                    TimeSpan.FromSeconds(4),
+                    false,
+                    0.75f,
+                    null,
+                    null,
+                    new CanDoCQCEvent()));
+                    */
                 break;
         }
 
         martialArtsKnowledgeComponent.MartialArtsForm = martialArtsPrototype.MartialArtsForm;
+        //martialArtsKnowledgeComponent.StartingStage = martialArtsPrototype.StartingStage;
         LoadCombos(martialArtsPrototype.RoundstartCombos, canPerformComboComponent);
         martialArtsKnowledgeComponent.Blocked = false;
 
@@ -552,7 +582,6 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         combo.AllowedCombos.Clear();
         if (!_proto.TryIndex(list, out var comboListPrototype))
             return;
-
         foreach (var item in comboListPrototype.Combos)
         {
             combo.AllowedCombos.Add(_proto.Index(item));
@@ -588,6 +617,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         if (!knowledgeComponent.Blocked)
             return true;
 
+        // TODO: fix blocked martial art supercode
         var ev = new CanDoCQCEvent();
         RaiseLocalEvent(ent, ev);
         return ev.Handled;
@@ -596,6 +626,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         {
             if (!TryComp<StandingStateComponent>(uid, out var standingState))
                 return false;
+
             return !standingState.Standing;
         }
     }
@@ -608,19 +639,15 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         TargetBodyPart? targetBodyPart = null)
     {
         damage = new DamageSpecifier();
-
-        if (!TryComp<TargetingComponent>(ent, out var targetingComponent))
+        if(!TryComp<TargetingComponent>(ent, out var targetingComponent))
             return;
-
         damage.DamageDict.Add(damageType, damageAmount);
-
         if (TryComp(ent, out MartialArtModifiersComponent? modifiers))
         {
             var (mult, mod) = GetMultiplierModifier((ent, modifiers), MartialArtModifierType.Damage, false);
             var modifierSet = GetDamageModifierSet(damage, mult, mod);
             damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
         }
-
         _damageable.TryChangeDamage(target,
             damage,
             origin: ent,
