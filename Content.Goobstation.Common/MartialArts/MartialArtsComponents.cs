@@ -62,5 +62,5 @@ public enum MartialArtsForms
     KungFuDragon,
     Ninjutsu,
     HellRip,
-    ArmyHandCombat,
+    ArmyHandCombat, // ARB
 }
