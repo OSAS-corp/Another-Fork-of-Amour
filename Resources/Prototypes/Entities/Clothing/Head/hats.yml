@@ -220,11 +220,11 @@
     coverage:
     - Head
     traumaDeductions:
-      Dismemberment: 0.2
-      OrganDamage: 0.2
-      BoneDamage: 0.2
-      VeinsDamage: 0
-      NerveDamage: 0
+      Dismemberment: 0.4 # Orion-Edit: 0.2 > 0.4
+      OrganDamage: 0.5 # Orion-Edit: 0.2 > 0.5
+      BoneDamage: 0.4 # Orion-Edit: 0.2 > 0.4
+      VeinsDamage: 0.2 # Orion-Edit: 0 > 0.2
+      NerveDamage: 0.2 # Orion-Edit: 0 > 0.2
     modifiers:
       coefficients:
         Blunt: 0.7
@@ -344,7 +344,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHatArmored, ClothingHeadHatBeretRND, BaseSecurityCommandContraband] # Goob edit
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadHatBeretRND, BaseSecurityCommandContraband] # Goob edit # Orion-Edit
   id: ClothingHeadHatBeretHoS
   name: head of security's beret
   description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
@@ -456,7 +456,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ ClothingHeadHatArmored, ClothingHeadHatBeretRND, BaseCommandContraband ] #goob
+  parent: [ ClothingHeadHatArmoredPlus, ClothingHeadHatBeretRND, BaseCommandContraband ] #goob # Orion-Edit
   id: ClothingHeadHatCaptain
   name: captain's hardhat
   description: Feels good being the king.
@@ -490,7 +490,7 @@
   - type: IngestionBlocker
 
 - type: entity
-  parent: [ ClothingHeadHatArmored, ClothingHeadBase, BaseCentcommContraband ] #goob
+  parent: [ ClothingHeadHatArmoredCC, ClothingHeadBase, BaseCentcommContraband ] #goob # Orion-Edit
   id: ClothingHeadHatCentcom
   name: CentComm brand hat
   description: Feels good being the king's boss.
@@ -606,7 +606,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingHeadHatArmored, ClothingHeadBase, BaseCommandContraband] #goob
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] #goob # Orion-Edit
   id: ClothingHeadHatHoshat
   name: head of security cap
   description: A stylish cap worn by the Head of Security. Shows the officers who's in charge.
@@ -1370,7 +1370,7 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ClothingHeadHatArmored, ClothingHeadBase, BaseCommandContraband] #goob # Orion-Edit: Add comm contra
+  parent: [ClothingHeadHatArmoredPlus, ClothingHeadBase, BaseCommandContraband] #goob # Orion-Edit: Add comm contra and armor
   id: ClothingHeadHatCapcap
   name: cap cap
   description: A grand, stylish cap worn by the Captain. Shows the station who's in charge.
@@ -1395,7 +1395,7 @@
   - type: BlockMovement
 
 - type: entity
-  parent: [ ClothingHeadHatArmored, ClothingHeadBase, BaseCentcommContraband ] #goob
+  parent: [ ClothingHeadHatArmoredCC, ClothingHeadBase, BaseCentcommContraband ] #goob # Orion-Edit
   id: ClothingHeadHatCentcomcap
   name: CentComm cap
   description: An extravagant, stylish cap worn by CentComm officials. Shows the Captain who's in charge.
