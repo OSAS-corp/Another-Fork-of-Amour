@@ -1,0 +1,117 @@
+# SPDX-FileCopyrightText: 2025 MirageEexe <Mirageeexe@gmail.com>
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: martialArt
+  id: ArmyHandCombat
+  martialArtsForm: ArmyHandCombat
+  roundstartCombos: ArbMoves
+
+- type: comboList
+  id: ArbMoves
+  combos:
+    - ArbElbowStrike
+    - ArbKneeStrike
+    - ArbArmLock
+    - ArbSweep
+    - ArbHipThrow
+    - JudoArmbar
+    - JudoWheelThrow
+    - ArbChoke
+
+- type: combo
+  id: ArbElbowStrike
+  name: Elbow Strike
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Harm
+    - Disarm
+  staminaDamage: 28
+  damageType: Blunt
+  extraDamage: 7
+  event: !type:ArbElbowStrikePerformedEvent {}
+
+- type: combo
+  id: ArbKneeStrike
+  name: Knee Strike
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Harm
+    - Harm
+  staminaDamage: 22
+  event: !type:ArbKneeStrikePerformedEvent {}
+
+- type: combo
+  id: ArbArmLock
+  name: Arm Lock
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Grab
+    - Disarm
+  staminaDamage: 32
+  event: !type:ArbArmLockPerformedEvent {}
+
+- type: combo
+  id: ArbSweep
+  name: Leg Sweep
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Disarm
+    - Disarm
+  paralyzeTime: 3
+  staminaDamage: 25
+  dropItems: true
+  event: !type:ArbSweepPerformedEvent {}
+
+- type: combo
+  id: ArbHipThrow
+  name: Hip Throw
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Grab
+    - Harm
+  paralyzeTime: 4
+  staminaDamage: 20
+  thrownSpeed: 6
+  dropItems: true
+  event: !type:ArbHipThrowPerformedEvent {}
+
+- type: combo
+  id: JudoArmbar
+  name: Armbar
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Disarm
+    - Harm
+    - Grab
+  event: !type:JudoArmbarPerformedEvent
+  paralyzeTime: 5
+  staminaDamage: 10
+  dropItems: true
+
+- type: combo
+  id: JudoWheelThrow
+  name: Wheel Throw
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Grab
+    - Harm
+    - Grab
+  event: !type:JudoWheelThrowPerformedEvent
+  staminaDamage: 120
+
+- type: combo
+  id: ArbChoke
+  name: Choke
+  martialArtsForm: ArmyHandCombat
+  attacks:
+    - Grab
+    - Grab
+    - Disarm
+    - Harm
+    - Grab
+  paralyzeTime: 5
+  staminaDamage: 55
+  damageType: Asphyxiation
+  extraDamage: 5
+  dropItems: true
+  event: !type:ArbChokePerformedEvent {}

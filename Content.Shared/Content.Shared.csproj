@@ -58,6 +58,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
   <ItemGroup>
     <None Include="Goobstation\Changeling\Changeling.Actions.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="_Amour\MartialArts\**\*.cs" /> <!-- Amour edit -->
+  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
 </Project>

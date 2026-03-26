@@ -25,6 +25,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
       <PackageReference Include="JetBrains.Annotations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Include="..\Content.Shared\_Amour\MartialArts\**\*.cs" /> <!-- Amour edit -->
+    </ItemGroup>
 
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
