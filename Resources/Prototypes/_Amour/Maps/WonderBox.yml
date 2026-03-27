@@ -44,8 +44,8 @@
             Virologist: [ 2, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 10, 6 ]
-            ResearchAssistant: [ 6, 5 ]
+            Scientist: [ 9, 6 ]
+            ResearchAssistant: [ 7, 5 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 7, 5 ]
