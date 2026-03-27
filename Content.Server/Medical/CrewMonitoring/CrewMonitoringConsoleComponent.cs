@@ -13,8 +13,6 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared.Medical.SuitSensor;
-using Content.Shared.Roles;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Medical.CrewMonitoring;
@@ -35,13 +33,6 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     public float SensorTimeout = 10f;
 
     // Orion-Start
-    /// <summary>
-    /// What departments this monitor can see. If empty, shows all departments.
-    /// YAML example: departments: [ Medical, Security ]
-    /// </summary>
-    [DataField]
-    public List<ProtoId<DepartmentPrototype>> Departments = new();
-
     /// <summary>
     ///     Enable or disable alerts.
     /// </summary>
@@ -77,30 +68,5 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
 
     [DataField(serverOnly: true)]
     public float? NormalLightRadius { get; set; }
-
-    /// <summary>
-    ///     Permanently displays everyone regardless of sensor mode.
-    ///     Set via YAML for special consoles (e.g. death squad monitor).
-    /// </summary>
-    [DataField]
-    public bool IsEmagged = false;
-
-    /// <summary>
-    ///     Expiry time for a temporary emag triggered by the emag tool.
-    ///     Null if not temporarily emagged. Never set by YAML.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan? EmagExpireTime = null;
-
-    public static readonly TimeSpan EmagDuration = TimeSpan.FromSeconds(15);
-
-    /// <summary>
-    ///     Emag sound effects.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks")
-    {
-        Params = AudioParams.Default.WithVolume(8),
-    };
     // Orion-End
 }

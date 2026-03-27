@@ -26,7 +26,7 @@ namespace Content.Shared.Medical.SuitSensor;
 [Serializable, NetSerializable]
 public sealed class SuitSensorStatus
 {
-    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments, SuitSensorMode sensorMode) // Orion-Edit
+    public SuitSensorStatus(NetEntity ownerUid, NetEntity suitSensorUid, string name, string job, string jobIcon, List<string> jobDepartments)
     {
         OwnerUid = ownerUid;
         SuitSensorUid = suitSensorUid;
@@ -34,7 +34,6 @@ public sealed class SuitSensorStatus
         Job = job;
         JobIcon = jobIcon;
         JobDepartments = jobDepartments;
-        Mode = sensorMode; // Orion
     }
 
     public TimeSpan Timestamp;
@@ -50,7 +49,6 @@ public sealed class SuitSensorStatus
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
     public bool IsCommandTracker = false; ///Goob station
-    public SuitSensorMode Mode; // Orion
 }
 
 [Serializable, NetSerializable]
@@ -91,7 +89,6 @@ public static class SuitSensorConstants
     public const string NET_SUIT_SENSOR_UID = "uid";
 
     public const string NET_IS_COMMAND = "iscommand"; ///Goob Sation
-    public const string NET_SUIT_SENSOR_MODE = "mode"; // Orion
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";
