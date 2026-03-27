@@ -49,14 +49,11 @@ public partial class XenobiologySystem
         ent.Comp.NextUpdateTime = _gameTiming.CurTime + ent.Comp.UpdateInterval;
     }
 
-
     /// <summary>
     ///     Checks slime entity hunger threshholds, if the threshhold required by SlimeComponent is met -> DoMitosis.
     /// </summary>
     private void UpdateMitosis()
     {
-
-
         var eligibleSlimes = new HashSet<Entity<SlimeComponent, MobGrowthComponent, HungerComponent>>();
 
         var query = EntityQueryEnumerator<SlimeComponent, MobGrowthComponent, HungerComponent>();
