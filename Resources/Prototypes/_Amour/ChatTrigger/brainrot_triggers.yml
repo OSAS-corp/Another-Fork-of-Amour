@@ -10,8 +10,8 @@
 
 - type: brainrotBotTrigger
   id: Brainrot3
-  trigger: огузок
-  description: brainrot-trigger-desc-brainrot21
+  trigger: сска
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot4
@@ -20,13 +20,13 @@
 
 - type: brainrotBotTrigger
   id: Brainrot5
-  trigger: фашист
+  trigger: "[чурка; чурки; хач; хачи; хохлосрач]"
   description: brainrot-trigger-desc-brainrot21
 
 - type: brainrotBotTrigger
   id: Brainrot6
-  trigger: "[чмо; чмошник]"
-  description: brainrot-trigger-desc-brainrot21
+  trigger: "[бро; донатер]"
+  description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
   id: Brainrot7
@@ -56,7 +56,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot12
-  trigger: "[бандера; бандеровцы; вагнер]"
+  trigger: "[бандера; бандеровцы; вагнер; ватник]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -173,7 +173,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot35
-  trigger: "[хил; хилка; хильни; лекни; лекай]"
+  trigger: "[хил; хилка; хильни; лекни; лекай; хилься]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
