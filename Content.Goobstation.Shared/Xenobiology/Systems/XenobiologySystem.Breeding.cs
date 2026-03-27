@@ -49,31 +49,13 @@ public partial class XenobiologySystem
         ent.Comp.NextUpdateTime = _gameTiming.CurTime + ent.Comp.UpdateInterval;
     }
 
-    // Amour-Start
-    /// <summary>
-    ///     Maximum number of slimes
-    /// </summary>
-    private const int MaxSlimeCount = 50;
-    // Amour-End
 
     /// <summary>
     ///     Checks slime entity hunger threshholds, if the threshhold required by SlimeComponent is met -> DoMitosis.
     /// </summary>
     private void UpdateMitosis()
     {
-        // Amour-Start
-        var totalSlimeCount = 0;
-        var countQuery = EntityQueryEnumerator<SlimeComponent>();
-        while (countQuery.MoveNext(out var countUid, out _))
-        {
-            if (!_mobState.IsDead(countUid))
-                totalSlimeCount++;
-        }
 
-        // If there are too many slimes, skip mitosis entirely
-        if (totalSlimeCount >= MaxSlimeCount)
-            return;
-        // Amour-End
 
         var eligibleSlimes = new HashSet<Entity<SlimeComponent, MobGrowthComponent, HungerComponent>>();
 
