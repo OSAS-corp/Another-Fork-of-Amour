@@ -24,11 +24,9 @@ public enum CrewMonitoringUIKey
 public sealed class CrewMonitoringState : BoundUserInterfaceState
 {
     public List<SuitSensorStatus> Sensors;
-    public bool IsEmagged; // Orion
 
-    public CrewMonitoringState(List<SuitSensorStatus> sensors, bool isEmagged) // Orion-Edit: Added emag
+    public CrewMonitoringState(List<SuitSensorStatus> sensors)
     {
         Sensors = sensors;
-        IsEmagged = isEmagged; // Orion
     }
 }

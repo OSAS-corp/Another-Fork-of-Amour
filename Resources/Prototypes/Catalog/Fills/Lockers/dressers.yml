@@ -105,13 +105,9 @@
     contents:
       - id: ClothingUniformJumpsuitChiefEngineerTurtle
       - id: ClothingUniformJumpskirtChiefEngineerTurtle
-#      - id: ClothingHeadHatBeretEngineering # Orion-Edit: Replaced
+      - id: ClothingHeadHatBeretEngineering
       - id: ClothingOuterWinterCE
       - id: ClothingNeckCloakCe
-      # Orion-Start
-      - id: ClothingHeadHatBeretEngineering
-      - id: ClothingHeadHatBeretCEngineer
-      # Orion-End
 
 - type: entity
   id: DresserChiefMedicalOfficerFilled
