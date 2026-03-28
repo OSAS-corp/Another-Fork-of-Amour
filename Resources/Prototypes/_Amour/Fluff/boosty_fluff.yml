@@ -297,36 +297,7 @@
     - type: Clothing
       sprite: _Amour/Fluff/Boosty/shinel.rsi
 
-# kreses - Void Set
-- type: entity
-  parent: ClothingBackpackSatchel
-  id: KresesClothingBackpackVoidBoosty
-  name: Сумка солдата сингулярности
-  suffix: Boosty
-  description: В ней может храниться все, что угодно.
-  components:
-  - type: Sprite
-    sprite: _Amour/Fluff/Boosty/satchel.rsi
 
-- type: entity
-  parent: ClothingShoesBaseButcherable
-  id: KresesClothingShoesVoidBoosty
-  name: Ботинки солдата пустоты
-  suffix: Boosty
-  description: Стандартная обувь исcледователей бездны.
-  components:
-  - type: Sprite
-    sprite: _Amour/Fluff/Boosty/boots.rsi
-
-- type: entity
-  parent: ClothingOuterBase
-  id: KresesClothingOuterVoidBoosty
-  name: Шинель солдата пустоты
-  suffix: Boosty
-  description: Прямиком из сингулярности.
-  components:
-  - type: Sprite
-    sprite: _Amour/Fluff/Boosty/kommendant_coat.rsi
 
 # Reider207
 - type: entity
@@ -378,18 +349,7 @@
     - type: Clothing
       sprite: _Amour/Fluff/Boosty/mantle.rsi
 
-# g13 - White Suit
-- type: entity
-  parent: ClothingOuterStorageBase
-  id: G13ClothingOuterCoatBoosty
-  name: гламурное белое пальто
-  suffix: Boosty
-  description: Да в таких только звезды ходят!
-  components:
-    - type: Sprite
-      sprite: _Amour/Fluff/Boosty/kommendant_coat.rsi
-    - type: Clothing
-      sprite: _Amour/Fluff/Boosty/kommendant_coat.rsi
+
 
 - type: entity
   parent: ClothingEyesBase
@@ -415,18 +375,7 @@
     - type: Clothing
       sprite: _Amour/Fluff/Boosty/jumpsuit.rsi
 
-# KommenDant
-- type: entity
-  parent: ClothingOuterCoatDetectiveLoadout
-  id: ClothingOuterWinterCoatBoosty
-  name: футуристичное пальто
-  suffix: Boosty
-  description: Зелёное, утеплённое пальто.
-  components:
-    - type: Sprite
-      sprite: _Amour/Fluff/Boosty/kommendant_coat.rsi
-    - type: Clothing
-      sprite: _Amour/Fluff/Boosty/kommendant_coat.rsi
+
 
 # Rector6275
 - type: entity

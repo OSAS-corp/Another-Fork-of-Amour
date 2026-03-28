@@ -502,8 +502,6 @@
   - CommonSatchel
   - CommonDuffel
   - CommonMessenger # Frontier
-  # Boosty
-  - LoadoutBoostyVoidBackpack
 
 - type: loadoutGroup
   id: PassengerNeck
@@ -535,11 +533,8 @@
   - LoadoutBoosty6elbluOvercoat
   - LoadoutBoostySamuraiJacket
   - LoadoutBoostyCommissarCoat
-  - LoadoutBoostyVoidCoat
   - LoadoutBoostyTraumaJacket
   - LoadoutBoostyTechpriestMantle
-  - LoadoutBoostyWhiteCoat
-  - LoadoutBoostyFuturisticCoat
   - LoadoutBoostyTealSuit
   - LoadoutBoostyRitokaCloak
   - LoadoutBoostyEmeraldCoat
@@ -552,7 +547,6 @@
   - WinterBoots
   # Boosty
   - LoadoutBoostyMaurySneakers
-  - LoadoutBoostyVoidShoes
   - LoadoutBoostySkates
 
 - type: loadoutGroup
@@ -1029,8 +1023,6 @@
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
   - SalvageSpecialistMessenger # Frontier
-  # Boosty
-  - LoadoutBoostyVoidBackpack
 
 - type: loadoutGroup
   id: SalvageSpecialistOuterClothing
@@ -1038,8 +1030,6 @@
   minLimit: 0
   loadouts:
   - SalvageSpecialistWintercoat
-  # Boosty
-  - LoadoutBoostyVoidCoat
 
 - type: loadoutGroup
   id: SalvageSpecialistShoes
