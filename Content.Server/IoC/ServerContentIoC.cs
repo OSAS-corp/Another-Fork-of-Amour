@@ -253,7 +253,11 @@ namespace Content.Server.IoC
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<LastRolledAntagManager>(); // Goobstation - antag pity
             IoCManager.Register<LinkAccountManager>(); // RMC - Patreon
-            IoCManager.Register<IBoostyTierManager, BoostyTierManager>(); // Amour - Boosty subscription tiers
+            // Amour edit start
+            IoCManager.Register<IBoostyTierManager, BoostyTierManager>();
+            IoCManager.Register<_Amour.Discord.DiscordOocBridgeService>(); 
+            IoCManager.Register<Content.Server._Amour.Registry.ClientMetricsManager>();
+            // Amour edit end
             // Orion-Start
             IoCManager.Register<ServerProtectionAuditManager>();
             IoCManager.Register<ServerProtectionPunishmentSystem>();
@@ -262,7 +266,6 @@ namespace Content.Server.IoC
             IoCManager.Register<AdminActionProtectionSystem>();
             // Orion-End
             IoCManager.Register<TTSManager>(); // WD EDIT TTS
-            IoCManager.Register<Content.Server._Amour.Registry.ClientMetricsManager>(); // Amour edit
         }
     }
 }
