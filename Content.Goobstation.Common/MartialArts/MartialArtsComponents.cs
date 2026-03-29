@@ -62,5 +62,4 @@ public enum MartialArtsForms
     KungFuDragon,
     Ninjutsu,
     HellRip,
-    ArmyHandCombat, // Amour edit
-}
+    ArmyHandCombat, // Amour

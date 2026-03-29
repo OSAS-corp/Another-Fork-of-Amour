@@ -126,7 +126,7 @@ public abstract partial class SharedMartialArtsSystem : EntitySystem
         InitializeNinjutsu();
         InitializeHellRip();
         InitializeCanPerformCombo();
-        InitializeArmyHandCombat(); // Amour edit
+        InitializeArmyHandCombat(); // Amour
 
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<MartialArtsKnowledgeComponent, CheckGrabOverridesEvent>(CheckGrabStageOverride);

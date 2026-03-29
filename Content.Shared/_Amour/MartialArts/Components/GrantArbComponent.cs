@@ -6,7 +6,6 @@ using Content.Goobstation.Shared.MartialArts.Components;
 
 namespace Content.Goobstation.Shared.MartialArts.Components;
 
-// Amour edit
 [RegisterComponent]
 public sealed partial class GrantArbComponent : GrantMartialArtKnowledgeComponent
 {
