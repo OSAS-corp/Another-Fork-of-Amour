@@ -175,29 +175,7 @@
   equipment:
     outerClothing: ClothingOuterShinelBoosty
 
-- type: loadout
-  id: LoadoutBoostyVoidBackpack
-  effects:
-  - !type:BoostyTierLoadoutEffect
-    minTierLevel: 2
-  equipment:
-    back: KresesClothingBackpackVoidBoosty
 
-- type: loadout
-  id: LoadoutBoostyVoidShoes
-  effects:
-  - !type:BoostyTierLoadoutEffect
-    minTierLevel: 2
-  equipment:
-    shoes: KresesClothingShoesVoidBoosty
-
-- type: loadout
-  id: LoadoutBoostyVoidCoat
-  effects:
-  - !type:BoostyTierLoadoutEffect
-    minTierLevel: 2
-  equipment:
-    outerClothing: KresesClothingOuterVoidBoosty
 
 - type: loadout
   id: LoadoutBoostyTraumaJacket
@@ -231,13 +209,7 @@
   equipment:
     outerClothing: EgoruchClothingOuterMantleBoosty
 
-- type: loadout
-  id: LoadoutBoostyWhiteCoat
-  effects:
-  - !type:BoostyTierLoadoutEffect
-    minTierLevel: 2
-  equipment:
-    outerClothing: G13ClothingOuterCoatBoosty
+
 
 - type: loadout
   id: LoadoutBoostyWhiteEyepatch
@@ -255,13 +227,7 @@
   equipment:
     jumpsuit: G13ClothingUniformSuitBoosty
 
-- type: loadout
-  id: LoadoutBoostyFuturisticCoat
-  effects:
-  - !type:BoostyTierLoadoutEffect
-    minTierLevel: 2
-  equipment:
-    outerClothing: ClothingOuterWinterCoatBoosty
+
 
 - type: loadout
   id: LoadoutBoostyTealSuit
