@@ -29,22 +29,19 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
     }
 
-    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
         if (e.NewStatus != SessionStatus.Connected)
             return;
 
-        _ = Task.Run(async () =>
+        try
         {
-            try
-            {
-                await _discordLinkChecker.RefreshLinkStatusAsync(e.Session);
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Failed to refresh Discord link status for {e.Session.Name}: {ex}");
-            }
-        });
+            await _discordLinkChecker.RefreshLinkStatusAsync(e.Session);
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to refresh Discord link status for {e.Session.Name}: {ex}");
+        }
     }
 
     private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
@@ -60,11 +57,21 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
 
         foreach (var requirement in requirements)
         {
-            if (requirement is DiscordLinkRequirement { Inverted: false } && 
-                !_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+            if (requirement is DiscordLinkRequirement { Inverted: false })
             {
-                ev.Cancelled = true;
-                return;
+                var isLinked = _discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId);
+                
+                if (!isLinked)
+                {
+                    // Cache miss or not linked - do blocking async check
+                    isLinked = _discordLinkChecker.IsDiscordLinkedAsync(ev.Player).GetAwaiter().GetResult();
+                }
+                
+                if (!isLinked)
+                {
+                    ev.Cancelled = true;
+                    return;
+                }
             }
         }
     }
