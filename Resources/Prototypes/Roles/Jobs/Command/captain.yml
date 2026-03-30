@@ -139,21 +139,7 @@
   description: job-description-captain
   playTimeTracker: JobCaptain
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10800 #3 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 14000 #3.89 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
     - !type:AgeRequirement # Amour
       requiredAge: 23
       #any MRP using our code might eventually want to use it

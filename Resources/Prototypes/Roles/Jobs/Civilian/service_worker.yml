@@ -79,9 +79,7 @@
   description: job-description-serviceworker
   playTimeTracker: JobServiceWorker
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Civilian
-    time: 900 #15 min # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service

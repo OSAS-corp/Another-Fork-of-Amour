@@ -9,12 +9,7 @@
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 18000 # 5 hrs
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 # 5 hrs
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

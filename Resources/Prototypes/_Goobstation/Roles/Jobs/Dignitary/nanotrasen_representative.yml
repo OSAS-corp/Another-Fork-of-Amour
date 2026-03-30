@@ -99,9 +99,7 @@
   description: job-description-ntr
   playTimeTracker: JobNanotrasenRepresentative
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 180000  #50 hours
+    - !type:DiscordLinkRequirement # Amour edit
     - !type:AgeRequirement
       requiredAge: 21
   weight: 20

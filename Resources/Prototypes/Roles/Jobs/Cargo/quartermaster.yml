@@ -130,15 +130,7 @@
   description: job-description-qm
   playTimeTracker: JobQuartermaster
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobCargoTechnician
-      time: 9000 #2.50 hrs # Amour
-    - !type:RoleTimeRequirement
-      role: JobSalvageSpecialist
-      time: 4500 #1.25 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 18000 #5 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
