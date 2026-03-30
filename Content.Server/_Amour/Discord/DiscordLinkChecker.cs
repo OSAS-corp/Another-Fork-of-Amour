@@ -15,7 +15,7 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
     [Dependency] private readonly IServerDbManager _db = default!;
     
     private ISawmill _sawmill = default!;
-    private readonly ConcurrentDictionary<Guid, (bool IsLinked, TimeSpan LastCheck)> _linkCache = new();
+    private readonly ConcurrentDictionary<Guid, (bool IsLinked, DateTime LastCheck)> _linkCache = new();
     private readonly TimeSpan _cacheExpiry = TimeSpan.FromMinutes(5);
     private readonly ConcurrentDictionary<Guid, SemaphoreSlim> _checkLocks = new();
 
@@ -35,7 +35,7 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
         {
             if (_linkCache.TryGetValue(userId, out var cached))
             {
-                var age = TimeSpan.FromTicks(DateTime.UtcNow.Ticks) - cached.LastCheck;
+                var age = DateTime.UtcNow - cached.LastCheck;
                 if (age < _cacheExpiry)
                 {
                     return cached.IsLinked;
@@ -43,7 +43,7 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
             }
 
             var isLinked = await _db.HasLinkedAccount(userId, CancellationToken.None);
-            _linkCache[userId] = (isLinked, TimeSpan.FromTicks(DateTime.UtcNow.Ticks));
+            _linkCache[userId] = (isLinked, DateTime.UtcNow);
             return isLinked;
         }
         catch (Exception ex)
@@ -61,7 +61,7 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
     {
         if (_linkCache.TryGetValue(userId.UserId, out var cached))
         {
-            var age = TimeSpan.FromTicks(DateTime.UtcNow.Ticks) - cached.LastCheck;
+            var age = DateTime.UtcNow - cached.LastCheck;
             if (age < _cacheExpiry)
             {
                 return cached.IsLinked;

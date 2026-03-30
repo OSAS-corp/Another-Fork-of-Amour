@@ -4,6 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Amour.Discord;
 
+[Serializable, NetSerializable]
 public sealed class DiscordLinkRequestMsg : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
@@ -13,6 +14,7 @@ public sealed class DiscordLinkRequestMsg : NetMessage
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer) { }
 }
 
+[Serializable, NetSerializable]
 public sealed class DiscordLinkCodeMsg : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
@@ -30,6 +32,7 @@ public sealed class DiscordLinkCodeMsg : NetMessage
     }
 }
 
+[Serializable, NetSerializable]
 public sealed class DiscordLinkStatusMsg : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
