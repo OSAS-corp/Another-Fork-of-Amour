@@ -74,9 +74,7 @@
   description: job-description-engineer
   playTimeTracker: JobStationEngineer
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 4500 #1.25 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce
