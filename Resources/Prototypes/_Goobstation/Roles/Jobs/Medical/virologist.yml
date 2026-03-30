@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 10800 # Amour edit: 14400 - 10800 - 3h
+      time: 7200 # Amour edit: 14400 - 7200 - 2h
     - !type:DiscordLinkRequirement # Amour
   startingGear: VirologistGear
   icon: "JobIconVirologist"
