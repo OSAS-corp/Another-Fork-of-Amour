@@ -685,7 +685,7 @@
       - !type:DepartmentTimeRequirement
         department: Security
         time: 18000 # five hours
-      - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
