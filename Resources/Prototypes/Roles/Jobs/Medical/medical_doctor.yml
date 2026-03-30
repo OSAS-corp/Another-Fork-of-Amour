@@ -78,10 +78,7 @@
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 7200 # 2 hrs # Amour edit
-    - !type:DiscordLinkRequirement # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo

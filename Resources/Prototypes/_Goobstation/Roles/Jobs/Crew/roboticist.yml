@@ -4,10 +4,7 @@
   description: job-description-roboticist
   playTimeTracker: JobRoboticist
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 10800 # Amour edit: 14400 > 10800 - 3h
-    - !type:DiscordLinkRequirement # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: RoboticistGear
   icon: "JobIconRoboticist"
   supervisors: job-supervisors-rd

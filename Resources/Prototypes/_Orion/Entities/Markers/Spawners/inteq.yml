@@ -251,12 +251,7 @@
     description: ghost-role-information-inteq-vanguard-leader-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 76000
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
   - type: CloningAppearance
     startingGear: InteQVanguardLeaderSizoGear
     components:
@@ -290,12 +285,7 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000 # Amour edit: 36000 > 18000 - 5h
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
   - type: CloningAppearance
     startingGear: InteQVanguardOperativeSizoGear
     components:
@@ -329,12 +319,7 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 18000 # Amour edit: 36000 > 18000 - 5h
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
   - type: CloningAppearance
     startingGear: InteQVanguardSoldierSizoGear
     components:
@@ -368,12 +353,7 @@
     description: ghost-role-information-inteq-vanguard-SIZO-description
     rules: ghost-role-information-inteq-SIZO-rules
     requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 18000
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
   - type: CloningAppearance
     startingGear: InteQVanguardMedicSizoGear
     components:

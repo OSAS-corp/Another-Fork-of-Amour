@@ -68,7 +68,7 @@
   supervisors: job-supervisors-null
   canBeAntag: false
   requirements:
-    - !type:DiscordLinkRequirement # Amour
+    - !type:DiscordLinkRequirement # Amour edit
     - !type:AgeRequirement
       requiredAge: 21
   accessGroups:

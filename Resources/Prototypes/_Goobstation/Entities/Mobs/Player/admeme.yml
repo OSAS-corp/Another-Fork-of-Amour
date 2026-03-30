@@ -35,7 +35,7 @@
   - Vulpkanin
   - Rodentia
   - SlimePerson
-#  - Dwarf # Amour edit: removed
+  - Dwarf
   - Feroxi
   - Chitinid
   components:
@@ -48,13 +48,7 @@
     speechVerb: HolierThanThou
   - type: GhostRole
     requirements:
-#    - !type:DepartmentTimeRequirement # Amour edit: Removed
-#      department: Security
-#      time: 36000 # Ten Hours
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 18000 # Amour edit: 108000 > 18000 - 5h
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
 
 # Navy Officer
 

@@ -16,12 +16,7 @@
   setPreference: true
   objective: roles-antag-changeling-description
   requirements:
-  - !type:OverallPlaytimeRequirement
-      time: 36000 #10 hrs
-  - !type:DepartmentTimeRequirement # Amour
-    department: Security
-    time: 18000 # 5 hrs
-  - !type:DiscordLinkRequirement # Amour
+  - !type:DiscordLinkRequirement # Amour edit
   - !type:SpeciesRequirement
     inverted: true
     species:

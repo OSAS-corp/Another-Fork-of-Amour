@@ -66,10 +66,7 @@
   description: job-description-chemist
   playTimeTracker: JobChemist
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 9000 #2.50 hrs # Amour edit
-    - !type:DiscordLinkRequirement # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: ChemistGear
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo

@@ -34,9 +34,7 @@
   setPreference: true
   objective: roles-antag-wizard-description
   requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 126000 # 35h
-  - !type:DiscordLinkRequirement # Amour
+  - !type:DiscordLinkRequirement # Amour edit
   - !type:SpeciesRequirement
     inverted: true
     species:

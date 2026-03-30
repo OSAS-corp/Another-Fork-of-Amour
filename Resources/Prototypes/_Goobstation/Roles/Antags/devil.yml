@@ -12,15 +12,7 @@
   objective: roles-antag-devil-description
   guides: [ Devil ]
   requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 54000 # Amour edit: 108000 > 54000 - 15h
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 18000 # 5 hours
-  - !type:RoleTimeRequirement
-    role: JobLawyer
-    time: 10800 # Amour edit: 3600 > 10800 - 3h
-  - !type:DiscordLinkRequirement # Amour
+  - !type:DiscordLinkRequirement # Amour edit
   - !type:SpeciesRequirement
     inverted: true
     species:

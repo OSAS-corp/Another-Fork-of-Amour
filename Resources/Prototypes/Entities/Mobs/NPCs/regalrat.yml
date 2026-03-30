@@ -255,8 +255,6 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
-    - !type:OverallPlaytimeRequirement
-      time: 3600 # Amour edit: 18000 > 3600 - 1h
   - type: GhostTakeoverAvailable
   - type: Tag
     tags:

@@ -63,13 +63,7 @@
   description: job-description-technical-assistant
   playTimeTracker: JobTechnicalAssistant
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 3600 # 1 hrs # Amour edit
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 36000 # 10 hrs # Amour edit
-      inverted: true # stop playing intern if you're good at engineering!
-    - !type:DiscordLinkRequirement # Amour: Maybe best role for raiders.
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering

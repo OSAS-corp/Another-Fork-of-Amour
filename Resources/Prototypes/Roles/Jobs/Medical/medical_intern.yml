@@ -64,10 +64,7 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 36000 # 10 hrs # Amour edit
-      inverted: true # stop playing intern if you're good at med!
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine

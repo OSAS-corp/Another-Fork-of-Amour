@@ -222,13 +222,7 @@
       raffle:
         settings: short
       requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # Goobstation # Amour edit: 48000 > 36000
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 18000 # Goobstation
-      - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour edit
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -269,13 +263,7 @@
         settings: short
       job: ERTLeader
       requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 36000 # ten hours
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 18000 # five hours
-      - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour edit
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
       roleLoadout: [ RoleSurvivalExtended ]
@@ -478,13 +466,7 @@
         settings: short
       job: ERTEngineer
       requirements:
-      - !type:DepartmentTimeRequirement
-        department: Engineering
-        time: 18000 # Amour edit: 36000 > 18000 - 5h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # five hours
-      - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour edit
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -679,13 +661,7 @@
       raffle:
         settings: short
       requirements:
-      - !type:DepartmentTimeRequirement
-        department: Medical
-        time: 18000 # Amour edit: 36000 > 18000 - 5h
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # five hours
-        - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour edit
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
@@ -722,13 +698,7 @@
       raffle:
         settings: short
       requirements:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # Amour edit: 36000 > 18000 - 5h
-#      - !type:DepartmentTimeRequirement # Amour edit: removed
-#        department: Command
-#        time: 18000 # five hours
-      - !type:DiscordLinkRequirement # Amour
+        - !type:DiscordLinkRequirement # Amour edit
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst

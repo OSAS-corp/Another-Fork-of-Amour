@@ -4,12 +4,7 @@
   description: job-description-security-clown
   playTimeTracker: JobSecurityClown
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 36000 #10 hrs
-    - !type:RoleTimeRequirement
-      role: JobClown
-      time: 7200 # Amour edit: 3600 > 7200 - 2h
-    - !type:DiscordLinkRequirement # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: SecurityClownGear
   icon: "JobIconSecurityClown"
   supervisors: job-supervisors-security

@@ -159,13 +159,7 @@
   - type: StationMap #imp
   - type: GhostRole
     requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 18000 # Amour edit: 36000 > 18000 - 5h
-#    - !type:DepartmentTimeRequirement # Amour edit: Removed
-#      department: Silicon
-#      time: 18000 # five hours
-    - !type:DiscordLinkRequirement # Amour
+      - !type:DiscordLinkRequirement # Amour edit
     makeSentient: true
     name: ghost-role-information-drone-name
     description: ghost-role-information-drone-description
