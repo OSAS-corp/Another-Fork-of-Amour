@@ -56,11 +56,12 @@
   playTimeTracker: JobResearchAssistant
   requirements:
     - !type:OverallPlaytimeRequirement # Amour
-      time: 7200 # 2 hrs
+      time: 3600 # 1 hrs
     - !type:DepartmentTimeRequirement
       department: Science
       time: 36000 # 10 hrs # Amour
       inverted: true # stop playing intern if you're good at science!
+    - !type:DiscordLinkRequirement # Amour
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
