@@ -175,7 +175,6 @@
   - ClothingHeadHatWelding
   - Welder
   - WelderMini
-  - trayScanner
   - Multitool
   - Wrench
   - Crowbar
@@ -366,8 +365,10 @@
   technologyPrerequisites:
   - HUD
   recipeUnlocks:
-  # TODO: Departament variations
   - ClothingEyesNightVisionGoggles
+  - ClothingEyesNightVisionSecurityGoggles
+  - ClothingEyesNightVisionMedicalGoggles
+  - ClothingEyesNightVisionDiagnosticGoggles
   position: 11,0
 
 - type: technology
