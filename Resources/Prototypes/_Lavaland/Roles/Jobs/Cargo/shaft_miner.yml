@@ -5,7 +5,10 @@
   description: job-description-shaftminer
   playTimeTracker: JobShaftMiner
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 9000 # 2.5 hrs
+  - !type:DiscordLinkRequirement # Amour
   icon: "JobIconShaftMiner" # Orion-Edit: Changed to JobIconShaftMiner
   startingGear: ShaftMinerGear
   guides:

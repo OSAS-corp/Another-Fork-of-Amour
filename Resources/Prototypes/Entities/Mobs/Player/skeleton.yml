@@ -130,6 +130,8 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
+    - !type:OverallPlaytimeRequirement
+      time: 10800 # Amour edit: 3600 > 10800 - 3h
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [LimitedPassengerGear]

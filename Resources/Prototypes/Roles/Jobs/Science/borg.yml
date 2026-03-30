@@ -35,7 +35,10 @@
   description: job-description-station-ai
   playTimeTracker: JobStationAi
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 9000 #2.50 hrs # Amour edit
+  - !type:DiscordLinkRequirement # Amour
   canBeAntag: false
   goobcoins: 40 #Goob content
   weight: 10 # Goob Edit
@@ -51,7 +54,8 @@
   description: job-description-borg
   playTimeTracker: JobBorg
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 7200 # 2 hrs # Amour edit
   canBeAntag: false
   goobcoins: 20 #Goob content
   icon: JobIconBorg

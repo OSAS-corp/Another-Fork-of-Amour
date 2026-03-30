@@ -89,7 +89,10 @@
   description: job-description-security
   playTimeTracker: JobSecurityOfficer
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DiscordLinkRequirement # Amour
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs # Amour edit
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos

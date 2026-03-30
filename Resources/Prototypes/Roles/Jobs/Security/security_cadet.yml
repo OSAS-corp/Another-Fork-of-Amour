@@ -100,7 +100,13 @@
   description: job-description-cadet
   playTimeTracker: JobSecurityCadet
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DiscordLinkRequirement # Amour
+    - !type:OverallPlaytimeRequirement
+      time: 18000 # 5 hrs # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 32000 # 10 hrs # Amour edit
+      inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security

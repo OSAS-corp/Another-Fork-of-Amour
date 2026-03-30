@@ -74,7 +74,10 @@
   description: job-description-salvagespec
   playTimeTracker: JobSalvageSpecialist
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 4500 #1.25 hrs # Amour edit
+    - !type:DiscordLinkRequirement # Amour
   icon: "JobIconShaftMiner"
 
   startingGear: SalvageSpecialistGear

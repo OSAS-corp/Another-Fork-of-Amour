@@ -69,7 +69,8 @@
   description: job-description-chaplain
   playTimeTracker: JobChaplain
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 9000 #2.50 hrs # Amour edit
   startingGear: ChaplainGear
   icon: "JobIconChaplain"
   supervisors: job-supervisors-hop

@@ -114,7 +114,8 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hours
   - type: GhostRoleMobSpawner
     prototype: MobRatKing
   - type: Sprite
@@ -183,6 +184,8 @@
     - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
+    requirements: # Amour - ghost roles requirements
+    - !type:DiscordLinkRequirement
   - type: GhostRoleMobSpawner
     prototype: MobHumanNukeOp
   - type: Sprite
@@ -204,7 +207,10 @@
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 #5 hours
+    - !type:DiscordLinkRequirement # Amour
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -260,7 +266,9 @@
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hours
+    - !type:DiscordLinkRequirement # Amour
   - type: Sprite
     layers:
     - state: green
@@ -281,7 +289,10 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      department: Security # Amour
+      time: 18000 #5 hours
+    - !type:DiscordLinkRequirement # Amour
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -302,6 +313,8 @@
     - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
+    requirements: # Amour - ghost roles requirements
+    - !type:DiscordLinkRequirement
   - type: Sprite
     layers:
     - sprite: Markers/jobs.rsi
@@ -323,7 +336,10 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:RoleTimeRequirement
+      role: JobBorg
+      time: 3600 #1 hour
+    - !type:DiscordLinkRequirement # Amour
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

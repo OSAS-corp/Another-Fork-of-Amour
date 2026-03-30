@@ -139,19 +139,19 @@
   description: job-description-hos
   playTimeTracker: JobHeadOfSecurity
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DiscordLinkRequirement # Amour
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 4500 # Amour
+      time: 4500 # Amour edit
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 6000 # Amour
+      time: 18000 # Amour edit: 5h
     - !type:RoleTimeRequirement
       role: JobDetective
-      time: 600 # Amour
+      time: 600 # Amour edit: 10m
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 6000 # Amour
+      time: 32000 # Amour edit: 10h
     - !type:AgeRequirement # Amour
       requiredAge: 23
     - !type:SpeciesRequirement # Amour

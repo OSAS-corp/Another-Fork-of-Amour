@@ -287,7 +287,9 @@
       mindRoles:
       - MindRoleGhostRoleSoloAntagonist
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:OverallPlaytimeRequirement
+        time: 18000 #5 hours
+      - !type:DiscordLinkRequirement # Amour
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:

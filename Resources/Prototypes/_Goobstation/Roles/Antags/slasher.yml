@@ -20,7 +20,9 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hours
+    - !type:DiscordLinkRequirement # Amour
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

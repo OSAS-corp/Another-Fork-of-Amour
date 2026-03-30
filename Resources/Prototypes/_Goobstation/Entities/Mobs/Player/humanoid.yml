@@ -55,6 +55,8 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
+      requirements: # Amour
+        - !type:DiscordLinkRequirement
     - type: Loadout
       prototypes: [ LostFrontierProspectorSuit ]
       roleLoadout: [ RoleSurvivalStandard ]
@@ -295,7 +297,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 ## ERT Leader
 
@@ -319,7 +321,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVANoReq
@@ -341,7 +343,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 ## ERT Chaplain
 
@@ -365,7 +367,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVANoReq
@@ -387,7 +389,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 ## ERT Janitor
 
@@ -411,7 +413,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVANoReq
@@ -433,7 +435,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 ## ERT Engineer
 
@@ -457,7 +459,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVANoReq
@@ -479,7 +481,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
 
 ## ERT Security
 
@@ -503,7 +505,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
       job: ERTSecurity
 
 - type: entity
@@ -526,7 +528,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
       job: ERTSecurity
 
 ## ERT Medic
@@ -551,7 +553,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
       job: ERTMedical
 
 - type: entity
@@ -574,7 +576,7 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour
       job: ERTMedical
 
 ## CBURN
@@ -598,4 +600,4 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+        - !type:DiscordLinkRequirement # Amour

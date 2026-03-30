@@ -1111,6 +1111,7 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
+    - !type:DiscordLinkRequirement # Amour
     mindRoles:
     - MindRoleGhostRoleNeutral
   - type: GhostTakeoverAvailable

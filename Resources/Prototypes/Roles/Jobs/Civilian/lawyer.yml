@@ -71,7 +71,9 @@
   description: job-description-lawyer
   playTimeTracker: JobLawyer
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #1 hrs # Amour edit
+    - !type:DiscordLinkRequirement # Amour
   startingGear: LawyerGear
   icon: "JobIconLawyer"
   supervisors: job-supervisors-hop

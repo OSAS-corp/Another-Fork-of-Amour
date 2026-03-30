@@ -121,7 +121,9 @@
     raffle:
       settings: default
     requirements: # Goobstation - ghost roles requirements
-    - !type:DiscordLinkRequirement # Amour edit
+#    - !type:RoleTimeRequirement # Amour edit: Removed
+#      role: JobBorg
+#      time: 3600 #1 hour
   - type: GhostTakeoverAvailable
 
 # Mining

@@ -73,7 +73,8 @@
   description: job-description-bartender
   playTimeTracker: JobBartender
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 900 #15 min # Amour edit
   startingGear: BartenderGear
   icon: "JobIconBartender"
   supervisors: job-supervisors-hop

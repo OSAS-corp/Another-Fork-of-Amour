@@ -13,4 +13,6 @@
   objective: roles-antag-blob-objective
   guides: [ Blob ]
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h # Goobstation-RoleTime
+  - !type:DiscordLinkRequirement # Amour
