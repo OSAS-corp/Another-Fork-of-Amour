@@ -6,8 +6,7 @@ namespace Content.Server._Amour.Discord;
 
 public interface IDiscordLinkChecker
 {
+    void Initialize();
     Task<bool> IsDiscordLinkedAsync(ICommonSession session);
     bool IsDiscordLinkedCached(NetUserId userId);
-    Task RefreshLinkStatusAsync(ICommonSession session);
-    void ClearCache();
 }

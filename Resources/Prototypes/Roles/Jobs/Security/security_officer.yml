@@ -90,6 +90,8 @@
   playTimeTracker: JobSecurityOfficer
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
+      time: 3600
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos

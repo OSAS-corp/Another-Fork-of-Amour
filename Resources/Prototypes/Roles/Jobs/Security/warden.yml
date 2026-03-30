@@ -136,6 +136,8 @@
   playTimeTracker: JobWarden
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
+      time: 3600
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"

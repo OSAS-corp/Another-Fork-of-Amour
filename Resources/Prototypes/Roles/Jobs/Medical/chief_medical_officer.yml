@@ -137,6 +137,9 @@
   playTimeTracker: JobChiefMedicalOfficer
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Medical
+      time: 3600
     - !type:AgeRequirement # Amour
       requiredAge: 23
   startingGear: CMOGear

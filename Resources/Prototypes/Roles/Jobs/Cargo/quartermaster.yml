@@ -131,6 +131,9 @@
   playTimeTracker: JobQuartermaster
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Cargo
+      time: 3600
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"

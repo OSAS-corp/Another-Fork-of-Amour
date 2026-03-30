@@ -1,35 +1,34 @@
-using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
-using Robust.Shared.IoC;
-using Robust.Shared.Log;
 using Robust.Shared.Network;
+using Robust.Shared.Log;
 using Robust.Shared.Player;
 
 namespace Content.Server._Amour.Discord;
 
-public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
+public sealed class DiscordLinkChecker : IDiscordLinkChecker
 {
     [Dependency] private readonly IServerDbManager _db = default!;
-    
-    private ISawmill _sawmill = default!;
-    private readonly ConcurrentDictionary<Guid, (bool IsLinked, DateTime LastCheck)> _linkCache = new();
-    private readonly TimeSpan _cacheExpiry = TimeSpan.FromMinutes(5);
-    private readonly ConcurrentDictionary<Guid, SemaphoreSlim> _checkLocks = new();
+    [Dependency] private readonly ILogManager _log = default!;
 
-    public void PostInject()
+    private ISawmill _sawmill = default!;
+    private readonly ConcurrentDictionary<NetUserId, (bool IsLinked, DateTime LastCheck)> _linkCache = new();
+    private readonly ConcurrentDictionary<NetUserId, SemaphoreSlim> _checkLocks = new();
+    private readonly TimeSpan _cacheExpiry = TimeSpan.FromMinutes(10);
+
+    public void Initialize()
     {
-        _sawmill = Logger.GetSawmill("discord.link");
+        _sawmill = _log.GetSawmill("discord_link");
     }
 
     public async Task<bool> IsDiscordLinkedAsync(ICommonSession session)
     {
-        var userId = session.UserId.UserId;
+        var userId = session.UserId;
 
         var lockObj = _checkLocks.GetOrAdd(userId, _ => new SemaphoreSlim(1, 1));
-        
+
         await lockObj.WaitAsync();
         try
         {
@@ -46,20 +45,18 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
             _linkCache[userId] = (isLinked, DateTime.UtcNow);
             return isLinked;
         }
-        catch (Exception ex)
+        catch
         {
-            _sawmill.Error($"Failed to check Discord link for {userId}: {ex}");
             return false;
-        }
-        finally
+        }        finally
         {
             lockObj.Release();
         }
     }
-    
+
     public bool IsDiscordLinkedCached(NetUserId userId)
     {
-        if (_linkCache.TryGetValue(userId.UserId, out var cached))
+        if (_linkCache.TryGetValue(userId, out var cached))
         {
             var age = DateTime.UtcNow - cached.LastCheck;
             if (age < _cacheExpiry)
@@ -68,15 +65,5 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker, IPostInjectInit
             }
         }
         return false;
-    }
-    
-    public async Task RefreshLinkStatusAsync(ICommonSession session)
-    {
-        await IsDiscordLinkedAsync(session);
-    }
-    
-    public void ClearCache()
-    {
-        _linkCache.Clear();
     }
 }

@@ -75,6 +75,8 @@
   playTimeTracker: JobStationEngineer
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
+      time: 3600
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce

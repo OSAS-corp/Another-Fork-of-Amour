@@ -140,6 +140,9 @@
   playTimeTracker: JobHeadOfSecurity
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Security
+      time: 3600
     - !type:RoleTimeRequirement
       role: JobWarden
       time: 4500 # Amour

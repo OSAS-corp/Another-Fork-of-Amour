@@ -66,6 +66,8 @@
   playTimeTracker: JobAtmosphericTechnician
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
+      time: 3600
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce

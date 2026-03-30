@@ -18,7 +18,7 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
     }
@@ -38,15 +38,13 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
         {
             try
             {
-                await _discordLinkChecker.RefreshLinkStatusAsync(e.Session);
+                await _discordLinkChecker.IsDiscordLinkedAsync(e.Session);
             }
-            catch (Exception ex)
+            catch
             {
-                Log.Error($"Failed to refresh Discord link status for {e.Session.Name}: {ex}");
             }
         });
     }
-
     private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(ev.JobId, out var job))
@@ -54,18 +52,19 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
 
         var roleSystem = EntityManager.System<SharedRoleSystem>();
         var requirements = roleSystem.GetJobRequirement(job);
-        
+
         if (requirements == null)
             return;
 
         foreach (var requirement in requirements)
         {
-            if (requirement is DiscordLinkRequirement { Inverted: false } &&
-                !_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+            if (requirement is DiscordLinkRequirement { Inverted: false })
             {
-                ev.Cancelled = true;
-                return;
+                if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+                {
+                    ev.Cancelled = true;
+                    return;
+                }
             }
         }
-    }
-}
+    }}
