@@ -257,7 +257,6 @@ namespace Content.Server.IoC
             // Amour edit start
             IoCManager.Register<IDiscordLinkChecker, DiscordLinkChecker>();
             IoCManager.Register<IBoostyTierManager, BoostyTierManager>();
-            IoCManager.Register<_Amour.Discord.DiscordOocBridgeService>(); 
             IoCManager.Register<Content.Server._Amour.Registry.ClientMetricsManager>();
             // Amour edit end
             // Orion-Start
