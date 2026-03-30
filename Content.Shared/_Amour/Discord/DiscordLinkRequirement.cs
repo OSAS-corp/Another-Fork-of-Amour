@@ -22,21 +22,20 @@ public sealed partial class DiscordLinkRequirement : JobRequirement
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        var isLinked = false;
         try
         {
             var linkManager = IoCManager.Resolve<ISharedDiscordLinkManager>();
-            isLinked = linkManager.IsLinked;
+            
+            if (!linkManager.IsLinked)
+            {
+                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord-not-linked"));
+                return false;
+            }
         }
         catch
         {
-            // я хочу спать
-        }
-
-        if (!isLinked)
-        {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord-not-linked"));
-            return false;
+            reason = null;
+            return true;
         }
         
         reason = null;

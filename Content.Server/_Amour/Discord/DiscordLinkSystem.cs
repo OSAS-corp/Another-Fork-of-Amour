@@ -56,7 +56,7 @@ public sealed class DiscordLinkSystem : EntitySystem
     {
         try
         {
-            var isLinked = await _db.HasLinkedAccount(session.UserId, CancellationToken.None);
+            var isLinked = await _db.HasLinkedAccount(session.UserId.UserId, CancellationToken.None);
             var msg = new DiscordLinkStatusMsg { IsLinked = isLinked };
             _net.ServerSendMessage(msg, session.Channel);
         }
@@ -77,7 +77,7 @@ public sealed class DiscordLinkSystem : EntitySystem
         _lastRequest[userId] = time;
 
         var code = Guid.NewGuid();
-        _db.SetLinkingCode(userId, code);
+        _db.SetLinkingCode(userId.UserId, code);
 
         var response = new DiscordLinkCodeMsg { Code = code };
         _net.ServerSendMessage(response, message.MsgChannel);
