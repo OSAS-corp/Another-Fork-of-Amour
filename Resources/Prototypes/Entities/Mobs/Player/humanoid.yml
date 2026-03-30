@@ -222,7 +222,12 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 48000 # Goobstation
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000 # Goobstation
     - type: Loadout
       prototypes: [ DeathSquadGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -263,7 +268,12 @@
         settings: short
       job: ERTLeader
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000 # ten hours
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000 # five hours
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
       roleLoadout: [ RoleSurvivalExtended ]
@@ -466,7 +476,12 @@
         settings: short
       job: ERTEngineer
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 36000 # ten hours
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000 # five hours
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
@@ -661,7 +676,12 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 36000 # ten hours
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000 # five hours
       job: ERTMedical
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
@@ -698,7 +718,12 @@
       raffle:
         settings: short
       requirements:
-        - !type:DiscordLinkRequirement # Amour edit
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000 # ten hours
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000 # five hours
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst

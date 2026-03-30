@@ -65,7 +65,9 @@
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 4500 #1.25 hrs # Amour
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce

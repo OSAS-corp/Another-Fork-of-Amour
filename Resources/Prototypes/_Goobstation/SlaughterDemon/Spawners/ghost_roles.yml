@@ -15,7 +15,8 @@
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000 # 5 hours
     raffle:
       settings: default
   - type: Sprite
@@ -34,6 +35,7 @@
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000 # 5 hours
     raffle:
       settings: default

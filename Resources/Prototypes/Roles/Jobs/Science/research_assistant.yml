@@ -55,7 +55,10 @@
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 18000 #5 hrs # Amour
+      inverted: true # stop playing intern if you're good at science!
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science

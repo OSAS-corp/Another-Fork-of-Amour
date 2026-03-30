@@ -55,7 +55,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000
   - type: GhostTakeoverAvailable
   - type: Physics
     bodyType: KinematicController
@@ -232,7 +233,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 18000
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Effects/sadtrombone.ogg

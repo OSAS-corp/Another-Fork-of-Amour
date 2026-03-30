@@ -63,7 +63,12 @@
   description: job-description-technical-assistant
   playTimeTracker: JobTechnicalAssistant
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #1 hrs # Amour
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000 #5 hrs # Amour
+      inverted: true # stop playing intern if you're good at engineering!
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering

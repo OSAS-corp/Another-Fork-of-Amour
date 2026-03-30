@@ -147,7 +147,8 @@
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 54000 # 15 hours
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

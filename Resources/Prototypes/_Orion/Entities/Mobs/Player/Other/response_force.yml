@@ -53,7 +53,12 @@
       settings: short
     job: ERTLeader
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # ten hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 18000 # five hours
   - type: RandomMetadata
     nameSegments:
     - NamesMilitaryFirstLeader
@@ -71,7 +76,9 @@
       settings: short
     job: ERTJanitor
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Civilian
+      time: 5000
 
 - type: randomHumanoidSettings
   parent: [ BaseNanoTrasenERT, BaseResponseForce ]
@@ -85,7 +92,12 @@
       settings: short
     job: ERTEngineer
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # ten hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # five hours
 
 - type: randomHumanoidSettings
   parent: [ BaseNanoTrasenERT, BaseResponseForce ]
@@ -99,7 +111,9 @@
       settings: short
     job: ERTSecurity
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # five hours
 
 - type: randomHumanoidSettings
   parent: [ BaseNanoTrasenERT, BaseResponseForce ]
@@ -113,7 +127,9 @@
       settings: short
     job: ERTMedical
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # five hours
 
 # Base InteQ ERT
 - type: randomHumanoidSettings

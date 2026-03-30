@@ -135,7 +135,15 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 9000 #2.50 hrs # Amour
+    - !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 9000 #2.50 hrs # Amour
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 #5 hrs # Amour
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"

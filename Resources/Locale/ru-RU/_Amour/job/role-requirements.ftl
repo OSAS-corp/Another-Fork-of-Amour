@@ -1,1 +1,0 @@
-role-timer-discord-not-linked = Требуется [color=yellow]привязка Discord аккаунта[/color], чтобы разблокировать это.

@@ -106,7 +106,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                         <Button Name="ReadyButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-ready-up-button'}" StyleClasses="ButtonBig" HorizontalExpand="True" />
                                         <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public" Text="{Loc 'ui-lobby-observe-button'}" WindowType="{x:Type lobbyUi:ObserveWarningWindow}" HorizontalExpand="True" />
                                         <Button Name="ManifestButton" Access="Public" Text="{Loc 'ui-lobby-manifest-button'}" HorizontalExpand="True" />
-                                        <Button Name="BoostyButton" Access="Public" Text="{Loc 'ui-lobby-boosty-button'}" HorizontalExpand="True" />
                                         <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" HorizontalExpand="True" />
                                         <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" HorizontalExpand="True" />
                                     </BoxContainer>

@@ -14,7 +14,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 54000 # 15h
   - type: Sprite
     layers:
     - state: green
@@ -37,7 +38,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10 hrs
   - type: GhostRoleMobSpawner
     prototype: MobCorticalBorer
   - type: Sprite

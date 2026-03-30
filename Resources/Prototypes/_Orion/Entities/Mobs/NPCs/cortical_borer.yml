@@ -19,7 +19,8 @@
     raffle:
       settings: default
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10 hrs
   - type: GhostTakeoverAvailable
   - type: Sprite
     scale: 0.6, 0.6
@@ -132,7 +133,8 @@
     description: cortical-borer-ghostrole-desc
     rules: ghost-role-information-freeagent-rules
     requirements:
-      - !type:DiscordLinkRequirement # Amour edit
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10 hrs
     mindRoles:
     - MindRoleCorticalBorer
   - type: GhostRoleMobSpawner

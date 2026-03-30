@@ -16,7 +16,8 @@
   setPreference: true
   objective: roles-antag-heretic-description
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+  - !type:OverallPlaytimeRequirement
+    time: 54000 # 15h
   guides: [ Heretics ]
 
 - type: antag

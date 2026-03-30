@@ -12,7 +12,8 @@
   setPreference: false
   objective: roles-antag-syndicate-agent-objective
   requirements:
-  - !type:DiscordLinkRequirement # Amour edit
+  - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hrs
   - !type:SpeciesRequirement
     inverted: true
     species:
