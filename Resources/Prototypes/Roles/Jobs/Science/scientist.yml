@@ -74,9 +74,7 @@
   description: job-description-scientist
   playTimeTracker: JobScientist
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 4500 #1.25 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: ScientistGear
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd

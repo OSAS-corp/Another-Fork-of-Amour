@@ -81,9 +81,7 @@
   description: job-description-paramedic
   playTimeTracker: JobParamedic
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 4500 #1.25 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
