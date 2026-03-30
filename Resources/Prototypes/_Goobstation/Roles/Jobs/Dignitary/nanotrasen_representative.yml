@@ -101,7 +101,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 90000 # Amour edit: 180000 > 90000
+      time: 180000  #50 hours
     - !type:DiscordLinkRequirement # Amour
     - !type:AgeRequirement
       requiredAge: 21
