@@ -77,6 +77,7 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
             if (!isLinked)
             {
                 ev.Cancelled = true;
+                _ = EntityManager.System<DiscordLinkSystem>().SendLinkStatus(ev.Player);
                 return;
             }
 
