@@ -58,13 +58,29 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
 
         foreach (var requirement in requirements)
         {
-            if (requirement is DiscordLinkRequirement { Inverted: false })
+            if (requirement is not DiscordLinkRequirement { Inverted: false })
+                continue;
+
+            if (_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
+                return;
+
+            var isLinked = false;
+            try
             {
-                if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
-                {
-                    ev.Cancelled = true;
-                    return;
-                }
+                isLinked = _discordLinkChecker.IsDiscordLinkedAsync(ev.Player).GetAwaiter().GetResult();
             }
+            catch
+            {
+                isLinked = false;
+            }
+
+            if (!isLinked)
+            {
+                ev.Cancelled = true;
+                return;
+            }
+
+            return;
         }
-    }}
+    }
+}
