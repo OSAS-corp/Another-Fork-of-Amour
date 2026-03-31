@@ -138,6 +138,9 @@
   playTimeTracker: JobHeadOfPersonnel
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Service
+      time: 3600
     - !type:AgeRequirement # Amour
       requiredAge: 23
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP

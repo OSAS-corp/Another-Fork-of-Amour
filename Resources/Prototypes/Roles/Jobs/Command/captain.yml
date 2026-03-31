@@ -140,6 +140,9 @@
   playTimeTracker: JobCaptain
   requirements:
     - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Command
+      time: 3600
     - !type:AgeRequirement # Amour
       requiredAge: 23
       #any MRP using our code might eventually want to use it
