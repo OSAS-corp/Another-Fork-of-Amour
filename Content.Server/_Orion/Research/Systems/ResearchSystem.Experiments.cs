@@ -3,12 +3,14 @@ using Content.Goobstation.Shared.Fishing.Components;
 using Content.Server.Research.Components;
 using Content.Shared._EinsteinEngines.Silicon.Components;
 using Content.Shared._Orion.Research;
+using Content.Shared._Orion.Research.Components;
 using Content.Shared._Orion.Research.Prototypes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -59,15 +61,7 @@ public sealed partial class ResearchSystem
         UpdateConsoleInterface(uid, component);
     }
 
-    public bool TryProgressExperimentsWithEntity(EntityUid serverUid,
-        EntityUid subject,
-        EntityUid? user,
-        out bool changed,
-        out List<string> completed,
-        out ExperimentProgressAttemptResult result,
-        ExperimentSourceFlags source = ExperimentSourceFlags.AnyScanner,
-        TechnologyDatabaseComponent? database = null,
-        ResearchServerComponent? server = null)
+    public bool TryProgressExperimentsWithEntity(EntityUid serverUid, EntityUid subject, EntityUid? user, out bool changed, out List<string> completed, out ExperimentProgressAttemptResult result, ExperimentSourceFlags source = ExperimentSourceFlags.AnyScanner, TechnologyDatabaseComponent? database = null, ResearchServerComponent? server = null)
     {
         changed = false;
         completed = new List<string>();
@@ -189,11 +183,7 @@ public sealed partial class ResearchSystem
         return true;
     }
 
-    private void CompleteExperiment(EntityUid serverUid,
-        ResearchExperimentPrototype experiment,
-        EntityUid? user,
-        TechnologyDatabaseComponent database,
-        ResearchServerComponent server)
+    private void CompleteExperiment(EntityUid serverUid, ResearchExperimentPrototype experiment, EntityUid? user, TechnologyDatabaseComponent database, ResearchServerComponent server)
     {
         if (!database.CompletedExperiments.Contains(experiment.ID))
             database.CompletedExperiments.Add(experiment.ID);
@@ -213,16 +203,24 @@ public sealed partial class ResearchSystem
         }
 
         ApplyExperimentReward(serverUid, experiment, user, database, server);
+
+        var completionMessage = Loc.GetString("research-experiment-completed-ic", ("experiment", Loc.GetString(experiment.Name)));
+        foreach (var client in server.Clients)
+        {
+            if (!HasComp<ResearchConsoleComponent>(client) &&
+                !HasComp<ExperiScannerComponent>(client) &&
+                !HasComp<ExperimentalDestructiveScannerComponent>(client))
+                continue;
+
+            _chat.TrySendInGameICMessage(client, completionMessage, InGameICChatType.Speak, hideChat: false);
+        }
+
         TriggerDiscovery(serverUid, $"experiment:{experiment.ID}", database);
         LogNetworkEvent(serverUid, "experiment", Loc.GetString("research-netlog-experiment-completed", ("experiment", Loc.GetString(experiment.Name)), ("user", GetResearchLogUserName(user))), user);
         _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user):player} completed research experiment {experiment.ID} on {ToPrettyString(serverUid)}.");
     }
 
-    private void ApplyExperimentReward(EntityUid serverUid,
-        ResearchExperimentPrototype experiment,
-        EntityUid? user,
-        TechnologyDatabaseComponent database,
-        ResearchServerComponent server)
+    private void ApplyExperimentReward(EntityUid serverUid, ResearchExperimentPrototype experiment, EntityUid? user, TechnologyDatabaseComponent database, ResearchServerComponent server)
     {
         var reward = experiment.Reward;
 
@@ -315,17 +313,13 @@ public sealed partial class ResearchSystem
 
     private string GetEntityObjectiveUniqKey(EntityUid subject)
     {
-        if (TryComp<MetaDataComponent>(subject, out var meta) && meta.EntityPrototype != null)
-            return $"proto:{meta.EntityPrototype.ID}";
-
-        return $"ent:{subject}";
+        var meta = MetaData(subject);
+        return meta.EntityPrototype != null
+            ? $"proto:{meta.EntityPrototype.ID}"
+            : $"ent:{subject}";
     }
 
-    private bool IncrementSimpleProgress(EntityUid serverUid,
-        TechnologyDatabaseComponent database,
-        ResearchServerComponent server,
-        ResearchExperimentPrototype experiment,
-        int delta)
+    private bool IncrementSimpleProgress(EntityUid serverUid, TechnologyDatabaseComponent database, ResearchServerComponent server, ResearchExperimentPrototype experiment, int delta)
     {
         if (!TryGetExperimentProgress(database, experiment.ID, out var progressIndex))
             return false;
@@ -343,9 +337,15 @@ public sealed partial class ResearchSystem
 
     private bool MatchesEntityObjective(EntityUid subject, ScanEntityExperimentObjective objective)
     {
-        if (objective.RequiredEntityPrototype != null &&
-            (!TryComp<MetaDataComponent>(subject, out var meta) || meta.EntityPrototype?.ID != objective.RequiredEntityPrototype))
-            return false;
+        if (objective.RequiredEntityPrototypes.Count > 0)
+        {
+            var meta = MetaData(subject);
+            if (meta.EntityPrototype == null)
+                return false;
+
+            if (!objective.RequiredEntityPrototypes.Contains(meta.EntityPrototype.ID))
+                return false;
+        }
 
         foreach (var tag in objective.RequiredTags)
         {
@@ -413,7 +413,15 @@ public sealed partial class ResearchSystem
         if (required <= FixedPoint2.Zero)
             return false;
 
-        return !objective.RequirePureReagent || other <= FixedPoint2.Zero;
+        if (objective.MinReagentPurity is not { } minPurity)
+            return true;
+
+        var total = required + other;
+        if (total <= FixedPoint2.Zero)
+            return false;
+
+        var purity = (float) (required / total);
+        return purity >= minPurity;
     }
 
     private bool MatchesGasObjective(EntityUid subject, ScanEntityExperimentObjective objective)
@@ -437,11 +445,14 @@ public sealed partial class ResearchSystem
         if (requiredMoles <= 0f)
             return false;
 
-        if (!objective.RequirePureGas)
+        if (objective.MinGasPurity is not { } minPurity)
             return true;
 
-        const float epsilon = 0.0001f;
-        return Math.Abs(gasMix.TotalMoles - requiredMoles) <= epsilon;
+        if (gasMix.TotalMoles <= 0f)
+            return false;
+
+        var purity = requiredMoles / gasMix.TotalMoles;
+        return purity >= minPurity;
     }
 
     private bool MatchesEntityCondition(EntityUid subject, ExperimentEntityCondition condition)
@@ -483,7 +494,8 @@ public sealed partial class ResearchSystem
 
         foreach (var (organUid, _) in _body.GetBodyOrgans(subject, body))
         {
-            if (!TryComp<MetaDataComponent>(organUid, out var organMeta) || organMeta.EntityPrototype == null)
+            var organMeta = MetaData(organUid);
+            if (organMeta.EntityPrototype == null)
                 continue;
 
             if (!organMeta.EntityPrototype.ID.StartsWith("OrganHuman", StringComparison.Ordinal))

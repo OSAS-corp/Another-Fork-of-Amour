@@ -137,21 +137,10 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 7200 #2 hrs # Amour
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 7200 #2 hrs # Amour
+    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+      department: Service
+      time: 3600
     - !type:AgeRequirement # Amour
       requiredAge: 23
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP

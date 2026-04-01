@@ -48,12 +48,7 @@
     speechVerb: HolierThanThou
   - type: GhostRole
     requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 # Ten Hours
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 108000 # Thirty hours. Fuck you.
+      - !type:DiscordLinkRequirement # Amour edit
 
 # Navy Officer
 

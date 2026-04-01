@@ -134,15 +134,10 @@
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobAtmosphericTechnician
-      time: 9000 #2.50 hrs # Amour
-    - !type:RoleTimeRequirement
-      role: JobStationEngineer
-      time: 10800 #3 hrs # Amour
-    - !type:DepartmentTimeRequirement
+    - !type:DiscordLinkRequirement # Amour edit
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
       department: Engineering
-      time: 18000 #5 hrs # Amour
+      time: 3600
     - !type:AgeRequirement # Amour
       requiredAge: 23
   weight: 10
