@@ -127,8 +127,9 @@
 - type: startingGear
   id: SecurityCadetGear
   equipment:
+    mask: ClothingMaskClownUnremoveable
+    shoes: ClothingShoesCluwne
     eyes: ClothingEyesGlassesSecurity #Goobstation
-    shoes: ClothingShoesBootsJack # Goobstation edit
     #outerClothing: ClothingOuterArmorBasic # Goobstation
     id: SecurityCadetPDA
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
