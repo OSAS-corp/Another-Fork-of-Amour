@@ -78,7 +78,8 @@
 - type: soundCollection
   id: HarpySigh
   files:
-    - /Audio/Voice/Human/oh-whore.ogg
+    - /Audio/Voice/Human/male_sigh.ogg
+    - /Audio/Voice/Human/female_sigh.ogg
 
 - type: soundCollection
   id: HarpyCry

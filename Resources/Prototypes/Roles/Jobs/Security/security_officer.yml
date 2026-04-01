@@ -119,8 +119,6 @@
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
-    mask: ClothingMaskClownUnremoveable
-    shoes: ClothingShoesCluwne
     ears: ClothingHeadsetAltSecurityRegular # Goobstation
     pocket1: WeaponDisabler # Orion-Edit: PistolMk58 > Disabler
   storage:

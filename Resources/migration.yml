@@ -1197,19 +1197,3 @@ DVSmartFridgeMedical: SmartFridgeMedical
 
 # 2026-01-10 Goobstation Change Mapped Chem to Energy Chem by default
 ChemDispenser: EnergyChemDispenser
-
-Soap: WhoopieCushion
-ClothingShoesBootsLaceup: ClothingShoesLeather
-WeaponAntiqueLaser: WeaponEnergyGunMultiphase
-ClothingEyesGlassesSecurity: ClothingEyesGogglessInteQ
-WeaponDisabler: WeaponDislippler
-Stunbaton: WeaponDislippler
-ClothingBeltSheathFilled: EnergyKatana
-LockerSecurityFilled: CapoeiraManual
-GrenadeStinger: ConfettiGrenade
-GrenadeFlashBang: ConfettiGrenade
-SmokeGrenade: ConfettiGrenade
-GrenadeShrapnel: ConfettiGrenade
-EmpGrenade: ConfettiGrenade
-CaptainDrobe: VendingMachineCentDrobe
-Poweredlight: BarrelFire

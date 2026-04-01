@@ -25,7 +25,28 @@
       state: any
   - type: RandomSpawner
     prototypes:
-    - VendingMachineKink
+    - VendingMachineChang
+    - VendingMachineCigs
+    - VendingMachineCoffee
+    - VendingMachineCola #Robust Sofdrinks
+    - VendingMachineColaBlack #Robust Sofdrinks [Black]
+    - VendingMachineColaRed #Space Cola
+    - VendingMachineDiscount
+    - VendingMachineDonut
+    - VendingMachineDrGibb
+    - VendingMachinePwrGame
+    - VendingMachineShamblersJuice
+    - VendingMachineSmite
+    - VendingMachineSnack
+    - VendingMachineSnackBlue
+    - VendingMachineSnackGreen
+    - VendingMachineSnackOrange
+    - VendingMachineSnackTeal
+    - VendingMachineSoda #Robust Sofdrinks [Soda]
+    - VendingMachineSovietSoda #Boda
+    - VendingMachineSpaceUp
+    - VendingMachineStarkist
+    - VendingMachineSweetToof # Goobstation
     rarePrototypes:
     - VendingMachineKink # Amour
     rareChance: 0.015 # Amour 1.5%
@@ -36,13 +57,13 @@
   id: ClothingVendorTable
   table: !type:GroupSelector
     children:
-    - id: VendingMachineKink
+    - id: VendingMachineClothing
       weight: 40
-    - id: VendingMachineKink
+    - id: VendingMachineWinter
       weight: 40
 #    - id: VendingMachinePride # Orion-Edit: Removed
 #      weight: 10
-    - id: VendingMachineKink
+    - id: VendingMachineTheater
       weight: 10
 
 - type: entity
