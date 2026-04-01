@@ -45,10 +45,12 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker
             _linkCache[userId] = (isLinked, DateTime.UtcNow);
             return isLinked;
         }
-        catch
+        catch (Exception ex)
         {
+            _sawmill.Error($"Failed to check Discord link for {userId}: {ex}");
             return false;
-        }        finally
+        }
+        finally
         {
             lockObj.Release();
         }
@@ -65,5 +67,15 @@ public sealed class DiscordLinkChecker : IDiscordLinkChecker
             }
         }
         return false;
+    }
+
+    public void Cleanup(NetUserId userId)
+    {
+        _linkCache.TryRemove(userId, out _);
+
+        if (_checkLocks.TryRemove(userId, out var semaphore))
+        {
+            semaphore.Dispose();
+        }
     }
 }

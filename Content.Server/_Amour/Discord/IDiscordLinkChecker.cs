@@ -9,4 +9,5 @@ public interface IDiscordLinkChecker
     void Initialize();
     Task<bool> IsDiscordLinkedAsync(ICommonSession session);
     bool IsDiscordLinkedCached(NetUserId userId);
+    void Cleanup(NetUserId userId);
 }

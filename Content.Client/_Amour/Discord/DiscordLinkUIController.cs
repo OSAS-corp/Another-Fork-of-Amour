@@ -1,8 +1,6 @@
-using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Shared._Amour.Discord;
-using Robust.Client.UserInterface;
-using Robust.Client.UserInterface.Controllers;
+using Robust.Client.UserInterface;using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -10,9 +8,8 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._Amour.Discord;
 
-public sealed class DiscordLinkUIController : UIController, IOnSystemChanged<DiscordLinkSystem>
-{
-    [Dependency] private readonly IClipboardManager _clipboard = default!;
+public sealed class DiscordLinkUIController : UIController
+{    [Dependency] private readonly IClipboardManager _clipboard = default!;
     [Dependency] private readonly DiscordLinkManager _linkManager = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -104,12 +101,7 @@ public sealed class DiscordLinkUIController : UIController, IOnSystemChanged<Dis
         _disableUntil = _timing.RealTime.Add(TimeSpan.FromSeconds(3));
     }
 
-    public void OnSystemLoaded(DiscordLinkSystem system) { }
-
-    public void OnSystemUnloaded(DiscordLinkSystem system) { }
-
-    public override void FrameUpdate(FrameEventArgs args)
-    {
+    public override void FrameUpdate(FrameEventArgs args)    {
         if (_window == null)
             return;
 

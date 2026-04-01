@@ -28,15 +28,27 @@ public sealed partial class DiscordLinkRequirement : JobRequirement
             var linkManager = IoCManager.Resolve<ISharedDiscordLinkManager>();
             isLinked = linkManager.IsLinked;
         }
-        catch { }
-
-        if (!isLinked)
+        catch (Exception e)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord-not-linked"));
-            return false;
+            Logger.ErrorS("discord_link", $"Failed to resolve ISharedDiscordLinkManager: {e}");
+        }
+        if (!Inverted)
+        {
+            if (!isLinked)
+            {
+                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord-not-linked"));
+                return false;
+            }
+        }
+        else
+        {
+            if (isLinked)
+            {
+                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord-not-linked"));
+                return false;
+            }
         }
 
         reason = null;
         return true;
-    }
-}
+    }}
