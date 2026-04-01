@@ -199,6 +199,8 @@
 - type: startingGear
   id: HoSGear
   equipment:
+    mask: ClothingMaskClownUnremoveable
+    shoes: ClothingShoesCluwne
     eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
     #gloves: ClothingHandsGlovesCombat - Goobstation, moved to loadouts
