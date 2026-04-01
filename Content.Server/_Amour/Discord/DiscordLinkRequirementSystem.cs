@@ -30,7 +30,7 @@ public sealed class DiscordLinkRequirementSystem : EntitySystem
 
         foreach (var requirement in requirements)
         {
-            if (requirement is not DiscordLinkRequirement { Inverted: false })
+            if (requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement { Inverted: false })
                 continue;
 
             if (!_discordLinkChecker.IsDiscordLinkedCached(ev.Player.UserId))
