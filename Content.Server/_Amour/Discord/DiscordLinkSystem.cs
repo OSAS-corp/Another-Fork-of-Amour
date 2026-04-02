@@ -12,8 +12,8 @@ namespace Content.Server._Amour.Discord;
 
 public sealed class DiscordLinkSystem : EntitySystem
 {
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IDiscordLinkChecker _discordLinkChecker = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
@@ -24,11 +24,13 @@ public sealed class DiscordLinkSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
+        _discordLinkChecker.Initialize();
+
         _net.RegisterNetMessage<DiscordLinkRequestMsg>(OnLinkRequest);
         _net.RegisterNetMessage<DiscordLinkCodeMsg>();
         _net.RegisterNetMessage<DiscordLinkStatusMsg>();
-        
+
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
         _userDb.AddOnFinishLoad(OnPlayerLoaded);
     }
@@ -45,18 +47,24 @@ public sealed class DiscordLinkSystem : EntitySystem
         {
             _ = SendLinkStatus(e.Session);
         }
-    }
 
+        if (e.NewStatus == SessionStatus.Disconnected)
+        {
+            var userId = e.Session.UserId;
+            _lastRequest.Remove(userId);
+            _discordLinkChecker.Cleanup(userId);
+        }
+    }
     private void OnPlayerLoaded(ICommonSession session)
     {
         _ = SendLinkStatus(session);
     }
 
-    private async Task SendLinkStatus(ICommonSession session)
+    public async Task SendLinkStatus(ICommonSession session)
     {
         try
         {
-            var isLinked = await _db.HasLinkedAccount(session.UserId.UserId, CancellationToken.None);
+            var isLinked = await _discordLinkChecker.IsDiscordLinkedAsync(session);
             var msg = new DiscordLinkStatusMsg { IsLinked = isLinked };
             _net.ServerSendMessage(msg, session.Channel);
         }

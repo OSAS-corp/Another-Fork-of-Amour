@@ -137,13 +137,17 @@
   description: job-description-rd
   playTimeTracker: JobResearchDirector
   requirements:
-  - !type:DiscordLinkRequirement # Amour edit
-  - !type:RoleTimeRequirement
-    role: JobScientist
-    time: 1800 #30 m Amour
-  - !type:DepartmentTimeRequirement
+  - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
+    time: 3600
+  - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
     department: Science
-    time: 3600 #1 hrs Amour
+    time: 3600
+  - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+    requirements:
+      - !type:DiscordLinkRequirement
+      - !type:RoleTimeRequirement
+        role: JobScientist
+        time: 1800 #30 m
   - !type:AgeRequirement # Amour
     requiredAge: 23
   weight: 10

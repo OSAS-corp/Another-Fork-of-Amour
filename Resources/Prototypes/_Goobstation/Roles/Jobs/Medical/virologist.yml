@@ -4,7 +4,12 @@
   description: job-description-virologist
   playTimeTracker: JobVirologist
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Medical
+          time: 14400 #4 hrs
   startingGear: VirologistGear
   icon: "JobIconVirologist"
   supervisors: job-supervisors-cmo

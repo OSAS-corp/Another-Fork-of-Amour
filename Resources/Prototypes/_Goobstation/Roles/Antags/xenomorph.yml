@@ -6,4 +6,8 @@
   objective: roles-antag-xenomorph-objective
   guides: [ Xenomorphs ]
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:OverallPlaytimeRequirement
+          time: 180000

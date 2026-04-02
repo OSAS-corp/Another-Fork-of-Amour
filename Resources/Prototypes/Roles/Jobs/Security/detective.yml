@@ -69,9 +69,11 @@
   description: job-description-detective
   playTimeTracker: JobDetective
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
-    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
-      time: 3600
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:OverallPlaytimeRequirement
+          time: 3600 # 1 hr
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
