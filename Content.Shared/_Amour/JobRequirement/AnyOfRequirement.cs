@@ -23,6 +23,7 @@ public sealed partial class AnyOfRequirement : JobRequirement
     {
         var reasons = new List<FormattedMessage>();
         var hasDiscordRequirement = false;
+        FormattedMessage? discordReason = null;
         
         foreach (var requirement in Requirements)
         {
@@ -37,17 +38,24 @@ public sealed partial class AnyOfRequirement : JobRequirement
                 return !Inverted;
             }
 
-            if (subReason != null && requirement is not Content.Shared._Amour.Discord.DiscordLinkRequirement)
-                reasons.Add(subReason);
+            if (subReason != null)
+            {
+                if (requirement is Content.Shared._Amour.Discord.DiscordLinkRequirement)
+                    discordReason = subReason;
+                else
+                    reasons.Add(subReason);
+            }
         }
 
         if (!Inverted)
         {
             reason = new FormattedMessage();
 
-            if (hasDiscordRequirement && reasons.Count > 0)
+            if (hasDiscordRequirement && discordReason != null && reasons.Count > 0)
             {
-                reason.AddText(Loc.GetString("role-timer-discord-or-playtime"));
+                reason.AddMessage(discordReason);
+                reason.PushNewline();
+                reason.AddText(Loc.GetString("role-timer-or-alternative"));
                 reason.PushNewline();
                 
                 for (var i = 0; i < reasons.Count; i++)
@@ -65,6 +73,10 @@ public sealed partial class AnyOfRequirement : JobRequirement
                         reason.PushNewline();
                     reason.AddMessage(reasons[i]);
                 }
+            }
+            else if (discordReason != null)
+            {
+                reason.AddMessage(discordReason);
             }
             else
             {

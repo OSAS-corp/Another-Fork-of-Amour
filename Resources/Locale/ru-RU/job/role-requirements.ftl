@@ -3,6 +3,7 @@ role-timer-department-too-high = Требуется на [color=yellow]{ $time }
 role-timer-overall-insufficient = Требуется ещё [color=yellow]{ $time }[/color] общего игрового времени, чтобы разблокировать это.
 role-timer-any-of-requirement-failed = Вы должны выполнить хотя бы одно из следующих требований:
 role-timer-discord-or-playtime = Привяжите Discord аккаунт ИЛИ выполните следующие требования по времени:
+role-timer-or-alternative = ИЛИ выполните следующие требования по времени:
 role-timer-overall-too-high = Требуется на [color=yellow]{ $time }[/color] меньше общего игрового времени, чтобы выбрать это. (Вы пытаетесь играть за роль для новичков?)
 role-timer-role-insufficient = Требуется ещё [color=yellow]{ $time }[/color] игрового времени в качестве [color={ $departmentColor }]{ $job }[/color], чтобы разблокировать это.
 role-timer-role-too-high = Требуется на [color=yellow]{ $time }[/color] меньше игрового времени в качестве [color={ $departmentColor }]{ $job }[/color], чтобы выбрать эту это. (Вы пытаетесь играть за роль для новичков?)
