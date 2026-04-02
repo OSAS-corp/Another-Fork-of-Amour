@@ -37,14 +37,14 @@
   requirements:
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
-        - !type:AllOfRequirement # Discord + 1hr synthetics minimum
+        - !type:AllOfRequirement # Discord + 1hr silicon minimum
           requirements:
             - !type:DiscordLinkRequirement
             - !type:DepartmentTimeRequirement
-              department: Synthetics
+              department: Silicon
               time: 3600 # 1 hr
-        - !type:DepartmentTimeRequirement # Without Discord - 5hrs synthetics
-          department: Synthetics
+        - !type:DepartmentTimeRequirement # Without Discord - 5hrs silicon
+          department: Silicon
           time: 18000 # 5 hrs
   canBeAntag: false
   goobcoins: 40 #Goob content
