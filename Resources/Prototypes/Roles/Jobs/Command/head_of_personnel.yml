@@ -137,10 +137,35 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
-    - !type:DepartmentTimeRequirement # Amour edit - 1 hrs
+    - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
+      time: 3600
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
       department: Civilian
       time: 3600
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Engineering
+          time: 7200 #2 hrs
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Medical
+          time: 7200 #2 hrs
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Science
+          time: 7200 #2 hrs
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Cargo
+          time: 7200 #2 hrs
     - !type:AgeRequirement # Amour
       requiredAge: 23
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP

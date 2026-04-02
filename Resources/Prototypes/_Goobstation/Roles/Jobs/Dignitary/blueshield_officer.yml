@@ -33,7 +33,24 @@
   description: job-description-bs
   playTimeTracker: JobBlueshieldOfficer
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Command
+          time: 90000 # 25 hours
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Medical
+          time: 54000 # 15 hours
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:DepartmentTimeRequirement
+          department: Security
+          time: 90000 # 25 hours
     - !type:AgeRequirement
       requiredAge: 21
     - !type:SpeciesRequirement # Goob - None Felinid
