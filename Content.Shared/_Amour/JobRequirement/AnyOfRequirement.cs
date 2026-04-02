@@ -21,29 +21,29 @@ public sealed partial class AnyOfRequirement : JobRequirement
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        var reasons = new List<FormattedMessage>();
+        var timeRequirementReasons = new List<FormattedMessage>();
         var hasDiscordRequirement = false;
-        FormattedMessage? discordReason = null;
+        var discordCheckPassed = false;
         
         foreach (var requirement in Requirements)
         {
-            if (requirement is Content.Shared._Amour.Discord.DiscordLinkRequirement)
-            {
+            var isDiscord = requirement is Content.Shared._Amour.Discord.DiscordLinkRequirement;
+            
+            if (isDiscord)
                 hasDiscordRequirement = true;
-            }
             
             if (requirement.Check(entManager, protoManager, profile, playTimes, out var subReason))
             {
+                if (isDiscord)
+                    discordCheckPassed = true;
+                    
                 reason = null;
                 return !Inverted;
             }
 
-            if (subReason != null)
+            if (subReason != null && !isDiscord)
             {
-                if (requirement is Content.Shared._Amour.Discord.DiscordLinkRequirement)
-                    discordReason = subReason;
-                else
-                    reasons.Add(subReason);
+                timeRequirementReasons.Add(subReason);
             }
         }
 
@@ -51,32 +51,32 @@ public sealed partial class AnyOfRequirement : JobRequirement
         {
             reason = new FormattedMessage();
 
-            if (hasDiscordRequirement && discordReason != null && reasons.Count > 0)
+            if (hasDiscordRequirement && timeRequirementReasons.Count > 0)
             {
-                reason.AddMessage(discordReason);
+                reason.AddText(Loc.GetString("role-timer-discord-link-required"));
                 reason.PushNewline();
                 reason.AddText(Loc.GetString("role-timer-or-alternative"));
                 reason.PushNewline();
                 
-                for (var i = 0; i < reasons.Count; i++)
+                for (var i = 0; i < timeRequirementReasons.Count; i++)
                 {
                     if (i > 0)
                         reason.PushNewline();
-                    reason.AddMessage(reasons[i]);
+                    reason.AddMessage(timeRequirementReasons[i]);
                 }
             }
-            else if (reasons.Count > 0)
+            else if (timeRequirementReasons.Count > 0)
             {
-                for (var i = 0; i < reasons.Count; i++)
+                for (var i = 0; i < timeRequirementReasons.Count; i++)
                 {
                     if (i > 0)
                         reason.PushNewline();
-                    reason.AddMessage(reasons[i]);
+                    reason.AddMessage(timeRequirementReasons[i]);
                 }
             }
-            else if (discordReason != null)
+            else if (hasDiscordRequirement)
             {
-                reason.AddMessage(discordReason);
+                reason.AddText(Loc.GetString("role-timer-discord-link-required"));
             }
             else
             {

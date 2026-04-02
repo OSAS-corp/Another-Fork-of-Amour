@@ -142,15 +142,14 @@
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobAtmosphericTechnician
-          time: 9000 #2.50 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobStationEngineer
-          time: 10800 #3 hrs
+        - !type:AllOfRequirement
+          requirements:
+            - !type:RoleTimeRequirement
+              role: JobAtmosphericTechnician
+              time: 9000 #2.50 hrs
+            - !type:RoleTimeRequirement
+              role: JobStationEngineer
+              time: 10800 #3 hrs
     - !type:AgeRequirement # Amour
       requiredAge: 23
   weight: 10

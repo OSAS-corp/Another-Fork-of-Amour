@@ -138,15 +138,14 @@
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobCargoTechnician
-          time: 9000 #2.50 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobSalvageSpecialist
-          time: 4500 #1.25 hrs
+        - !type:AllOfRequirement
+          requirements:
+            - !type:RoleTimeRequirement
+              role: JobCargoTechnician
+              time: 9000 #2.50 hrs
+            - !type:RoleTimeRequirement
+              role: JobSalvageSpecialist
+              time: 4500 #1.25 hrs
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
