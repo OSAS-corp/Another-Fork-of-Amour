@@ -4,7 +4,17 @@
   description: job-description-command-maid
   playTimeTracker: JobCommandMaid
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:OverallPlaytimeRequirement
+          time: 36000 #10 hrs
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:RoleTimeRequirement
+          role: JobJanitor
+          time: 3600 #1 hr
   startingGear: CommandMaidGear
   icon: "JobIconCommandMaid"
   supervisors: job-supervisors-command

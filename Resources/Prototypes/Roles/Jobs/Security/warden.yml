@@ -135,9 +135,11 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
-    - !type:DiscordLinkRequirement # Amour edit
-    - !type:OverallPlaytimeRequirement # Amour edit - 1 hrs
-      time: 3600
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:OverallPlaytimeRequirement
+          time: 3600 # 1 hr
   weight: 5
   startingGear: WardenGear
   icon: "JobIconWarden"

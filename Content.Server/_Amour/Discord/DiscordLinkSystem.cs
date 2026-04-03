@@ -25,6 +25,8 @@ public sealed class DiscordLinkSystem : EntitySystem
     {
         base.Initialize();
 
+        _discordLinkChecker.Initialize();
+
         _net.RegisterNetMessage<DiscordLinkRequestMsg>(OnLinkRequest);
         _net.RegisterNetMessage<DiscordLinkCodeMsg>();
         _net.RegisterNetMessage<DiscordLinkStatusMsg>();
@@ -45,8 +47,14 @@ public sealed class DiscordLinkSystem : EntitySystem
         {
             _ = SendLinkStatus(e.Session);
         }
-    }
 
+        if (e.NewStatus == SessionStatus.Disconnected)
+        {
+            var userId = e.Session.UserId;
+            _lastRequest.Remove(userId);
+            _discordLinkChecker.Cleanup(userId);
+        }
+    }
     private void OnPlayerLoaded(ICommonSession session)
     {
         _ = SendLinkStatus(session);
