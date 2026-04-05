@@ -127,6 +127,7 @@
       - Handcuff
       - Gun
       - EnergySword
+      - Nuke # Amour
   - type: ContainerContainer # imp.
     containers:
       cell_slot: !type:ContainerSlot { }
@@ -176,12 +177,17 @@
   - type: StationMap #imp
   - type: GhostRole
     requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 36000 # ten hours
-    - !type:DepartmentTimeRequirement
-      department: Silicon
-      time: 18000 # five hours
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:AllOfRequirement
+          requirements:
+            - !type:DepartmentTimeRequirement
+              department: Engineering
+              time: 36000 # ten hours
+            - !type:DepartmentTimeRequirement
+              department: Silicon
+              time: 18000 # five hours
     makeSentient: true
     name: ghost-role-information-drone-name
     description: ghost-role-information-drone-description
