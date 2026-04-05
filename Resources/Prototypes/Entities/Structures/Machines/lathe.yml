@@ -902,6 +902,7 @@
     - MedicalBoards
     - Janitor
     - Genetics
+    - MedicalCloning
     # Einstein Engines Packs
     - Translators # Language
     - TranslatorImplanters # Language
@@ -948,6 +949,7 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - DoubleBedsheets # Orion
     # Goobstation Packs
     - ClothingCasualJumpsuits
     - ClothingCommandSummer

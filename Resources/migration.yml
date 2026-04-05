@@ -164,7 +164,6 @@ BackmenVendingMachineSovietSoda: RandomVending
 
 FloorHardCatwalkDarkIron: Catwalk
 
-PrinterDoc: null
 Shower: null
 
 AntiPsychicKnife: null
@@ -310,9 +309,9 @@ BenchParkRight: null
 BenchPewLeft: null
 BenchPewMiddle: null
 BenchPewRight: null
-BenchSofaCorpLeft: null
-BenchSofaCorpMiddle: null
-BenchSofaCorpRight: null
+#BenchSofaCorpLeft: null # Goob edit
+#BenchSofaCorpMiddle: null # Goob edit
+#BenchSofaCorpRight: null # Goob edit
 BenchSofaLeft: null
 BenchSofaRight: null
 BenchSteelLeft: null

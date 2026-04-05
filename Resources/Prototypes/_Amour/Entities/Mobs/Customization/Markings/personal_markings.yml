@@ -187,3 +187,13 @@
   sprites:
     - sprite: _Amour/Mobs/Customization/fluff_parts/horse_parts.rsi
       state: tail
+
+# Ghost_wost
+- type: marking
+  id: GhostWostTail
+  bodyPart: Tail
+  markingCategory: Tail
+  allowedUsers: [Ghost_wost]
+  sprites:
+    - sprite: _Amour/Mobs/Customization/fluff_parts/ghost_wost_tail.rsi
+      state: tail
