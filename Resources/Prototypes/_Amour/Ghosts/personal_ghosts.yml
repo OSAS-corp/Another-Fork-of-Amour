@@ -1173,9 +1173,6 @@
     sprite: _Amour/Ghosts/Dosharus-ghost.rsi
     color: "#ffffffe5"
 
-
-
-
 # DEN4IK_64 из _Honk
 - type: customGhost
   parent: CkeyPersonal
@@ -1196,24 +1193,23 @@
     sprite: _Amour/Ghosts/DEN4IK_64-ghost.rsi
     color: "#ffffffe6" # 0.9 alpha
 
-# 12345
+# Perchta
 - type: customGhost
   parent: CkeyPersonal
-  id: 12345-ghost
+  id: Perchta-ghost
   restrictions:
   - !type:CkeyRestriction
-    ckey: [ Meowklka ]
-  entity: MobObserver-12345-ghost
-  name: custom-ghost-12345-name
-  description: custom-ghost-12345-desc
+    ckey: [ Perchta ]
+  entity: MobObserver-Perchta-ghost
+
 - type: entity
   parent: MobObserverAmour
-  id: MobObserver-12345-ghost
+  id: MobObserver-Perchta-ghost
+  name: custom-ghost-Perchta-name
+  description: custom-ghost-Perchta-desc
   categories: [ HideSpawnMenu ]
-  name: Призрак 12345
-  description: Кастомный призрак
   components:
   - type: Sprite
-    sprite: _Amour/Ghosts/12345-ghost.rsi
+    sprite: _Amour/Ghosts/Perchta-ghost.rsi
     color: "#ffffffcc"
     scale: 0.5, 0.5

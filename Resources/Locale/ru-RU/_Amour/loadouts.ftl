@@ -5,6 +5,7 @@ loadout-group-amour-personal-neck = Fluff: Накидка
 loadout-group-amour-personal-jumpsuit = Fluff: Комбинезон
 loadout-group-amour-personal-outer = Fluff: Верхняя одежда
 loadout-group-amour-personal-gloves = Fluff: Перчатки
+loadout-group-amour-personal-back = Fluff: Рюкзак
 loadout-group-amour-personal-shoes = Fluff: Обувь
 loadout-group-amour-personal-storage = Fluff: Предметы
 

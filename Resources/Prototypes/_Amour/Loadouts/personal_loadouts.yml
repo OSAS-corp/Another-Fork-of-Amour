@@ -262,3 +262,24 @@
     - McLovin_
   equipment:
     neck: ClothingMcLovin_NeckFluff
+
+
+# tomato15 (Perchta)
+
+- type: loadout
+  id: LoadoutPersonalTomato15OldSyndicateUniform
+  effects:
+  - !type:UserNameLoadoutEffect
+    allowedUsers:
+    - Perchta
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTomato15OldSyndicate
+
+- type: loadout
+  id: LoadoutPersonalTomato15MOLLEBag
+  effects:
+  - !type:UserNameLoadoutEffect
+    allowedUsers:
+    - Perchta
+  equipment:
+    back: ClothingBackpackDuffelTomato15MOLLE

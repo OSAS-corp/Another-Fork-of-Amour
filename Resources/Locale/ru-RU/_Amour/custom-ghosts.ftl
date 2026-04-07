@@ -1,2 +1,2 @@
-custom-ghost-12345-name = заглушка
-custom-ghost-12345-desc = заглушка
+custom-ghost-Perchta-name = Чиби Черино
+custom-ghost-Perchta-desc = Усы - символ власти!
