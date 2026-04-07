@@ -87,7 +87,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot18
-  trigger: "[раунд; раунда]"
+  trigger: "[манал]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
