@@ -88,7 +88,15 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPlay(EntityUid uid, JukeboxComponent component, ref JukeboxPlayingMessage args)
     {
-        if (Exists(component.AudioStream))
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (component.AudioStream != null && !Exists(component.AudioStream))
+        {
+            component.AudioStream = null;
+        }
+
+        if (component.AudioStream != null && Exists(component.AudioStream))
+        // Amour-Edit-End
         {
             Audio.SetState(component.AudioStream, AudioState.Playing);
 
@@ -122,6 +130,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxPause(Entity<JukeboxComponent> ent, ref JukeboxPauseMessage args)
     {
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (ent.Comp.AudioStream != null && !Exists(ent.Comp.AudioStream))
+        {
+            ent.Comp.AudioStream = null;
+            Dirty(ent);
+            return;
+        }
+
+        if (ent.Comp.AudioStream == null)
+            return;
+        // Amour-Edit-End
+
         Audio.SetState(ent.Comp.AudioStream, AudioState.Paused);
 
         // Orion-Start
@@ -140,6 +161,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (!TryComp(args.Actor, out ActorComponent? actorComp))
             return;
 
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (component.AudioStream != null && !Exists(component.AudioStream))
+        {
+            component.AudioStream = null;
+            Dirty(uid, component);
+            return;
+        }
+
+        if (component.AudioStream == null)
+            return;
+        // Amour-Edit-End
+
         var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
         var newPosition = args.SongTime + offset; // Orion
         Audio.SetPlaybackPosition(component.AudioStream, newPosition); // Orion-Edit
@@ -156,8 +190,18 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
     {
         SetJukeboxVolume(uid, component, args.Volume);
 
-        if (!TryComp<AudioComponent>(component.AudioStream, out _))
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (component.AudioStream != null && !Exists(component.AudioStream))
+        {
+            component.AudioStream = null;
+            Dirty(uid, component);
             return;
+        }
+
+        if (component.AudioStream == null || !TryComp<AudioComponent>(component.AudioStream, out _))
+            return;
+        // Amour-Edit-End
 
         Audio.SetVolume(component.AudioStream, MapToRange(args.Volume, component.MinSlider, component.MaxSlider, component.MinVolume, component.MaxVolume));
     }
@@ -185,7 +229,19 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void Stop(Entity<JukeboxComponent> entity)
     {
-        Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (entity.Comp.AudioStream != null && !Exists(entity.Comp.AudioStream))
+        {
+            entity.Comp.AudioStream = null;
+        }
+
+        if (entity.Comp.AudioStream != null)
+        {
+            Audio.SetState(entity.Comp.AudioStream, AudioState.Stopped);
+        }
+        // Amour-Edit-End
+
         // Orion-Start
         entity.Comp.CurrentPlaybackOffset = 0f;
         entity.Comp.PlaybackStartTime = null;
@@ -195,6 +251,14 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 
     private void OnJukeboxSelected(EntityUid uid, JukeboxComponent component, JukeboxSelectedMessage args)
     {
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Clean up invalid AudioStream reference
+        if (component.AudioStream != null && !Exists(component.AudioStream))
+        {
+            component.AudioStream = null;
+        }
+        // Amour-Edit-End
+
         if (!Audio.IsPlaying(component.AudioStream))
         {
             component.SelectedSongId = args.SongId;
@@ -226,9 +290,21 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             }
 
             // Orion-Start
-            if (!comp.LoopEnabled || !comp.PlaybackStartTime.HasValue || !Exists(comp.AudioStream) ||
+            // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+            // Clean up invalid AudioStream reference
+            if (comp.AudioStream != null && !Exists(comp.AudioStream))
+            {
+                comp.AudioStream = null;
+                comp.PlaybackStartTime = null;
+                comp.CurrentPlaybackOffset = 0f;
+                Dirty(uid, comp);
+                continue;
+            }
+
+            if (!comp.LoopEnabled || !comp.PlaybackStartTime.HasValue || comp.AudioStream == null ||
                 !TryComp<AudioComponent>(comp.AudioStream, out var audioComp))
                 continue;
+            // Amour-Edit-End
 
             var audioLength = Audio.GetAudioLength(audioComp.FileName);
             var elapsed = (float)(_gameTiming.CurTime - comp.PlaybackStartTime.Value).TotalSeconds;
