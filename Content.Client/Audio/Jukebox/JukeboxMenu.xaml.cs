@@ -185,14 +185,18 @@ public sealed partial class JukeboxMenu : FancyWindow
         PlaybackSlider.Disabled = _lockTimer > 0f;
         VolumeSlider.Disabled = _lockTimer > 0f; // Orion
 
-        if (_entManager.TryGetComponent(_audio, out AudioComponent? audio))
+        // Amour-Edit-Start: Fix PVS error with invalid AudioStream entity reference
+        // Check if audio entity exists before trying to get component
+        if (_audio != null && _entManager.EntityExists(_audio.Value) && _entManager.TryGetComponent(_audio, out AudioComponent? audio))
         {
             DurationLabel.Text = $@"{TimeSpan.FromSeconds(audio.PlaybackPosition):mm\:ss} / {_audioSystem.GetAudioLength(audio.FileName):mm\:ss}";
         }
         else
         {
             DurationLabel.Text = $"00:00 / 00:00";
+            audio = null;
         }
+        // Amour-Edit-End
 
         VolumeNumberLabel.Text = $"{VolumeSlider.Value:0.##} %"; // Orion
 
@@ -202,7 +206,7 @@ public sealed partial class JukeboxMenu : FancyWindow
         if (VolumeSlider.Grabbed) // Orion
             return;
 
-        if (audio != null || _entManager.TryGetComponent(_audio, out audio))
+        if (audio != null) // Amour: _entManager.TryGetComponent(_audio, out audio)) moved to check if audio entity 
         {
             PlaybackSlider.SetValueWithoutEvent(audio.PlaybackPosition);
         }
