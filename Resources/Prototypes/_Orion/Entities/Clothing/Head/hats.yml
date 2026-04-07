@@ -231,3 +231,24 @@
     tags:
       - HamsterWearable
       - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetKendoMen
+  name: men
+  description: The quintessential head armor of the kendo practitioner.
+  components:
+  - type: Sprite
+    sprite: _Orion/Clothing/Head/Helmets/men.rsi
+  - type: Clothing
+    sprite: _Orion/Clothing/Head/Helmets/men.rsi
+  - type: Armor
+    coverage:
+    - Head
+    traumaDeductions:
+      BoneDamage: 0.8
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.9
