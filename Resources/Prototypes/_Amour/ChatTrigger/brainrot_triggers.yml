@@ -97,7 +97,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot20
-  trigger: "[сервер; сервак]"
+  trigger: "[мабой]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -208,7 +208,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot42
-  trigger: скаф
+  trigger: "[маму ебал; твою мамку ебал; маму трахал; твою маму; твою мать]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -380,10 +380,4 @@
 - type: brainrotBotTrigger
   id: Brainrot76
   trigger: "[пруф; пруфы; пруфани]"
-  description: brainrot-trigger-desc-generic
-
-
-- type: brainrotBotTrigger
-  id: Brainrot77
-  trigger: "[изоли; изольки]"
   description: brainrot-trigger-desc-generic
