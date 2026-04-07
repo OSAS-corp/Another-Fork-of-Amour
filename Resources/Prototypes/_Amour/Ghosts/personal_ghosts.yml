@@ -1195,3 +1195,25 @@
   - type: Sprite
     sprite: _Amour/Ghosts/DEN4IK_64-ghost.rsi
     color: "#ffffffe6" # 0.9 alpha
+
+# 12345
+- type: customGhost
+  parent: CkeyPersonal
+  id: 12345-ghost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ Meowklka ]
+  entity: MobObserver-12345-ghost
+  name: custom-ghost-12345-name
+  description: custom-ghost-12345-desc
+- type: entity
+  parent: MobObserverAmour
+  id: MobObserver-12345-ghost
+  categories: [ HideSpawnMenu ]
+  name: Призрак 12345
+  description: Кастомный призрак
+  components:
+  - type: Sprite
+    sprite: _Amour/Ghosts/12345-ghost.rsi
+    color: "#ffffffcc"
+    scale: 0.5, 0.5

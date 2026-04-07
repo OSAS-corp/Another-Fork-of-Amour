@@ -141,33 +141,23 @@
   requirements:
     - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
       time: 3600
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobWarden
-          time: 9000 #2.50 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobSecurityOfficer
-          time: 18000 #5 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobDetective
-          time: 1800 #30 min
-    - !type:AgeRequirement # Amour
-      requiredAge: 23
-      time: 6000 # Amour
-    - !type:RoleTimeRequirement
-      role: JobDetective
-      time: 600 # Amour
-    - !type:DepartmentTimeRequirement
+    - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
       department: Security
-      time: 6000 # Amour
+      time: 3600
+    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
+      requirements:
+        - !type:DiscordLinkRequirement
+        - !type:AllOfRequirement
+          requirements:
+            - !type:RoleTimeRequirement
+              role: JobWarden
+              time: 9000 #2.50 hrs
+            - !type:RoleTimeRequirement
+              role: JobSecurityOfficer
+              time: 18000 #5 hrs
+            - !type:RoleTimeRequirement
+              role: JobDetective
+              time: 1800 #30 min
     - !type:AgeRequirement # Amour
       requiredAge: 23
     - !type:SpeciesRequirement # Amour

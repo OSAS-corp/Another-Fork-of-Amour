@@ -144,15 +144,14 @@
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobChemist
-          time: 9000 #2.50 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:RoleTimeRequirement
-          role: JobMedicalDoctor
-          time: 14000 #3.89 hrs
+        - !type:AllOfRequirement
+          requirements:
+            - !type:RoleTimeRequirement
+              role: JobChemist
+              time: 9000 #2.50 hrs
+            - !type:RoleTimeRequirement
+              role: JobMedicalDoctor
+              time: 14000 #3.89 hrs
     - !type:AgeRequirement # Amour
       requiredAge: 23
   startingGear: CMOGear
@@ -194,7 +193,7 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetAltMedical # Goobstation
-#    eyes: ClothingEyesGlassesMed # Goobstation # Orion-Edit: In loadout
+#    eyes: ClothingEyesGlassesMedChemFlash #Omu | Orion-Edit: OP
     belt: ClothingBeltMedicalFilled
   storage:
     back:
@@ -207,7 +206,7 @@
   hasMindShield: true
   equipment:
     head: ClothingHeadHatBeretCmo
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesGlassesMedChemFlash # Omu
     mask: ClothingMaskSterile
     neck: ClothingCloakCmo
     outerClothing: ClothingOuterCoatLabCmo
