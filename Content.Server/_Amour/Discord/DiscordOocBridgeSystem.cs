@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Robust.Shared.IoC;
 using JetBrains.Annotations;
 
@@ -12,7 +14,17 @@ public sealed class DiscordOocBridgeSystem : EntitySystem
     {
         base.Initialize();
 
-        _ = _bridge.StartAsync();
+        Task.Run(async () =>
+        {
+            try
+            {
+                await _bridge.StartAsync();
+            }
+            catch (Exception ex)
+            {
+                Logger.ErrorS("discord-ooc", $"Failed to start Discord OOC bridge: {ex}");
+            }
+        });
     }
 
     public override void Shutdown()

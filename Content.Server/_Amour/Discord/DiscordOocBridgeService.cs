@@ -155,7 +155,7 @@ public sealed class DiscordOocBridgeService : IPostInjectInit
         if (content.Length > 500)
             content = content[..500] + "...";
 
-        var sender = $"(D) {message.Author.Username}";
+        var sender = message.Author.Username;
 
         _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(sender, content));
     }
