@@ -41,7 +41,12 @@ public sealed class StationPowerTests
         "Leonid",
         "Delta",
         "Chloris",
-        "Cog"
+        "Cog", // Amour-Edit
+        // Amour-Start
+        "Core",
+        "Lambda",
+        "WonderBox"
+        // Amour-End
     ];
 
     [Test, TestCaseSource(nameof(GameMaps))]

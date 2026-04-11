@@ -94,7 +94,7 @@
   id: Oasis
   mapName: 'Oasis'
   mapPath: /Maps/_Goobstation/oasis.yml # Goobstation - SM
-  minPlayers: 30 # Goobstation return minPlayers requirement for maps
+  minPlayers: 35 # Goobstation return minPlayers requirement for maps # Amour-Edit: 30 > 35
   maxPlayers: 85 # Goobstation - Limit mappool to highpop versions of maps only
   stations:
     Oasis:

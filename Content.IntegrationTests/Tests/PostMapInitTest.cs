@@ -247,12 +247,12 @@ namespace Content.IntegrationTests.Tests
               "Atlas",
               "Bagel",
               "Barratry",
-            //"Box",            // Not in pool
+              "Box",            // Not in pool // Amour-Edit
               "CentComm",      // CentComm
               "Chloris",
               "Cluster",
               "Cog",
-            //"Core",           // Not in pool.
+              "Core",           // Not in pool. // Amour-Edit
               "Delta",
               "Dev",            // Dev map
             //"dm01-entryway",  // Deathmatch
@@ -261,7 +261,7 @@ namespace Content.IntegrationTests.Tests
               "FlandHighPop",
             //"Gate",           // Not in pool
               "Kettle",
-            //"Lambda",         // Not in pool
+              "Lambda",         // Not in pool // Amour-Edit
               "Lavatest",       //Dev map
               "Leonid",
               "Loop",

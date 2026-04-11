@@ -3,6 +3,7 @@
   mapName: 'WonderBox Station'
   mapPath: /Maps/_Amour/WonderBox.yml
   minPlayers: 25
+  maxPlayers: 85
   stations:
     WonderBoxStation:
       stationProto: StandardNanotrasenStation

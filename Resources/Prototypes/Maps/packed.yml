@@ -35,7 +35,7 @@
   id: Packed
   mapName: 'Packed'
   mapPath: /Maps/_Goobstation/packed.yml # Goobstation
-  minPlayers: 7
+  minPlayers: 5 # Amour-Edit: 7 > 5
   maxPlayers: 35
   stations:
     Packed:
