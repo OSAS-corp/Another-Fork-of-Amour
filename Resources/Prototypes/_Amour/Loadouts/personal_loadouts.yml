@@ -283,3 +283,24 @@
     - Perchta
   equipment:
     back: ClothingBackpackDuffelTomato15MOLLE
+
+
+# bandiKOtik
+
+- type: loadout
+  id: LoadoutPersonalBandiKOtikCloak
+  effects:
+  - !type:UserNameLoadoutEffect
+    allowedUsers:
+    - bandiKOtik
+  equipment:
+    neck: ClothingBandiKOtikNeckFluff
+
+- type: loadout
+  id: LoadoutPersonalBandiKOtikPurpleCloak
+  effects:
+  - !type:UserNameLoadoutEffect
+    allowedUsers:
+    - bandiKOtik
+  equipment:
+    neck: ClothingBandiKOtikPurpleNeckFluff

@@ -342,3 +342,28 @@
   components:
     - type: Sprite
       sprite: _Amour/Fluff/tomato15/MOLLEbeltbag.rsi
+
+# bandiKOtik
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBandiKOtikNeckFluff
+  name: розово-черный плащ в клеточку
+  suffix: fluff
+  description: Стильный плащ с необычным дизайном.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/bandiKOtik/cloak.rsi
+    - type: Clothing
+      sprite: _Amour/Fluff/bandiKOtik/cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBandiKOtikPurpleNeckFluff
+  name: фиолетово-черный плащ в клеточку
+  suffix: fluff
+  description: Стильный плащ с необычным дизайном.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/bandiKOtik/purple_cloak.rsi
+    - type: Clothing
+      sprite: _Amour/Fluff/bandiKOtik/purple_cloak.rsi
