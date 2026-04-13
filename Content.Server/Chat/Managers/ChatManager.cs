@@ -380,10 +380,8 @@ internal sealed partial class ChatManager : IChatManager
         SendAdminAlert($"{playerName}{(antag ? " (ANTAG)" : "")} {message}");
     }
 
-    public void SendHookOOC(string sender, string message)
+    public void SendHookOOC(string sender, string message, bool isDiscordBridge = false) // Amour (add bool isDiscordBridge = false)
     {
-        var isDiscordBridge = sender.StartsWith("(D) "); // Amour add
-        
         if (!_oocEnabled && _configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay) && !isDiscordBridge) // Amour (add && !isDiscordBridge)
         {
             return;

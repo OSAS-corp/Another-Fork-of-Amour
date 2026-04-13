@@ -157,7 +157,7 @@ public sealed class DiscordOocBridgeService : IPostInjectInit
 
         var sender = message.Author.Username;
 
-        _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(sender, content));
+        _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(sender, content, isDiscordBridge: true));
     }
 
     private bool CheckDiscordRateLimit(ulong userId)
