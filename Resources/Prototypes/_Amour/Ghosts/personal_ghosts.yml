@@ -1205,8 +1205,7 @@
 - type: entity
   parent: MobObserverAmour
   id: MobObserver-Perchta-ghost
-  name: custom-ghost-Perchta-name
-  description: custom-ghost-Perchta-desc
+  suffix: Perchta
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

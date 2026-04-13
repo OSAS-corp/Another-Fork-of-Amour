@@ -1,2 +1,3 @@
-custom-ghost-Perchta-name = Чиби Черино
-custom-ghost-Perchta-desc = Усы - символ власти!
+ent-MobObserver-Perchta-ghost = Чиби Черино
+    .desc = Усы - символ власти!
+    .suffix = Perchta
