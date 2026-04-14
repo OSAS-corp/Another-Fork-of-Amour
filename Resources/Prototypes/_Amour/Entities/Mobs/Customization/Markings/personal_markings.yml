@@ -197,3 +197,5 @@
   sprites:
     - sprite: _Amour/Mobs/Customization/fluff_parts/ghost_wost_tail.rsi
       state: tail
+    - sprite: _Amour/Mobs/Customization/fluff_parts/ghost_wost_tail.rsi
+      state: tail_tip

@@ -30,3 +30,8 @@ marking-CatEarsMarginal = Уши леопарда (DIGGLER2009)
 # Kogenbaum
 marking-HorseEars = Лошадиные уши (Kogenbaum)
 marking-HorseTail = Лошадиный хвост (Kogenbaum)
+
+# Ghost_wost
+marking-GhostWostTail = Лисий хвост (Ghost_wost)
+marking-GhostWostTail-tail = Основная часть
+marking-GhostWostTail-tail_tip = Кончик хвоста
