@@ -146,9 +146,6 @@
     - !type:RoleTimeRequirement
       role: JobDetective
       time: 3600 # 1 h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 72000 # 20 hrs
     # Amour-Edit-End
     - !type:DiscordLinkRequirement # Amour
     - !type:AgeRequirement # Amour

@@ -64,9 +64,6 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 36000 #10 hrs
