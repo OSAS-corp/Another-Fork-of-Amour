@@ -104,7 +104,10 @@
         - !type:DiscordLinkRequirement
         - !type:DepartmentTimeRequirement
           department: Command
-          time: 180000  #50 hours
+          time: 7200 #2 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 90000 #25 hours # Amour-Edit
     - !type:AgeRequirement
       requiredAge: 21
   weight: 20

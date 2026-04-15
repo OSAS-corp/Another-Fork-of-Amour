@@ -137,28 +137,19 @@
   description: job-description-hop
   playTimeTracker: JobHeadOfPersonnel
   requirements:
-    - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
-      time: 3600
-    - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
-      department: Civilian
-      time: 3600
-    - !type:AnyOfRequirement # Amour edit - Discord OR all departments
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:AllOfRequirement
-          requirements:
-            - !type:DepartmentTimeRequirement
-              department: Engineering
-              time: 7200 #2 hrs
-            - !type:DepartmentTimeRequirement
-              department: Medical
-              time: 7200 #2 hrs
-            - !type:DepartmentTimeRequirement
-              department: Science
-              time: 7200 #2 hrs
-            - !type:DepartmentTimeRequirement
-              department: Cargo
-              time: 7200 #2 hrs
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 3600 #1 h # Amour-Edit
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 #2 hrs # Amour-Edit
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 7200 #2 hrs # Amour-Edit
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 3600 #1 h # Amour-Edit
+    - !type:DiscordLinkRequirement
     - !type:AgeRequirement # Amour
       requiredAge: 23
 #  guides: # goobstation | Orion-Edit: Removed because dont have this SOP
@@ -167,7 +158,7 @@
 #  - StandardProceduresSOP
 #  - HeadOfPersonnelSOP
 #  - Writing
-  goobcoins: 40 #Goob content
+  goobcoins: 80 #Goob content # Amour-Edit
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"

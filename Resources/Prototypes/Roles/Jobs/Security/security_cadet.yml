@@ -100,15 +100,13 @@
   description: job-description-cadet
   playTimeTracker: JobSecurityCadet
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:OverallPlaytimeRequirement
-          time: 18000 #5 hrs
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 18000 #5 hrs
-          inverted: true # stop playing cadet if you're good at security!
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hrs # Amour-Edit
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 72000 #20 hrs # Amour-Edit
+      inverted: true # stop playing cadet if you're good at security!
+    - !type:DiscordLinkRequirement # Amour
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
@@ -117,7 +115,7 @@
   # Amour-Edit-Start
   # - SpaceLaw # Disabled until guide is created
   # Amour-Edit-End
-  goobcoins: 30 #Goob content
+  goobcoins: 20 #Goob content # Amour-Edit
   access:
   - Security
   - Brig

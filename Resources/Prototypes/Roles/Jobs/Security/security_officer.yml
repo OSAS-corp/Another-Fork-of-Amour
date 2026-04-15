@@ -89,11 +89,10 @@
   description: job-description-security
   playTimeTracker: JobSecurityOfficer
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:OverallPlaytimeRequirement
-          time: 3600 # 1 hr
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 14400 #4 hrs # Amour-Edit
+    - !type:DiscordLinkRequirement # Amour
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
@@ -102,7 +101,7 @@
   # Amour-Edit-Start
   # - SpaceLaw # Disabled until guide is created
   # Amour-Edit-End
-  goobcoins: 30 #Goob content
+  goobcoins: 20 #Goob content # Amour-Edit
   access:
   - Security
   - Brig
