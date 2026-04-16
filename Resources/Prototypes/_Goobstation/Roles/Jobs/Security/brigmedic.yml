@@ -9,18 +9,13 @@
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
   requirements:
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:DepartmentTimeRequirement
-          department: Medical
-          time: 18000 # 5 hrs
-    - !type:AnyOfRequirement # Amour edit - Discord OR playtime
-      requirements:
-        - !type:DiscordLinkRequirement
-        - !type:DepartmentTimeRequirement
-          department: Security
-          time: 18000 # 5 hrs
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 18000 # 5 hrs
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 14400 # 4 hrs # Amour-Edit
+  - !type:DiscordLinkRequirement # Amour
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

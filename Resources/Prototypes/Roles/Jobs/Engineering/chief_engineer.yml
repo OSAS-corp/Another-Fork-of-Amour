@@ -134,11 +134,9 @@
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
   requirements:
-    - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
-      time: 3600
     - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
       department: Engineering
-      time: 3600
+      time: 10800 # 3 h
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
@@ -164,7 +162,7 @@
 #  - EngineeringSOP
 #  - Command
 #  - EmergenciesSOP
-  goobcoins: 40 #Goob content
+  goobcoins: 80 #Goob content # Amour-Edit
   access:
   - Maintenance
   - Engineering
