@@ -158,7 +158,7 @@
 #  - StandardProceduresSOP
 #  - HeadOfPersonnelSOP
 #  - Writing
-  goobcoins: 80 #Goob content # Amour-Edit
+  goobcoins: 70 #Goob content # Amour-Edit
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
