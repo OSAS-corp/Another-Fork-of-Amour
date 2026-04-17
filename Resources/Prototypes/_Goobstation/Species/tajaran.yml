@@ -15,7 +15,10 @@
   name: species-name-tajaran
   roundStart: true
   prototype: MobTajaran
-  sprites: MobTajaranSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - TajaranNormal
+# Amour port: WD Slim body types START
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues # Orion-Edit: Was AnimalFur
@@ -102,8 +105,11 @@
       points: 3
       required: false
 
-- type: speciesBaseSprites
-  id: MobTajaranSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: TajaranNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobTajaranHead
     HeadTop: MobHumanoidAnyMarking

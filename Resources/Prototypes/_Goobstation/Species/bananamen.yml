@@ -9,7 +9,10 @@
   name: species-name-bananamen
   roundStart: false
   prototype: MobBananaMen
-  sprites: MobBananaMenSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - BananaMenNormal
+# Amour port: WD Slim body types START
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobBananaMenDummy
   skinColoration: NoColor
@@ -17,8 +20,11 @@
   category: Special
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobBananaMenSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: BananaMenNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobBananaMenHead
     Hair: MobHumanoidAnyMarking

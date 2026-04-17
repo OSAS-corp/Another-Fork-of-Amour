@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
+﻿# SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Rank #1 Jonestown partygoer <mary@thughunt.ing>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
@@ -23,7 +23,10 @@
   name: species-name-felinid
   roundStart: true
   prototype: MobFelinid
-  sprites: MobHumanSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - HumanNormal
+  # Amour port: WD Slim body types END
   markingLimits: MobFelinidMarkingLimits
   dollPrototype: MobFelinidDummy
   skinColoration: HumanToned

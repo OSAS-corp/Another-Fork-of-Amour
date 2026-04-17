@@ -1,9 +1,12 @@
-- type: species
+﻿- type: species
   id: Plasmaman
   name: species-name-plasmaman
   roundStart: true
   prototype: MobPlasmaman
-  sprites: MobPlasmamanSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - PlasmamanNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#a349a4"
   markingLimits: MobPlasmamanMarkingLimits
   dollPrototype: MobPlasmamanDummy
@@ -36,8 +39,11 @@
   - Получают 1 ожог при ударе рукой.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobPlasmamanSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: PlasmamanNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobPlasmamanHead
     Face: MobHumanoidAnyMarking

@@ -1,9 +1,12 @@
-- type: species
+﻿- type: species
   id: Chitinid
   name: species-name-chitinid
   roundStart: true
   prototype: MobChitinid
-  sprites: MobChitinidSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - ChitinidNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#ffda93"
   markingLimits: MobChitinidMarkingLimits
   dollPrototype: MobChitinidDummy
@@ -29,8 +32,11 @@
   - Голодают на 33% быстрее.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobChitinidSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ChitinidNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobChitinidHead
     Snout: MobHumanoidAnyMarking

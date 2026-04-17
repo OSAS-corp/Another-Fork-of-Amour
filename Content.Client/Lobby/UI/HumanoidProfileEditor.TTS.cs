@@ -67,7 +67,7 @@ public sealed partial class HumanoidProfileEditor
         _ttsVoiceMenu.OnVoiceSelected += voice =>
         {
             _selectedTTSVoice = voice;
-            SetTTSVoice(voice);
+            SetTTSVoice(voice.ID);
             UpdateTTSVoiceButtonText();
         };
 
@@ -102,11 +102,11 @@ public sealed partial class HumanoidProfileEditor
         {
             var random = IoCManager.Resolve<IRobustRandom>();
             _selectedTTSVoice = random.Pick(_ttsPrototypes);
-            SetTTSVoice(_selectedTTSVoice);
+            SetTTSVoice(_selectedTTSVoice.ID);
         }
         else if (_selectedTTSVoice != null)
         {
-            SetTTSVoice(_selectedTTSVoice);
+            SetTTSVoice(_selectedTTSVoice.ID);
         }
 
         UpdateTTSVoiceButtonText();

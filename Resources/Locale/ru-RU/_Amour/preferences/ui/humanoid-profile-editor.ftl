@@ -15,3 +15,4 @@ humanoid-profile-editor-tts-voice-menu-sex-unsexed = Унисекс
 humanoid-profile-editor-tts-voice-menu-source-all = Все
 humanoid-profile-editor-tts-voice-menu-preview = Прослушать
 humanoid-profile-editor-tts-voice-button-select = Выбрать голос...
+humanoid-profile-editor-body-type-label = Телосложение:

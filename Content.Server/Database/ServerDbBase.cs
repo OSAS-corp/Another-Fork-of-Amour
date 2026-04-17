@@ -420,6 +420,7 @@ namespace Content.Server.Database
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
             var voice = profile.Voice ?? string.Empty; // Amour - TTS
+            var bodyType = profile.BodyType ?? "HumanNormal"; // Amour port: WD Slim body types
 
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -442,6 +443,7 @@ namespace Content.Server.Database
                 profile.Width, // Goobstation: port EE height/width sliders
                 profile.Age,
                 sex,
+                bodyType, // Amour port: WD Slim body types
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -496,6 +498,7 @@ namespace Content.Server.Database
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
+            profile.BodyType = humanoid.BodyType; // Amour port: WD Slim body types
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();

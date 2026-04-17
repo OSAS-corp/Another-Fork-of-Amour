@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
@@ -8,14 +8,20 @@
   name: species-name-kobold
   roundStart: false # sad...
   prototype: MobKobold
-  sprites: MobKoboldSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - KoboldNormal
+  # Amour port: WD Slim body types END
   dollPrototype: MobKoboldDummy
   skinColoration: Hues
   defaultSkinTone: "#9a7c5a"
   markingLimits: MobKoboldMarkingLimits
 
-- type: speciesBaseSprites
-  id: MobKoboldSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: KoboldNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Special: MobKoboldAnyMarking
     Head: MobKoboldHead

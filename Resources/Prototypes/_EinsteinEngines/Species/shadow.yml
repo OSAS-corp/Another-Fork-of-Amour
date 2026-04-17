@@ -3,13 +3,19 @@
   name: species-name-shadow
   roundStart: false
   prototype: MobShadow
-  sprites: MobShadowSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - ShadowNormal
+# Amour port: WD Slim body types START
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobShadowDummy
   skinColoration: HumanToned
 
-- type: speciesBaseSprites
-  id: MobShadowSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ShadowNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobShadowHead
     HeadTop: MobHumanoidAnyMarking

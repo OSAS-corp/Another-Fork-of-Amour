@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020 FrostMando <68990565+FrostMando@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2020 FrostMando <68990565+FrostMando@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Paul Ritter <ritter.paul1@googlemail.com>
 # SPDX-FileCopyrightText: 2020 Swept <sweptwastaken@protonmail.com>
 # SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
@@ -104,6 +104,7 @@
     sprite: Clothing/OuterClothing/Suits/bombsuit.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/bombsuit.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -158,6 +159,7 @@
     sprite: Clothing/OuterClothing/Suits/fire.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/fire.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: PressureProtection
     highPressureMultiplier: 0.04
   - type: TemperatureProtection
@@ -207,6 +209,7 @@
     sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -277,6 +280,7 @@
         Radiation: 0.01
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/rad.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: GroupExamine
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -297,6 +301,7 @@
     sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/spaceninja.rsi
+    clothingType: suit # Amour port: WD Slim body types
   # hardsuit stuff
   - type: PressureProtection
     highPressureMultiplier: 0.6
@@ -379,6 +384,7 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: HideClothingLayerClothing # Goobstation
@@ -395,6 +401,7 @@
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/shrine-maiden.rsi
+    clothingType: suit # Amour port: WD Slim body types
 
 - type: entity
   parent: ClothingOuterBase
@@ -406,6 +413,7 @@
     sprite: Clothing/OuterClothing/Suits/witchrobe.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/witchrobe.rsi
+    clothingType: suit # Amour port: WD Slim body types
 
 - type: entity
   parent: ClothingOuterBase
@@ -417,6 +425,7 @@
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/monkey.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container {}
@@ -437,6 +446,7 @@
   - type: Item
     size: Normal
   - type: Clothing
+    clothingType: suit # Amour port: WD Slim body types
     sprite: Clothing/OuterClothing/Suits/iansuit.rsi
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
@@ -467,6 +477,7 @@
     size: Normal
   - type: Clothing
     sprite: Clothing/OuterClothing/Suits/carpsuit.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: ToggleableClothing # Goobstation - Modsuits change
     clothingPrototypes:
       head: ClothingHeadHatHoodCarp
@@ -494,4 +505,3 @@
     - jumpsuit
   - type: StaticPrice
     price: 1500
-

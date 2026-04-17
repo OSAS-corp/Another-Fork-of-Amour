@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
 # SPDX-FileCopyrightText: 2025 Rouden <149893554+Roudenn@users.noreply.github.com>
 #
@@ -9,7 +9,10 @@
   name: species-name-shadowkin
   roundStart: true
   prototype: MobShadowkin
-  sprites: MobShadowkinSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - ShadowkinNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#FFFFFF"
   markingLimits: MobShadowkinMarkingLimits
   dollPrototype: MobShadowkinDummy
@@ -45,8 +48,11 @@
   maxWidth: 1.15
   # end Goobstation: port EE height/width sliders
 
-- type: speciesBaseSprites
-  id: MobShadowkinSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ShadowkinNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobShadowkinHead
     Snout: MobShadowkinAnyMarkingFollowSkin

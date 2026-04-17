@@ -218,6 +218,18 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Amour-Start
+      jumpsuit-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female-digi
+      shoes-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-digi
+      # Amour-End
       # Orion-Start
       underwear:
         sizeMaps:
@@ -230,6 +242,38 @@
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
       # Orion-End
+      # Amour-Start
+      jumpsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female-slim
+      shoes-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-slim
+      gloves-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: gloves
+      outerClothing-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: outer
+      hardsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: hardsuit
+      suit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: suit
+      # Amour-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -241,6 +285,18 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Amour-Start
+      jumpsuit-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-digi
+      shoes-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-digi
+      # Amour-End
       # Orion-Start
       underwear:
         sizeMaps:
@@ -292,6 +348,18 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Amour-Start
+      jumpsuit-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female-digi
+      shoes-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-digi
+      # Amour-End
       # Orion-Start
       underwear:
         sizeMaps:
@@ -304,6 +372,38 @@
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
       # Orion-End
+      # Amour-Start
+      jumpsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female-slim
+      shoes-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-slim
+      gloves-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: gloves
+      outerClothing-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: outer
+      hardsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: hardsuit
+      suit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Human/displacement.rsi
+            state: suit
+      # Amour-End
     displacements:
       jumpsuit:
         sizeMaps:
@@ -315,6 +415,18 @@
           32:
             sprite: _White/Mobs/Species/displacement.rsi
             state: shoes
+      # Amour-Start
+      jumpsuit-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-digi
+      shoes-body-digitigrade:
+        sizeMaps:
+          32:
+            sprite: _Amour/Mobs/Species/Reptilian/displacement.rsi
+            state: shoes-digi
+      # Amour-End
       # Orion-Start
       underwear:
         sizeMaps:

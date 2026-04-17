@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
 SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
@@ -84,6 +84,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" Visible="False"/>    <!-- Orion | True > False -->
                                     <Button Name="NewSpeciesButton" HorizontalAlignment="Right" ToggleMode="True" />    <!-- Orion -->
                                 </BoxContainer>
+                                <!--Amour port: WD Slim body types START-->
+                                <!-- Body Type -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-body-type-label'}"/>
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="CBodyTypesButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!--Amour port: WD Slim body types END-->
                                 <!-- Age -->
                                 <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-age-label'}" />
