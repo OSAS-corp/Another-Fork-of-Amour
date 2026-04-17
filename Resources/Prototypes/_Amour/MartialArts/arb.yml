@@ -14,8 +14,8 @@
     - ArbArmLock
     - ArbSweep
     - ArbHipThrow
-    - JudoArmbar
-    - JudoWheelThrow
+    - ArbArmbar
+    - ArbWheelThrow
     - ArbChoke
 
 - type: combo
@@ -76,7 +76,7 @@
   event: !type:ArbHipThrowPerformedEvent {}
 
 - type: combo
-  id: JudoArmbar
+  id: ArbArmbar
   name: Armbar
   martialArtsForm: ArmyHandCombat
   attacks:
@@ -89,7 +89,7 @@
   dropItems: true
 
 - type: combo
-  id: JudoWheelThrow
+  id: ArbWheelThrow
   name: Wheel Throw
   martialArtsForm: ArmyHandCombat
   attacks:
