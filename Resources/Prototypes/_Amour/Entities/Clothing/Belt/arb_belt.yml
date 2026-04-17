@@ -8,7 +8,7 @@
     Потрепанная РПС, по виду закалена в боях. Позволяет пользователю овладеть АРБ с помощью нанитов.
   components:
   - type: Sprite
-    sprite: _Amour\Clothing\Belt\arb.rsi
+    sprite: _Amour/Clothing/Belt/arb.rsi
   - type: Clothing
-    sprite: _Amour\Clothing\Belt\arb.rsi
+    sprite: _Amour/Clothing/Belt/arb.rsi
   - type: GrantArb
