@@ -159,11 +159,6 @@ public sealed partial class HumanoidAppearanceComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<BodyTypePrototype> BodyType { get; set; } = SharedHumanoidAppearanceSystem.DefaultBodyType;
     // Amour port: WD Slim body types END
-
-    //Amour port: WD Slim body types START
-    [DataField, AutoNetworkedField]
-    public ProtoId<TTSVoicePrototype> Voice { get; set; } = string.Empty;
-    //Amour port: WD Slim body types END
 }
 
 [DataDefinition]
