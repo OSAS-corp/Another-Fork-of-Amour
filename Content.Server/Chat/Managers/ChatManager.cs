@@ -380,9 +380,9 @@ internal sealed partial class ChatManager : IChatManager
         SendAdminAlert($"{playerName}{(antag ? " (ANTAG)" : "")} {message}");
     }
 
-    public void SendHookOOC(string sender, string message)
+    public void SendHookOOC(string sender, string message, bool isDiscordBridge = false) // Amour (add bool isDiscordBridge = false)
     {
-        if (!_oocEnabled && _configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay))
+        if (!_oocEnabled && _configurationManager.GetCVar(CCVars.DisablingOOCDisablesRelay) && !isDiscordBridge) // Amour (add && !isDiscordBridge)
         {
             return;
         }
@@ -489,6 +489,13 @@ internal sealed partial class ChatManager : IChatManager
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
         ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);
         _mommiLink.SendOOCMessage(player.Name, message.Replace("@", "\\@").Replace("<", "\\<").Replace("/", "\\/")); // @ and < are both problematic for discord due to pinging. / is sanitized solely to kneecap links to murder embeds via blunt force
+        
+        // Amour - Discord OOC Bridge
+        if (_entitySystemManager.TryGetEntitySystem<_Amour.Discord.DiscordOocBridgeSystem>(out var discordBridge))
+        {
+            discordBridge.OnGameOocMessage(player.Name, message);
+        }
+        
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"OOC from {player:Player}: {message}");
     }
 

@@ -131,10 +131,10 @@
   playTimeTracker: JobQuartermaster
   requirements:
     - !type:OverallPlaytimeRequirement # Amour edit - 1 hr minimum
-      time: 3600
+      time: 18000 # 5 hrs
     - !type:DepartmentTimeRequirement # Amour edit - 1 hr minimum
       department: Cargo
-      time: 3600
+      time: 7200 # 2 hrs # Amour-Edit
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
@@ -157,7 +157,7 @@
 #  - QuartermasterSOP
 #  - CargoSOP
 #  - Command
-  goobcoins: 40 #Goob content
+  goobcoins: 70 #Goob content # Amour-Edit
   access:
   - Cargo
   - Salvage

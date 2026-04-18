@@ -77,13 +77,14 @@
     - !type:AnyOfRequirement # Amour edit - Discord OR playtime
       requirements:
         - !type:DiscordLinkRequirement
-        - !type:OverallPlaytimeRequirement
-          time: 3600 # 1 hr
+        - !type:DepartmentTimeRequirement
+          department: Engineering
+          time: 7200 #2.5 hrs
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-ce
   guides: [ Engineering ] # goobstation
-  goobcoins: 20 #Goob content
+  goobcoins: 30 #Goob content # Amour-Edit
   access:
   - Maintenance
   - Engineering

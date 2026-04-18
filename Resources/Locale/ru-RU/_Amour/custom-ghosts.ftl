@@ -1,2 +1,3 @@
-custom-ghost-12345-name = заглушка
-custom-ghost-12345-desc = заглушка
+ent-MobObserver-Perchta-ghost = Чиби Черино
+    .desc = Усы - символ власти!
+    .suffix = Perchta

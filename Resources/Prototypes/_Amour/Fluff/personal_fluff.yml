@@ -319,3 +319,51 @@
   components:
     - type: Sprite
       sprite: _Amour/Fluff/McLovin_/void_cloak.rsi
+
+# tomato15 (Perchta)
+- type: entity
+  parent: [ClothingUniformBase, BaseSyndicateContraband]
+  id: ClothingUniformJumpsuitTomato15OldSyndicate
+  name: старая униформа
+  suffix: fluff
+  description: На форме заметны давно выцветшие пятна крови, кое-где виднеются заштопанные отверстия и заплатки. Видимо её владелец очень дорожит ей.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/tomato15/syndicate_red.rsi
+    - type: Clothing
+      sprite: _Amour/Fluff/tomato15/syndicate_red.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackDuffelTomato15MOLLE
+  name: военная поясная сумка
+  suffix: fluff
+  description: Выглядит вместительной. Немного порвана в некоторых местах и заляпана высохшей кровью.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/tomato15/MOLLEbeltbag.rsi
+
+# bandiKOtik
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBandiKOtikNeckFluff
+  name: розово-черный плащ в клеточку
+  suffix: fluff
+  description: Стильный плащ с необычным дизайном.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/bandiKOtik/cloak.rsi
+    - type: Clothing
+      sprite: _Amour/Fluff/bandiKOtik/cloak.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingBandiKOtikPurpleNeckFluff
+  name: фиолетово-черный плащ в клеточку
+  suffix: fluff
+  description: Стильный плащ с необычным дизайном.
+  components:
+    - type: Sprite
+      sprite: _Amour/Fluff/bandiKOtik/purple_cloak.rsi
+    - type: Clothing
+      sprite: _Amour/Fluff/bandiKOtik/purple_cloak.rsi

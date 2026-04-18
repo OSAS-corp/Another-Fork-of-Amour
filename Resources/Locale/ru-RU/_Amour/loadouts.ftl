@@ -5,25 +5,20 @@ loadout-group-amour-personal-neck = Fluff: Накидка
 loadout-group-amour-personal-jumpsuit = Fluff: Комбинезон
 loadout-group-amour-personal-outer = Fluff: Верхняя одежда
 loadout-group-amour-personal-gloves = Fluff: Перчатки
+loadout-group-amour-personal-back = Fluff: Рюкзак
 loadout-group-amour-personal-shoes = Fluff: Обувь
 loadout-group-amour-personal-storage = Fluff: Предметы
 
 # Amour - Boosty Subscriber Loadouts
-loadout-group-boosty-items = Предметы подписчиков Boosty
-loadout-group-boosty-resident = Boosty: Resident
-loadout-group-boosty-clown = Boosty: Clown
-loadout-group-boosty-meteor = Boosty: Meteor
-
-# Boosty groups by slot
-loadout-group-boosty-head = Boosty: Головные уборы
-loadout-group-boosty-mask = Boosty: Маски
-loadout-group-boosty-eyes = Boosty: Очки
-loadout-group-boosty-neck = Boosty: Шея
-loadout-group-boosty-jumpsuit = Boosty: Комбинезоны
-loadout-group-boosty-outer = Boosty: Верхняя одежда
-loadout-group-boosty-shoes = Boosty: Обувь
-loadout-group-boosty-belt = Boosty: Пояс
-loadout-group-boosty-socks = Boosty: Носки
+loadout-group-amour-boosty-head = Boosty: Головной убор
+loadout-group-amour-boosty-mask = Boosty: Маска
+loadout-group-amour-boosty-eyes = Boosty: Очки
+loadout-group-amour-boosty-neck = Boosty: Накидка
+loadout-group-amour-boosty-jumpsuit = Boosty: Комбинезон
+loadout-group-amour-boosty-outer = Boosty: Верхняя одежда
+loadout-group-amour-boosty-belt = Boosty: Пояс
+loadout-group-amour-boosty-shoes = Boosty: Обувь
+loadout-group-amour-boosty-socks = Boosty: Носки
 
 # Amour - Loadout Effect Messages
 loadout-effect-boosty-no-session = Требуется авторизация

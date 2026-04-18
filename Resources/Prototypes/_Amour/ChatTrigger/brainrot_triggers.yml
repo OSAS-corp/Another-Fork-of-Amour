@@ -87,7 +87,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot18
-  trigger: "[раунд; раунда]"
+  trigger: "[манал]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -97,7 +97,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot20
-  trigger: "[сервер; сервак]"
+  trigger: "[мабой]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -208,7 +208,7 @@
 
 - type: brainrotBotTrigger
   id: Brainrot42
-  trigger: скаф
+  trigger: "[маму ебал; твою мамку ебал; маму трахал; твою маму; твою мать]"
   description: brainrot-trigger-desc-generic
 
 - type: brainrotBotTrigger
@@ -382,8 +382,7 @@
   trigger: "[пруф; пруфы; пруфани]"
   description: brainrot-trigger-desc-generic
 
-
 - type: brainrotBotTrigger
   id: Brainrot77
-  trigger: "[изоли; изольки]"
+  trigger: "[изоли; изольки]" # НЕ ТРОГАТЬ БЛЯТЬ, ПЕДАЛЬНЫЙ КОНСИЛИУМ (в голове куаморга) РЕШИЛ ЧТО ЭТО БРЕЙНРОТ, ЗНАЧИТ ЭТО БРЕЙНРОТ, ВОЗРАЖЕНИЯ ПРИНИМАЮТСЯ ТОЛЬКО В ФОРМЕ СОЧИНЕНИЯ, 300 СЛОВ МИНИМУМ, С АРГУМЕНТАМИ ТОГО, ЧТО ИЗОЛИ НЕ БРЕЙНРОТ. 
   description: brainrot-trigger-desc-generic

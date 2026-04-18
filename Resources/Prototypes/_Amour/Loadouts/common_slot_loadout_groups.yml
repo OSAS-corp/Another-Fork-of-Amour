@@ -36,6 +36,8 @@
   - LoadoutPersonalCenturionCloak
   - LoadoutPersonalSerbwoCloak
   - LoadoutPersonalMcLovinCloak
+  - LoadoutPersonalBandiKOtikCloak
+  - LoadoutPersonalBandiKOtikPurpleCloak
 
 # JUMPSUIT
 - type: loadoutGroup
@@ -48,6 +50,7 @@
   - LoadoutPersonalThechaoticJumpsuit
   - LoadoutPersonalVtergotJumpsuit
   - LoadoutPersonalFedaJumpsuit
+  - LoadoutPersonalTomato15OldSyndicateUniform
 
 # OUTER
 - type: loadoutGroup
@@ -68,6 +71,15 @@
   maxLimit: 1
   loadouts:
   - LoadoutPersonalVtergotGloves
+
+# BACK
+- type: loadoutGroup
+  id: AmourPersonalBack
+  name: loadout-group-amour-personal-back
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LoadoutPersonalTomato15MOLLEBag
 
 # SHOES
 - type: loadoutGroup
