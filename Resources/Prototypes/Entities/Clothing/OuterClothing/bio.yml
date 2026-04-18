@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2020 DrSmugleaf <DrSmugleaf@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2020 Swept <sweptwastaken@protonmail.com>
 # SPDX-FileCopyrightText: 2022 Peptide90 <78795277+Peptide90@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
@@ -28,6 +28,7 @@
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
+    clothingType: suit # Amour port: WD Slim body types
   - type: Armor
     coverage:
     - Chest

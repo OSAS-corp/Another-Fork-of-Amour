@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 BloodfiendishOperator <141253729+Diggy0@users.noreply.github.com>
@@ -22,7 +22,10 @@
   prototype: MobOni
   dollPrototype: MobOniDummy
   markingLimits: MobOniMarkingLimits
-  sprites: MobHumanSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - HumanNormal
+  # Amour port: WD Slim body types END
   skinColoration: Hues
   maleFirstNames: NamesOniFirstMale
   femaleFirstNames: NamesOniFirstFemale

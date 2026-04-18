@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2019 Pieter-Jan Briers <pieterjan.briers@gmail.com>
+﻿﻿﻿﻿// SPDX-FileCopyrightText: 2019 Pieter-Jan Briers <pieterjan.briers@gmail.com>
 // SPDX-FileCopyrightText: 2020 20kdc <asdd2808@gmail.com>
 // SPDX-FileCopyrightText: 2020 DamianX <DamianX@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto <6766154+Zumorica@users.noreply.github.com>
@@ -196,6 +196,10 @@ namespace Content.Shared.Preferences
         [DataField]
         public Sex Sex { get; private set; } = Sex.Male;
 
+        // Amour port: WD Slim body types START
+        [DataField]
+        public string BodyType { get; set; } = SharedHumanoidAppearanceSystem.DefaultBodyType;
+        // Amour port: WD Slim body types END
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
 
@@ -245,6 +249,7 @@ namespace Content.Shared.Preferences
         [DataField]
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
             PreferenceUnavailableMode.SpawnAsOverflow;
+
         public HumanoidCharacterProfile(
             string name,
             string flavortext,
@@ -266,6 +271,7 @@ namespace Content.Shared.Preferences
             float width, // Goobstation: port EE height/width sliders
             int age,
             Sex sex,
+            string bodyType, // Amour port: WD Slim body types
             Gender gender,
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
@@ -298,6 +304,7 @@ namespace Content.Shared.Preferences
             Width = width; // Goobstation: port EE height/width sliders
             Age = age;
             Sex = sex;
+            BodyType = bodyType; // Amour port: WD Slim body types
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
@@ -347,6 +354,7 @@ namespace Content.Shared.Preferences
                 other.Width, // Goobstation: port EE height/width sliders
                 other.Age,
                 other.Sex,
+                other.BodyType, // Amour port: WD Slim body types
                 other.Gender,
                 other.Appearance.Clone(),
                 other.SpawnPriority,
@@ -382,6 +390,7 @@ namespace Content.Shared.Preferences
             return new()
             {
                 Species = species,
+                BodyType = SharedHumanoidAppearanceSystem.DefaultBodyType, // Amour port: WD Slim body types
             };
         }
 
@@ -411,12 +420,14 @@ namespace Content.Shared.Preferences
             var age = 18;
             var height = 1f; // Goobstation: port EE height/width sliders
             var width = 1f; // Goobstation: port EE height/width sliders
+            var bodyType = SharedHumanoidAppearanceSystem.DefaultBodyType; // Amour port: WD Slim body types
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
                 height = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight); // Goobstation: port EE height/width sliders
                 width = random.NextFloat(speciesPrototype.MinWidth, speciesPrototype.MaxWidth); // Goobstation: port EE height/width sliders
+                bodyType = speciesPrototype.BodyTypes.First(); // Amour port: WD Slim body types
             }
 
             // Goob Station - Barks Start
@@ -446,6 +457,7 @@ namespace Content.Shared.Preferences
             {
                 Name = name,
                 Sex = sex,
+                BodyType = bodyType, // Amour port: WD Slim body types
                 Age = age,
                 Gender = gender,
                 Species = species,
@@ -533,6 +545,12 @@ namespace Content.Shared.Preferences
             return new(this) { Sex = sex };
         }
 
+        // Amour port: WD Slim body types START
+        public HumanoidCharacterProfile WithBodyType(string bodyType)
+        {
+            return new HumanoidCharacterProfile(this) { BodyType = bodyType };
+        }
+        // Amour port: WD Slim body types END
         public HumanoidCharacterProfile WithGender(Gender gender)
         {
             return new(this) { Gender = gender };
@@ -735,6 +753,7 @@ namespace Content.Shared.Preferences
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
+            if (BodyType != other.BodyType) return false; // Amour port: WD Slim body types
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
             if (Height != other.Height) return false; // Goobstation: port EE height/width sliders
@@ -805,6 +824,14 @@ namespace Content.Shared.Preferences
                 _ => Gender.Epicene // Invalid enum values.
             };
 
+            // Amour port: WD Slim body types START
+            var bodyTypeStr = BodyType;
+            if (!speciesPrototype.BodyTypes.Contains(bodyTypeStr))
+            {
+                bodyTypeStr = speciesPrototype.BodyTypes.First();
+            }
+            // Amour port: WD Slim body types END
+
             string name;
             var maxNameLength = configManager.GetCVar(CCVars.MaxNameLength);
             if (string.IsNullOrEmpty(Name))
@@ -821,7 +848,6 @@ namespace Content.Shared.Preferences
             }
 
             name = name.Trim();
-
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
             {
@@ -1055,6 +1081,7 @@ namespace Content.Shared.Preferences
             Width = width; // Goobstation: port EE height/width sliders
             Sex = sex;
             Gender = gender;
+            BodyType = bodyTypeStr; // Amour port: WD Slim body types
             Appearance = appearance;
             SpawnPriority = spawnPriority;
 
@@ -1252,6 +1279,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Width); // Goobstation: port EE height/width sliders
             hashCode.Add(Age);
             hashCode.Add((int) Sex);
+            hashCode.Add(BodyType); // Amour port: WD Slim body types
             hashCode.Add((int) Gender);
             hashCode.Add(Appearance);
             hashCode.Add(BarkVoice); // Goob Station - Barks

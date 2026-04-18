@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2023 Flareguy <78941145+Flareguy@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 IProduceWidgets <107586145+IProduceWidgets@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
@@ -11,7 +11,10 @@
   name: Gingerbread
   roundStart: false
   prototype: MobGingerbread
-  sprites: MobGingerbreadSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - GingerbreadNormal
+  # Amour port: WD Slim body types END
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobGingerbreadDummy
   skinColoration: HumanToned
@@ -21,8 +24,11 @@
   description: "/ServerInfo/Guidebook/Mobs/Gingerbread.xml"
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobGingerbreadSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: GingerbreadNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobGingerbreadHead
     HeadTop: MobHumanoidAnyMarking

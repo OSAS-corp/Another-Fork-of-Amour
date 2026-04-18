@@ -34,6 +34,7 @@
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Amour.Humanoid.Prototypes;
 using Content.Shared.Examine;
 using Content.Shared._Amour.TTS;
 using Content.Shared.Humanoid.Markings;
@@ -82,6 +83,11 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
     public static readonly ProtoId<BarkPrototype> DefaultBarkVoice = "Alto"; // Goob Station - Barks
+
+    // Amour port: WD Slim body types START
+    [ValidatePrototypeId<BodyTypePrototype>]
+    public const string DefaultBodyType = "HumanNormal";
+    // Amour port: WD Slim body types END
 
     public override void Initialize()
     {
@@ -203,6 +209,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         targetHumanoid.SkinColor = sourceHumanoid.SkinColor;
         targetHumanoid.EyeColor = sourceHumanoid.EyeColor;
         targetHumanoid.Age = sourceHumanoid.Age;
+        targetHumanoid.BodyType = sourceHumanoid.BodyType; // Amour port: WD Slim body types
         targetHumanoid.Height = sourceHumanoid.Height; // Goobstation: port EE height/width sliders
         targetHumanoid.Width = sourceHumanoid.Width; // Goobstation: port EE height/width sliders
         SetSex(target, sourceHumanoid.Sex, false, targetHumanoid);
@@ -431,6 +438,34 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     }
     // goob edit end
 
+    // Amour port: WD Slim body types START
+    /// <summary>
+    ///     Set a humanoid mob's body tupe. This will change their base sprites.
+    /// </summary>
+    /// <param name="uid">The humanoid mob's UID.</param>
+    /// <param name="bodyType">The body type to set the mob to. Will return if the body type prototype was invalid.</param>
+    /// <param name="sync">Whether to immediately synchronize this to the humanoid mob, or not.</param>
+    /// <param name="humanoid">Humanoid component of the entity</param>
+    public void SetBodyType(
+        EntityUid uid,
+        ProtoId<BodyTypePrototype> bodyType,
+        bool sync = true,
+        HumanoidAppearanceComponent? humanoid = null)
+    {
+        if (!Resolve(uid, ref humanoid))
+            return;
+
+        var speciesPrototype = _proto.Index<SpeciesPrototype>(humanoid.Species);
+        if (speciesPrototype.BodyTypes.Contains(bodyType))
+            humanoid.BodyType = bodyType;
+        else
+            humanoid.BodyType = speciesPrototype.BodyTypes.First();
+
+        if (sync)
+            Dirty(uid, humanoid);
+    }
+    // Amour port: WD Slim body types END
+
     // begin Goobstation: port EE height/width sliders
 
     /// <summary>
@@ -511,6 +546,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
+        SetBodyType(uid, profile.BodyType, false, humanoid); // Amour port: WD Slim body types
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);

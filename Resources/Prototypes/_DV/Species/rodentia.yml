@@ -18,7 +18,10 @@
   name: species-name-rodentia
   roundStart: true
   prototype: MobRodentia
-  sprites: MobRodentiaSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - RodentiaNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#747474"
   markingLimits: MobRodentiaMarkingLimits
   dollPrototype: MobRodentiaDummy
@@ -51,8 +54,11 @@
   maxWidth: 1.10
   # end Goobstation: port EE height/width sliders
 
-- type: speciesBaseSprites
-  id: MobRodentiaSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: RodentiaNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobRodentiaHead
     Hair: MobHumanoidAnyMarking

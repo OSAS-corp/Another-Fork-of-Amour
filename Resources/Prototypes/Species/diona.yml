@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2023 Morb <14136326+Morb0@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Adrian16199 <144424013+Adrian16199@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Skubman <ba.fallaria@gmail.com>
@@ -22,7 +22,10 @@
   name: species-name-diona
   roundStart: true
   prototype: MobDiona
-  sprites: MobDionaSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - DionaNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#cdb369"
   markingLimits: MobDionaMarkingLimits
   dollPrototype: MobDionaDummy
@@ -53,8 +56,11 @@
   - Легко возгораемые.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobDionaSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: DionaNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobDionaHead
     HeadTop: MobHumanoidAnyMarking

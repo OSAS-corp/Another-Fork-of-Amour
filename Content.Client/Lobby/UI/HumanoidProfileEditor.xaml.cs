@@ -166,6 +166,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Amour.Humanoid.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -269,6 +270,8 @@ namespace Content.Client.Lobby.UI
         public HumanoidCharacterProfile? Profile;
 
         private List<SpeciesPrototype> _species = new();
+
+        private List<BodyTypePrototype> _bodyTypes = new(); // Amour port: WD Slim body types
 
         private List<(string, RequirementsSelector)> _jobPriorities = new();
 
@@ -381,6 +384,16 @@ namespace Content.Client.Lobby.UI
 
             #endregion Sex
 
+            #region BodyType
+
+            CBodyTypesButton.OnItemSelected += args =>
+            {
+                CBodyTypesButton.SelectId(args.Id);
+                SetBodyType(_bodyTypes[args.Id].ID);
+            };
+
+            #endregion
+            // Amour port: WD Slim body types END
             #region Age
 
             AgeEdit.OnTextChanged += args =>
@@ -1475,6 +1488,7 @@ namespace Content.Client.Lobby.UI
             UpdateFlavorTextEdit();
             UpdateFlavorPreview(); // Orion
             UpdateSexControls();
+            UpdateBodyTypes(); // Amour port: WD Slim body types
             UpdateGenderControls();
             UpdateSkinColor();
             UpdateSpawnPriorityControls();
@@ -2194,9 +2208,18 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             Markings.SetSex(newSex);
+            UpdateTTSVoice(); //Amour port: WD Slim body types
+            UpdateBodyTypes(); // Amour port: WD Slim body types
             ReloadPreview();
         }
 
+        private void SetBodyType(string newBodyType)
+        {
+            Profile = Profile?.WithBodyType(newBodyType);
+            ReloadPreview();
+            IsDirty = true;
+        }
+        // Amour port: WD Slim body types END
         private void SetGender(Gender newGender)
         {
             Profile = Profile?.WithGender(newGender);
@@ -2214,6 +2237,7 @@ namespace Content.Client.Lobby.UI
             RefreshLoadouts();
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
+            UpdateBodyTypes(); // Amour port: WD Slim body types
             ReloadPreview();
             UpdateBarkVoice(); // Goob Station - Barks
             UpdateTTSVoice(); // Amour - TTS
@@ -2334,6 +2358,34 @@ namespace Content.Client.Lobby.UI
         {
             AgeEdit.Text = Profile?.Age.ToString() ?? "";
         }
+
+        // Amour port: WD Slim body types START
+        private void UpdateBodyTypes()
+        {
+            if (Profile is null)
+                return;
+
+            CBodyTypesButton.Clear();
+            var species = _prototypeManager.Index<SpeciesPrototype>(Profile.Species);
+            var sex = Profile.Sex;
+            _bodyTypes = species.BodyTypes.Select(protoId => _prototypeManager.Index<BodyTypePrototype>(protoId))
+                .Where(proto => !proto.SexRestrictions.Contains(sex.ToString()))
+                .ToList();
+
+            for (var i = 0; i < _bodyTypes.Count; i++)
+                CBodyTypesButton.AddItem(Loc.GetString(_bodyTypes[i].Name), i);
+
+            // If current body type is not valid.
+            if (!_bodyTypes.Select(proto => proto.ID).Contains(Profile.BodyType))
+            {
+                // Then replace it with a first valid body type.
+                SetBodyType(_bodyTypes.First().ID);
+            }
+
+            CBodyTypesButton.Select(_bodyTypes.FindIndex(x => x.ID == Profile.BodyType));
+            IsDirty = true;
+        }
+        // Amour port: WD Slim body types END
 
         /// <summary>
         /// Updates selected job priorities to the profile's.

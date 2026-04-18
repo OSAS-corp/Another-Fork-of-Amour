@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 LankLTE <135308300+LankLTE@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2023 LankLTE <135308300+LankLTE@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2023 lzk <124214523+lzk228@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Froffy025 <scotttaco025@gmail.com>
@@ -23,7 +23,10 @@
   name: species-name-moth
   roundStart: true
   prototype: MobMoth
-  sprites: MobMothSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - MothNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#ffda93"
   markingLimits: MobMothMarkingLimits
   dollPrototype: MobMothDummy
@@ -53,8 +56,11 @@
   maxWidth: 1.25
   # end Goobstation: port EE height/width sliders
 
-- type: speciesBaseSprites
-  id: MobMothSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: MothNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobMothHead
     Face: MobHumanoidAnyMarking

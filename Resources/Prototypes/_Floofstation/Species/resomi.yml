@@ -12,7 +12,10 @@
   name: species-name-resomi
   roundStart: true
   prototype: MobResomi
-  sprites: MobResomiSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - ResomiNormal
+# Amour port: WD Slim body types START
   defaultSkinTone: "#faf7f7"
   markingLimits: MobResomiMarkingLimits
   dollPrototype: MobResomiDummy
@@ -47,8 +50,11 @@
   maxWidth: 1
   # end Goobstation: port EE height/width sliders
 
-- type: speciesBaseSprites
-  id: MobResomiSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ResomiNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobResomiHead
     Hair: MobHumanoidAnyMarking
