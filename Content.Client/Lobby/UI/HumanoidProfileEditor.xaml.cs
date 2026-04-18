@@ -2213,14 +2213,6 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        //Amour port: WD Slim body types START
-        private void SetVoice(string newVoice)
-        {
-            Profile = Profile?.WithVoice(newVoice);
-            IsDirty = true;
-        }
-        //Amour port: WD Slim body types END
-
         private void SetBodyType(string newBodyType)
         {
             Profile = Profile?.WithBodyType(newBodyType);
