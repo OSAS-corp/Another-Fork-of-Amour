@@ -590,7 +590,7 @@ namespace Content.Shared.Preferences
         // Goob Station - Barks End
 
         // Amour - TTS Start
-        public HumanoidCharacterProfile WithVoice(string voice)
+        public HumanoidCharacterProfile WithVoice(TTSVoicePrototype voice)
         {
             return new(this) { Voice = voice };
         }

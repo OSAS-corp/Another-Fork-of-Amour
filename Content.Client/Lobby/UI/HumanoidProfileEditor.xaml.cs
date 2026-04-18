@@ -2296,7 +2296,7 @@ namespace Content.Client.Lobby.UI
         // Goob Station - End
 
         // Amour - TTS Start
-        private void SetTTSVoice(string newVoice)
+        private void SetTTSVoice(TTSVoicePrototype newVoice)
         {
             Profile = Profile?.WithVoice(newVoice);
             IsDirty = true;
