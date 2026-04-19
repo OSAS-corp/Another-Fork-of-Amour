@@ -59,6 +59,7 @@
   bodyPart: Tail
   markingCategory: Tail
   groupWhitelist: [Slime, Human]
+  minBoostyTier: 3 # Amour edit
   coloring:
     default:
       type:
@@ -79,6 +80,7 @@
   bodyPart: Tail
   markingCategory: Tail
   groupWhitelist: [Slime, Human]
+  minBoostyTier: 3 # Amour edit
   coloring:
     default:
       type:

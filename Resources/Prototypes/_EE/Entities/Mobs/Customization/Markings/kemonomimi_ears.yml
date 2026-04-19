@@ -19,6 +19,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   groupWhitelist: [Slime, Human]
+  minBoostyTier: 1 # Amour edit
   coloring:
     default:
       type:
@@ -42,6 +43,7 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   groupWhitelist: [Slime, Human]
+  minBoostyTier: 1 # Amour edit
   coloring:
     default:
       type:
