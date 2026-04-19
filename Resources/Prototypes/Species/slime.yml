@@ -58,6 +58,8 @@
     HeadSide: MobHumanoidAnyMarking
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
+    Tail: MobSlimeMarkingFollowSkin # Amour edit
+    HeadTop: MobSlimeMarkingFollowSkin # Amour edit
 #    Underwear: MobHumanoidAnyMarking # Orion-Edit: Removed
 #    Undershirt: MobHumanoidAnyMarking # Orion-Edit: Removed
     Chest: MobSlimeChest
@@ -83,6 +85,12 @@
       required: false
     FacialHair:
       points: 1
+      required: false
+    Tail: # Amour edit
+      points: 1
+      required: false
+    HeadTop: # Amour edit
+      points: 3
       required: false
     Chest:
       points: 8
@@ -120,7 +128,7 @@
 
 - type: humanoidBaseSprite
   id: MobSlimeMarkingFollowSkin
-  markingsMatchSkin: true
+  markingsMatchSkin: false # Amour edit
   layerAlpha: 0.75
 
 - type: humanoidBaseSprite
