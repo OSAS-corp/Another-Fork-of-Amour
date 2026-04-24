@@ -2,7 +2,7 @@
   id: BullishHorns
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -18,7 +18,7 @@
   id: BunnyEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 1 # Amour edit
   coloring:
     default:
@@ -42,7 +42,7 @@
   id: FoxEarsalt
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 1 # Amour edit
   coloring:
     default:
@@ -59,7 +59,7 @@
   id: GoatHorns
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:

@@ -1,10 +1,10 @@
-﻿#####    EARS    #####
+#####    EARS    #####
 
 - type: marking
   id: EarsFox
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: ears_fox_primary
@@ -15,7 +15,7 @@
   id: EarsAntennaFuzzball
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_fuzzball_FRONT_secondary
@@ -30,7 +30,7 @@
   id: EarsAntennaFuzzballv2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_fuzzballv2_FRONT_primary
@@ -45,7 +45,7 @@
   id: EarsAntennaSimple1
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_simple1_FRONT_primary
@@ -56,7 +56,7 @@
   id: EarsAntennaSimple1v2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_simple1v2_FRONT_primary
@@ -67,7 +67,7 @@
   id: EarsAntennaSimple2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_simple2_FRONT_primary
@@ -78,7 +78,7 @@
   id: EarsAntennaSimple2v2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_antenna_simple2v2_FRONT_primary
@@ -89,7 +89,7 @@
   id: EarsAxolotl
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_axolotl_FRONT
@@ -100,7 +100,7 @@
   id: EarsBat
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_bat_ADJ_primary
@@ -111,7 +111,7 @@
   id: EarsBear
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Vulpkanin, Slime, Human]
+  speciesRestriction: [Vulpkanin, Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_bear_FRONT
@@ -122,7 +122,7 @@
   id: EarsBunny
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_bunny_ADJ_primary
@@ -135,7 +135,7 @@
   id: EarsBunnyAlt
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_bunnyalt_ADJ_primary
@@ -150,7 +150,7 @@
   id: EarsCatBig
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_catbig_ADJ_primary
@@ -165,7 +165,7 @@
   id: EarsCatNormal
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_catnormal_ADJ_primary
@@ -180,7 +180,7 @@
   id: EarsCobraEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_cobraears_ADJ_primary
@@ -191,7 +191,7 @@
   id: EarsCobraHood
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_cobrahood_ADJ_primary
@@ -202,7 +202,7 @@
   id: EarsCow
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_cow_ADJ
@@ -213,7 +213,7 @@
   id: EarsDeer
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_deer_ADJ
@@ -224,7 +224,7 @@
   id: EarsDeer2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_deer2_ADJ
@@ -235,7 +235,7 @@
   id: EarsDeerEar
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_deerear_ADJ_primary
@@ -251,7 +251,7 @@
   id: EarsEvolox
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_evolox_FRONT_primary
@@ -266,7 +266,7 @@
   id: EarsEvoloxAlt
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_evolox_alt_FRONT_primary
@@ -282,7 +282,7 @@
   id: EarsElephant
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 2 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -294,7 +294,7 @@
   id: EarsFennec
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_fennec_FRONT_primary
@@ -309,7 +309,7 @@
   id: EarsFish
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_fish_FRONT
@@ -320,7 +320,7 @@
   id: EarsFourEars2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_four_ears_2_FRONT_primary
@@ -333,7 +333,7 @@
   id: MEarsFox
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_fox_FRONT_primary
@@ -348,7 +348,7 @@
   id: EarsHammerhead
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 3 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -360,7 +360,7 @@
   id: EarsHawk
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_hawk_FRONT_primary
@@ -371,7 +371,7 @@
   id: EarsHorn1
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 3 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -381,7 +381,7 @@
   id: EarsKangaroo
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_kangaroo_FRONT_primary
@@ -396,7 +396,7 @@
   id: EarsLab
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_lab_FRONT
@@ -407,7 +407,7 @@
   id: EarsLunasune
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 3 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -423,7 +423,7 @@
   id: EarsMiqote
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_miqote_FRONT_primary
@@ -438,7 +438,7 @@
   id: EarsMouse
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_mouse_FRONT_primary
@@ -455,7 +455,7 @@
   id: EarsMouse2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_mouse_two_FRONT_primary
@@ -472,7 +472,7 @@
   id: EarsMurid
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_murid_FRONT_primary
@@ -487,7 +487,7 @@
   id: EarsOtie
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_otie_FRONT_primary
@@ -502,7 +502,7 @@
   id: EarsPede
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_pede_FRONT_primary
@@ -517,7 +517,7 @@
   id: EarsPerky
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_perky_FRONT_primary
@@ -532,7 +532,7 @@
   id: EarsPossum
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_possum_FRONT_primary
@@ -547,7 +547,7 @@
   id: EarsRabbit
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_rabbit_FRONT_primary
@@ -562,7 +562,7 @@
   id: EarsRabbitAlt
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_rabbitalt_FRONT_primary
@@ -577,7 +577,7 @@
   id: EarsRabbitLop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_rabbitlop_FRONT_primary
@@ -592,7 +592,7 @@
   id: EarsRaccoon
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 2 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -608,7 +608,7 @@
   id: EarsSabresune
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_sabresune_FRONT_primary
@@ -623,7 +623,7 @@
   id: EarsSergal
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_sergal_FRONT_primary
@@ -636,7 +636,7 @@
   id: EarsSkunk
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 2 # Amour edit
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
@@ -652,7 +652,7 @@
   id: EarsSquirrel
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_squirrel_FRONT_primary
@@ -670,7 +670,7 @@
   id: EarsWolf
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_ears_wolf_FRONT_primary
@@ -685,7 +685,8 @@
   id: EarsVirtuasaurHorns
   bodyPart: HeadTop
   markingCategory: HeadTop
-  groupWhitelist: [Slime, Human, Reptilian]
+  speciesRestriction: [Slime, Human, Reptilian]
   sprites:
   - sprite: _Floof/Mobs/Customization/skyratears.rsi
     state: m_horns_virtuasaur
+

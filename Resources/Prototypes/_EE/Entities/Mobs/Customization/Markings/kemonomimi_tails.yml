@@ -2,7 +2,7 @@
   id: BunnyTail
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -20,7 +20,7 @@
   id: DobleFur
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -40,7 +40,7 @@
   id: FluffyTail
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -58,7 +58,7 @@
   id: FoxNineTails
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 3 # Amour edit
   coloring:
     default:
@@ -79,7 +79,7 @@
   id: FoxThreeTails
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   minBoostyTier: 3 # Amour edit
   coloring:
     default:
@@ -100,7 +100,7 @@
   id: HorseTailCulty
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -118,7 +118,7 @@
   id: HorseTailLong
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -136,7 +136,7 @@
   id: SharkTail
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
@@ -154,7 +154,7 @@
   id: TasselTail
   bodyPart: Tail
   markingCategory: Tail
-  groupWhitelist: [Slime, Human]
+  speciesRestriction: [Slime, Human]
   coloring:
     default:
       type:
