@@ -37,6 +37,9 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("speciesRestriction")]
         public List<string>? SpeciesRestrictions { get; private set; }
 
+        [DataField("groupWhitelist")]
+        public List<string>? GroupWhitelist { get; private set; }
+
         [DataField("sexRestriction")]
         public Sex? SexRestriction { get; private set; }
 
