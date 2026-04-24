@@ -20,6 +20,7 @@
   name: species-name-slime
   roundStart: true
   prototype: MobSlimePerson
+  metabolismLimit: 6 # Amour add
   # Amour port: WD Slim body types START
   bodyTypes:
     - SlimeNormal
@@ -35,6 +36,7 @@
   - Получают на 40% меньше урона от ушибов и на 20% меньше от ядов.
   - Способны прожить в условиях вакуума дольше чем человек.
   - Обладают встроенным хранилищем внутри себя.
+  - Могут переваривать одновременно 6 реагентов.
   special:
   - Быстрее пьянеют.
   - Дышат реже человека в 5 раз, следовательно получают по 0.2 урона удушьем.
