@@ -236,6 +236,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     public float AverageWidth = 40f;
 
     // end Goobstation: port EE height/width sliders
+
+    /// <summary>
+    ///     Amour add
+    /// </summary>
+    [DataField]
+    public int? MetabolismLimit;
 }
 
 public enum SpeciesNaming : byte

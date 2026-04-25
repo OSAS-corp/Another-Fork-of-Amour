@@ -99,6 +99,23 @@ namespace Content.Server.Body.Components
         public int MaxPoisonsProcessable = 3;
 
         /// <summary>
+        ///     Amour add - maximum reagents processed in one metabolic tick.
+        /// </summary>
+        [DataField]
+        public int MaxReagentsProcessable = 2;
+
+        /// <summary>
+        ///     Amour add - stores the original prototype value of MaxReagentsProcessable.
+        /// </summary>
+        [ViewVariables]
+        public int? PrototypeMaxReagentsProcessable;
+
+        /// <summary>
+        ///     Amour add - The current offset in the reagent list for rotation between ticks.
+        /// </summary>
+        [ViewVariables]
+        public int CurrentReagentIndex;
+        /// <summary>
         ///     A list of metabolism groups that this metabolizer will act on, in order of precedence.
         /// </summary>
         [DataField("groups")]

@@ -203,9 +203,50 @@ namespace Content.Server.Body.Systems
             var list = solution.Contents.ToArray();
             _random.Shuffle(list);
 
-            int poisons = 0;
-            foreach (var (reagent, quantity) in list)
+            // Amour edit start - Metabolism limit
+            var processable = new ValueList<ReagentQuantity>(list.Length);
+            foreach (var rq in list)
             {
+                if (!_prototypeManager.TryIndex<ReagentPrototype>(rq.Reagent.Prototype, out var p))
+                    continue;
+                if (p.Metabolisms is null && !ent.Comp1.RemoveEmpty)
+                    continue;
+                processable.Add(rq);
+            }
+
+            var processableCount = processable.Count;
+            if (processableCount == 0)
+                return;
+
+            var maxReagents = ent.Comp1.MaxReagentsProcessable;
+            if (maxReagents <= 0)
+                return;
+
+            ReagentQuantity[] reagentsToProcess;
+            if (processableCount <= maxReagents)
+            {
+                reagentsToProcess = processable.ToArray();
+                ent.Comp1.CurrentReagentIndex = 0;
+            }
+            else
+            {
+                var startIndex = ((ent.Comp1.CurrentReagentIndex % processableCount) + processableCount) % processableCount;
+                reagentsToProcess = new ReagentQuantity[maxReagents];
+                for (var i = 0; i < maxReagents; i++)
+                    reagentsToProcess[i] = processable[(startIndex + i) % processableCount];
+
+                ent.Comp1.CurrentReagentIndex = (startIndex + maxReagents) % processableCount;
+            }
+            // Amour edit end
+
+            int poisons = 0;
+            foreach (var reagentQuantity in reagentsToProcess) // Amour edit (reagent, quantity) in list) -> reagentQuantity in reagentsToProcess)
+            {
+            // Amour edit start
+                var reagent = reagentQuantity.Reagent;
+                var quantity = reagentQuantity.Quantity;
+            // Amour edit end
+
                 if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent.Prototype, out var proto))
                     continue;
 
