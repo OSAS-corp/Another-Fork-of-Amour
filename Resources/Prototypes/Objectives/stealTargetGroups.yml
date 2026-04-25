@@ -128,12 +128,14 @@
     sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
     state: base
 
+# Amour start
 - type: stealTargetGroup
   id: WeaponRevolverInspector
-  name: steal-target-groups-weapon-revolver-inspector # Amour edit
+  name: steal-target-groups-weapon-revolver-inspector
   sprite:
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
     state: icon
+# Amour end
 
 # Thief Collection
 

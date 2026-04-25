@@ -302,7 +302,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = vampireName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Changeling"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Amour/Vampire/actions_vampire.rsi"), "fangs_extended"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);

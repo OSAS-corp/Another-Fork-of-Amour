@@ -52,7 +52,7 @@ roundend-prepend-vampire-drained-named = {$name} was the most bloodthirsty vampi
 # Vampire class selection tooltips
 vampire-class-hemomancer-tooltip = Hemomancer
     Focuses on blood magic and the manipulation of blood around you
-    
+
 vampire-class-umbrae-tooltip = Umbrae
     Focuses on darkness, stealth ambushing and mobility
 
@@ -117,7 +117,7 @@ action-vampire-eternal-darkness-not-enough-blood = You have run out of blood to 
 action-vampire-eternal-darkness-start = You conjured eternal darkness...
 action-vampire-eternal-darkness-stop = The eternal darkness has dissipated...
 
-#Dantalion
+# Dantalion
 vampire-enthrall-start = You reach into {CAPITALIZE(THE($target))}'s mind...
 vampire-enthrall-success = {CAPITALIZE(THE($target))} bends the knee and becomes your thrall.
 vampire-enthrall-target = Your mind is overwhelmed by vampiric domination!
@@ -149,7 +149,7 @@ vampire-blood-bond-stop-blood = The bond shreds itself; you lack the blood to su
 
 action-vampire-not-enough-power = Your power is insufficient (need >1000 total blood & 8 unique victims).
 
-# Gargantua 
+# Gargantua
 vampire-blood-swell-start = Your muscles swell with unholy power
 vampire-blood-swell-end = The blood rage subsides.
 
@@ -179,17 +179,17 @@ alerts-vampire-blood-swell-desc = Your muscles surge with unholy power.
 alerts-vampire-blood-rush-name = Blood Rush
 alerts-vampire-blood-rush-desc = Supernatural speed courses through your limbs.
 
-# Amour edit - admin antag verb
+# Admin antag verb
 admin-verb-text-make-vampire = Make Vampire
 admin-verb-make-vampire = Make the target into a vampire.
 
-# Amour edit - guidebook vampire entries
+# Guidebook vampire entries
 guide-entry-vampire = Vampire
 guide-entry-vampire-progression = Vampire Progression
 guide-entry-vampire-classes = Vampire Classes
 guide-entry-vampire-counterplay = Countering Vampires
 
-# Amour edit - vampire prototype localization
+# Vampire prototype localization
 mind-role-vampire-name = Vampire Role
 ent-vampiric-claws-name = vampiric claws
 ent-vampiric-claws-desc = Blood-forged claws that siphon vitae on hit. They dissipate after 15 swings, or if dispelled.
@@ -204,7 +204,6 @@ objective-vampire-kill-random-desc = Do it however you like, just make sure they
 objective-vampire-thrall-obey-name = Obey your master
 objective-vampire-thrall-obey-desc = You are enthralled. Follow your master's commands.
 
-# Amour edit - vampire actions localization
 action-name-vampire-toggle-fangs = Toggle Fangs (Toggle)
 action-desc-vampire-toggle-fangs = Extend or retract your fangs to drink blood from victims.
 action-name-vampire-glare = Glare (Free)
@@ -270,7 +269,6 @@ action-desc-vampire-demonic-grasp = Launch a demonic hand up to 15 tiles. Immobi
 action-name-vampire-charge = Charge (30)
 action-desc-vampire-charge = Charge until hitting an obstacle or void. Creatures take 60 brute and are thrown 5 tiles. Structures take 150 damage.
 
-# Amour edit - vampire effects localization
 ent-vampire-effect-blood-tendrils-name = blood tendrils
 ent-vampire-effect-shadow-punch-name = shadow punch
 ent-vampire-effect-blood-barrier-name = blood barrier

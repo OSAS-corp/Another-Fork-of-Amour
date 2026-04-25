@@ -136,7 +136,7 @@
     icon:
       sprite: /Textures/_Amour/Vampire/actions_vampire.rsi
       state: survive_icon
-      
+
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
@@ -198,6 +198,5 @@
     icon:
       sprite: /Textures/_Amour/Vampire/Dantalion.rsi
       state: thralls_up
-  # Amour edit: FreeObjective is not present in this fork.
   - type: TargetObjective
     title: objective-vampire-thrall-obey-master-title

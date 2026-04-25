@@ -3,8 +3,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireToggleFangs
-  name: Toggle fangs
-  description: Extend or retract your fangs.
+  name: action-name-vampire-toggle-fangs
+  description: action-desc-vampire-toggle-fangs
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -25,8 +25,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireGlare
-  name: Glare
-  description: Stun a target with an unnerving stare.
+  name: action-name-vampire-glare
+  description: action-desc-vampire-glare
   components:
     - type: Action
       useDelay: 90
@@ -44,8 +44,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireRejuvenateI
-  name: Rejuvenate
-  description: Heal yourself by spending blood.
+  name: action-name-vampire-rejuvenate
+  description: action-desc-vampire-rejuvenate
   components:
     - type: Action
       useDelay: 35
@@ -65,8 +65,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireRejuvenateII
-  name: Rejuvenate (advanced)
-  description: Heal yourself faster by spending blood.
+  name: action-name-vampire-rejuvenate-advanced
+  description: action-desc-vampire-rejuvenate-advanced
   components:
     - type: Action
       useDelay: 30
@@ -86,8 +86,8 @@
 - type: entity
   parent: BaseAction
   id: ActionClassSelectId
-  name: Select vampire class
-  description: Choose a specialization to unlock new abilities.
+  name: action-vampire-class-select
+  description: action-vampire-class-select-desc
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -107,8 +107,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireHemomancerClaws
-  name: Vampiric claws
-  description: Manifest your claws.
+  name: action-name-vampire-vampiric-claws
+  description: action-desc-vampire-vampiric-claws
   components:
     - type: Action
       useDelay: 30
@@ -127,8 +127,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireSanguinePool
-  name: Sanguine pool
-  description: Become a pool of blood for a short time.
+  name: action-name-vampire-sanguine-pool
+  description: action-desc-vampire-sanguine-pool
   components:
     - type: Action
       useDelay: 30
@@ -147,8 +147,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireHemomancerTendrils
-  name: Blood tendrils
-  description: Strike an area with blood tendrils.
+  name: action-name-vampire-blood-tendrils
+  description: action-desc-vampire-blood-tendrils
   components:
     - type: Action
       useDelay: 30
@@ -170,8 +170,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodBarrier
-  name: Blood barrier
-  description: Raise a barrier from blood.
+  name: action-name-vampire-blood-barrier
+  description: action-desc-vampire-blood-barrier
   components:
     - type: Action
       useDelay: 60
@@ -194,8 +194,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampirePredatorSense
-  name: Predator sense
-  description: Sense the location of prey.
+  name: action-name-vampire-predator-sense
+  description: action-desc-vampire-predator-sense
   components:
     - type: Action
       useDelay: 40
@@ -214,8 +214,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodEruption
-  name: Blood eruption
-  description: Detonate nearby blood puddles.
+  name: action-name-vampire-blood-eruption
+  description: action-desc-vampire-blood-eruption
   components:
     - type: Action
       useDelay: 90
@@ -234,8 +234,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodBringersRite
-  name: Blood Bringer's Rite
-  description: Drain vitality from nearby enemies.
+  name: action-name-vampire-blood-bringers-rite
+  description: action-desc-vampire-blood-bringers-rite
   components:
     - type: Action
       useDelay: 1 # Toggle
@@ -255,8 +255,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireCloakOfDarkness
-  name: Cloak of darkness
-  description: Shroud yourself in darkness.
+  name: action-name-vampire-cloak-of-darkness
+  description: action-desc-vampire-cloak-of-darkness
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -275,8 +275,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireShadowSnare
-  name: Shadow snare
-  description: Snare a target with shadows.
+  name: action-name-vampire-shadow-snare
+  description: action-desc-vampire-shadow-snare
   components:
     - type: Action
       useDelay: 25
@@ -298,8 +298,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireShadowAnchor
-  name: Shadow anchor
-  description: Place a shadow anchor.
+  name: action-name-vampire-shadow-anchor
+  description: action-desc-vampire-shadow-anchor
   components:
     - type: Action
       useDelay: 60 # 1min
@@ -318,8 +318,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireShadowBoxing
-  name: Shadow boxing
-  description: Strike an enemy with shadowy force.
+  name: action-name-vampire-shadow-boxing
+  description: action-desc-vampire-shadow-boxing
   components:
     - type: Action
       useDelay: 30
@@ -347,8 +347,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireDarkPassage
-  name: Dark passage
-  description: Travel through shadows to a target location.
+  name: action-name-vampire-dark-passage
+  description: action-desc-vampire-dark-passage
   components:
     - type: Action
       useDelay: 40
@@ -371,8 +371,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireExtinguish
-  name: Extinguish lights
-  description: Snuff out nearby lights.
+  name: action-name-vampire-extinguish-lights
+  description: action-desc-vampire-extinguish-lights
   components:
     - type: Action
       useDelay: 20
@@ -391,8 +391,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireEternalDarkness
-  name: Eternal darkness
-  description: Create a zone of oppressive darkness.
+  name: action-name-vampire-eternal-darkness
+  description: action-desc-vampire-eternal-darkness
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -413,8 +413,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireEnthrall
-  name: Enthrall
-  description: Turn a weakened victim into a thrall.
+  name: action-name-vampire-enthrall
+  description: action-desc-vampire-enthrall
   components:
     - type: Action
       useDelay: 1 # Jus no CD
@@ -441,11 +441,11 @@
 - type: entity
   parent: BaseAction
   id: ActionVampirePacify
-  name: Pacify
-  description: Force a target to stop fighting for a moment.
+  name: action-name-vampire-pacify
+  description: action-desc-vampire-pacify
   components:
     - type: Action
-      useDelay: 30 
+      useDelay: 30
       itemIconStyle: NoItem
       priority: 26
       icon:
@@ -469,8 +469,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireSubspaceSwap
-  name: Subspace swap
-  description: Swap positions with a target.
+  name: action-name-vampire-subspace-swap
+  description: action-desc-vampire-subspace-swap
   components:
     - type: Action
       useDelay: 30
@@ -497,8 +497,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireDecoy
-  name: Decoy
-  description: Create a decoy to mislead enemies.
+  name: action-name-vampire-decoy
+  description: action-desc-vampire-decoy
   components:
     - type: Action
       useDelay: 40
@@ -517,8 +517,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireRallyThralls
-  name: Rally thralls
-  description: Empower nearby thralls.
+  name: action-name-vampire-rally-thralls
+  description: action-desc-vampire-rally-thralls
   components:
     - type: Action
       useDelay: 100
@@ -537,8 +537,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodBond
-  name: Blood bond
-  description: Bind a target by blood.
+  name: action-name-vampire-blood-bond
+  description: action-desc-vampire-blood-bond
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -557,8 +557,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireMassHysteria
-  name: Mass hysteria
-  description: Spread panic among nearby enemies.
+  name: action-name-vampire-mass-hysteria
+  description: action-desc-vampire-mass-hysteria
   components:
     - type: Action
       useDelay: 180 # 3min
@@ -579,8 +579,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodSwell
-  name: Blood swell
-  description: Temporarily increase your power.
+  name: action-name-vampire-blood-swell
+  description: action-desc-vampire-blood-swell
   components:
     - type: Action
       useDelay: 40
@@ -599,8 +599,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodRush
-  name: Blood rush
-  description: Temporarily increase your speed.
+  name: action-name-vampire-blood-rush
+  description: action-desc-vampire-blood-rush
   components:
     - type: Action
       useDelay: 30
@@ -619,8 +619,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireSeismicStomp
-  name: Seismic stomp
-  description: Slam the ground to knock down enemies.
+  name: action-name-vampire-seismic-stomp
+  description: action-desc-vampire-seismic-stomp
   components:
     - type: Action
       useDelay: 60
@@ -639,8 +639,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireOverwhelmingForce
-  name: Overwhelming force
-  description: Unleash a burst of strength.
+  name: action-name-vampire-overwhelming-force
+  description: action-desc-vampire-overwhelming-force
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -659,8 +659,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireDemonicGrasp
-  name: Demonic grasp
-  description: Grab and restrain a target.
+  name: action-name-vampire-demonic-grasp
+  description: action-desc-vampire-demonic-grasp
   components:
     - type: Action
       useDelay: 30
@@ -682,8 +682,8 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireCharge
-  name: Charge
-  description: Charge forward, knocking enemies aside.
+  name: action-name-vampire-charge
+  description: action-desc-vampire-charge
   components:
     - type: Action
       useDelay: 30

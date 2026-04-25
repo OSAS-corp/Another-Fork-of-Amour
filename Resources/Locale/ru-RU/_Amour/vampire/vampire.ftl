@@ -151,21 +151,18 @@ vampire-blood-swell-cancel-shoot = Ваши пальцы не пролезают
 vampire-holy-place-burn = Святая земля обжигает вашу нечестивую плоть!
 
 alerts-vampire-blood-swell-name = Кровавое набухание
-alerts-vampire-blood-swell-desc = Ваши мышцы переполняет нечестивая сила.
+alerts-vampire-blood-swell-desc = Ваши мышцы переполняют нечестивая сила.
 alerts-vampire-blood-rush-name = Кровавый рывок
 alerts-vampire-blood-rush-desc = Сверхъестественная скорость течёт по вашим конечностям.
 
-# Amour edit - admin antag verb
 admin-verb-text-make-vampire = Сделать вампиром
 admin-verb-make-vampire = Сделать цель вампиром.
 
-# Amour edit - guidebook vampire entries
 guide-entry-vampire = Вампир
 guide-entry-vampire-progression = Прогрессия вампира
 guide-entry-vampire-classes = Классы вампира
 guide-entry-vampire-counterplay = Противодействие вампиру
 
-# Amour edit - vampire prototype localization
 mind-role-vampire-name = Роль вампира
 ent-vampiric-claws-name = вампирские когти
 ent-vampiric-claws-desc = Когти, выкованные из крови. Вытягивают витэ при ударе и исчезают после 15 атак или рассеивания.
@@ -180,7 +177,6 @@ objective-vampire-kill-random-desc = Любыми средствами не да
 objective-vampire-thrall-obey-name = Подчиняйся своему хозяину
 objective-vampire-thrall-obey-desc = Вы обращены в трелла. Следуйте приказам своего хозяина.
 
-# Amour edit - vampire actions localization
 action-name-vampire-toggle-fangs = Клыки (переключение)
 action-desc-vampire-toggle-fangs = Выпустить или убрать клыки для питья крови у жертв.
 action-name-vampire-glare = Взгляд (бесплатно)
@@ -221,7 +217,7 @@ action-name-vampire-eternal-darkness = Вечная тьма (переключе
 action-desc-vampire-eternal-darkness = Окутывает зону вокруг вас тьмой и постепенно понижает температуру тел рядом.
 action-name-vampire-enthrall = Порабощение (150)
 action-desc-vampire-enthrall = Канал 15 секунд на гуманоиде, чтобы подчинить его вашей воле. Срывается, если кто-то из вас двинется.
-action-name-vampire-pacify = Умиротворение (10)
+action-name-vampire-pacify = Умиротворение (30)
 action-desc-vampire-pacify = Наполняет разум жертвы блаженством, пацифицируя ее на 40 секунд.
 action-name-vampire-subspace-swap = Подпространственный обмен (30)
 action-desc-vampire-subspace-swap = Выберите цель в радиусе 7 тайлов, поменяйтесь с ней местами и замедлите ее на 4 секунды.
@@ -246,7 +242,6 @@ action-desc-vampire-demonic-grasp = Запускает демоническую 
 action-name-vampire-charge = Таран (30)
 action-desc-vampire-charge = Рывок в направлении до препятствия. Существа получают 60 дробящего и отлетают на 5 тайлов. Структуры получают 150 урона.
 
-# Amour edit - vampire effects localization
 ent-vampire-effect-blood-tendrils-name = кровавые щупальца
 ent-vampire-effect-shadow-punch-name = теневой удар
 ent-vampire-effect-blood-barrier-name = кровавый барьер
