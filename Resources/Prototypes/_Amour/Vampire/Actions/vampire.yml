@@ -167,7 +167,6 @@
     range: 6
   - type: WorldTargetAction
     event: !type:VampireBloodBarrierActionEvent
-    barrierCount: 3
   - type: VampireAction
     bloodToUnlock: 250
     bloodCost: 40
@@ -306,8 +305,6 @@
       components:
       - MobState
     event: !type:VampireShadowBoxingActionEvent
-    hitSound: !type:SoundCollectionSpecifier
-      collection: Punch
   - type: VampireAction
     bloodToUnlock: 800
     bloodCost: 50
