@@ -36,7 +36,7 @@ public sealed class OfferItemIndicatorsOverlay : Overlay
 
         var spriteSys = _entMan.EntitySysManager.GetEntitySystem<SpriteSystem>();
         _sight = spriteSys.Frame0(new SpriteSpecifier.Rsi(
-            new ResPath("/Textures/Interface/Misc/give_item.rsi"),
+            new ResPath("/Textures/_White/Interface/Misc/give_item.rsi"),
             "give_item"));
     }
 
