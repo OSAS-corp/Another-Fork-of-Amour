@@ -399,7 +399,7 @@ binds:
 - function: SmartEquipBack # Goobstation - Smart equip to back
   type: State # Goobstation - Smart equip to back
   key: F # Goobstation - Smart equip to back
-  mod1: Shift # Goobstation - Smart equip to back
+  mod1: Shift # amour add
 - function: OpenBackpack
   type: State
   key: V
@@ -431,7 +431,7 @@ binds:
 - function: FlipObject
   type: State
   key: F
-  mod1: Alt
+  mod1: Alt # amour add
 - function: TextCursorLeft
   type: State
   key: Left

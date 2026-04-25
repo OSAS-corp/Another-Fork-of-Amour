@@ -66,7 +66,6 @@ alerts-ensnared-desc = You're [color=yellow]ensnared[/color] and is impairing yo
 alerts-buckled-name = [color=yellow]Buckled[/color]
 alerts-buckled-desc = You've been [color=yellow]buckled[/color] to something. Click the alert to unbuckle unless you're [color=yellow]handcuffed.[/color]
 
-
 alerts-crit-name = [color=red]Critical Condition[/color]
 alerts-crit-desc = You're severely injured and unconscious.
 
