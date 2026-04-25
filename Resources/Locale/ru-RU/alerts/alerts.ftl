@@ -30,10 +30,6 @@ alerts-ensnared-name = [color=yellow]Захваченный[/color]
 alerts-ensnared-desc = Вы [color=yellow]попали в ловушку[/color], и это мешает вам двигаться.
 alerts-buckled-name = [color=yellow]Пристёгнуты[/color]
 alerts-buckled-desc = Вы к чему-то [color=yellow]пристёгнуты[/color]. Щёлкните по иконке чтобы отстегнуться, если на вас [color=yellow]не надеты наручники.[/color]
-# Amour port from WWDP start
-alerts-offer-name = Передача
-alerts-offer-desc = Вам предлагают предмет. Нажмите, чтобы принять.
-# Amour port from WWDP finish
 alerts-crit-name = [color=red]Критическое состояние[/color]
 alerts-crit-desc = Вы серьёзно ранены и без сознания.
 alerts-dead-name = Смерть
