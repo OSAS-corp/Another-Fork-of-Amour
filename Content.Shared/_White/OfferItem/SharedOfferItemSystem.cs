@@ -5,7 +5,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 
-// Amour port from WWDP
 namespace Content.Shared.OfferItem;
 
 public abstract partial class SharedOfferItemSystem : EntitySystem
