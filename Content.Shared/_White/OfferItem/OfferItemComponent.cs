@@ -2,7 +2,6 @@ using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-// Amour port from WWDP
 namespace Content.Shared.OfferItem;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
