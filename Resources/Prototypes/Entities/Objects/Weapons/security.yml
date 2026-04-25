@@ -182,9 +182,9 @@
     angle: 0
     animation: WeaponArcThrust
   - type: StaminaDamageOnHit # goob edited
-    damage: 50 # Amour edit - 15 > 50
+    damage: 15
     overtime: 45 # Orion-Edit: 40 > 45
-    lightAttackDamageMultiplier: 0.5 # Amour edit - 4 > 0.5
+    lightAttackDamageMultiplier: 4
     lightAttackOvertimeDamageMultiplier: 0
     sound: /Audio/Weapons/egloves.ogg
   - type: DelayedKnockdownOnHit # Goobstation
@@ -199,7 +199,7 @@
   - type: UseDelay
     delays: # Goobstation
       stunbaton:
-        length: 1 # Amour edit - 2.5 > 1
+        length: 2.5
   - type: Item
     heldPrefix: off
     size: Normal
