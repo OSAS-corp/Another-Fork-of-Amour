@@ -63,7 +63,7 @@
   description: uplink-advanced-combat-medipen-desc
   productEntity: AdvancedCombatMedipen
   cost:
-    Telecrystal: 54
+    Telecrystal: 40 # Amour edit - 54 > 40
   categories:
   - UplinkChemicals
   conditions: # Orion: Only for agents
