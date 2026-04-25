@@ -4,8 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-vampire-description
-  whitelisted: true
   requirements:
-  - !type:DiscordLinkRequirement # Amour edit
+  - !type:DiscordLinkRequirement
   - !type:OverallPlaytimeRequirement
     time: 3h
