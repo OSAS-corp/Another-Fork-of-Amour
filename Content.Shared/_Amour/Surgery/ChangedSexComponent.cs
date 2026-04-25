@@ -1,4 +1,4 @@
-﻿using Content.Shared._Amour.TTS;
+using Content.Shared._Amour.TTS;
 using Content.Shared.Humanoid;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
