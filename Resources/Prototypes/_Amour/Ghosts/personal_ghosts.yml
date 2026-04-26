@@ -1212,3 +1212,23 @@
     sprite: _Amour/Ghosts/Perchta-ghost.rsi
     color: "#ffffffcc"
     scale: 0.5, 0.5
+
+# SkiGame
+- type: customGhost
+  parent: CkeyPersonal
+  id: skigame-ghost
+  restrictions:
+  - !type:CkeyRestriction
+    ckey: [ SkiGame ]
+  entity: MobObserver-skigame-ghost
+
+- type: entity
+  parent: MobObserverAmour
+  id: MobObserver-skigame-ghost
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Wraith/wraith.rsi
+    layers:
+    - state: trickster
+    color: "#ffffffcc"
