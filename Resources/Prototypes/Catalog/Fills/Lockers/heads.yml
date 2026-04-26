@@ -543,6 +543,7 @@
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: ClothingBeltSheathHeadOfSecurityFilled # Goobstation - security revamp
+    - id: ClothingBeltArmyHandCombat #Amour edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

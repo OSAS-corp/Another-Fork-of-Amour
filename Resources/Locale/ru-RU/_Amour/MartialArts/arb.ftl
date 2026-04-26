@@ -9,3 +9,5 @@ martial-arts-combo-ArbChoke = Удушающий захват
 martial-arts-combo-ArbElbowStrike = Удар локтём
 martial-arts-combo-ArbKneeStrike = Удар коленом
 martial-arts-combo-ArbHipThrow = Бросок через бедро
+martial-arts-combo-ArbWheelThrow = Колесо
+martial-arts-combo-ArbArmbar = Рычаг
