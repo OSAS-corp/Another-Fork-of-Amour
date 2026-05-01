@@ -326,6 +326,9 @@ binds:
   type: State
   key: Z
   mod1: Alt
+- function: OfferItem
+  type: State
+  key: F
 - function: OpenCharacterMenu
   type: State
   key: U
