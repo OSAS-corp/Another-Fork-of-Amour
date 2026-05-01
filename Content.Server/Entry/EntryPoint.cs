@@ -134,6 +134,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Amour.Jukebox;
 using Content.Server._Goobstation.Antag;
 using Content.Server.Acz;
 using Content.Server._Amour.TTS;
@@ -248,6 +249,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<Content.Server._Amour.Registry.ClientMetricsManager>().Initialize(); // Amour edit
+                IoCManager.Resolve<ServerAmourJukeboxSongsSyncManager>().Initialize(); // Amour edit
                 IoCManager.Resolve<Content.Server._Amour.Chat.SayFloodAutoBanManager>().Initialize(); // Amour edit
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();

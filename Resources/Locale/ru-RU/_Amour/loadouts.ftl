@@ -19,6 +19,7 @@ loadout-group-amour-boosty-outer = Boosty: Верхняя одежда
 loadout-group-amour-boosty-belt = Boosty: Пояс
 loadout-group-amour-boosty-shoes = Boosty: Обувь
 loadout-group-amour-boosty-socks = Boosty: Носки
+loadout-group-amour-boosty-trinkets = Boosty: Безделушки
 
 # Amour - Loadout Effect Messages
 loadout-effect-boosty-no-session = Требуется авторизация
