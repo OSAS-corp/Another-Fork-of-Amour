@@ -8,7 +8,8 @@
   },
   "states": [
     {
-      "name": "give_item"
+      "name": "give_item",
+      "directions": 1
     }
   ]
 }
