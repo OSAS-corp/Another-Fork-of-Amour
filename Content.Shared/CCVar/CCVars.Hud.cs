@@ -16,7 +16,7 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> HudHeldItemShow =
         CVarDef.Create("hud.held_item_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
-    public static readonly CVarDef<bool> OfferModeIndicatorsPointShow = // Amour port from WWDP
+    public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
     public static readonly CVarDef<bool> CombatModeIndicatorsPointShow =

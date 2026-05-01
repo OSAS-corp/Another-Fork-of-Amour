@@ -1,6 +1,6 @@
-using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Alert;
 
 namespace Content.Shared.OfferItem;
 
@@ -31,4 +31,3 @@ public sealed partial class OfferItemComponent : Component
 }
 
 public sealed partial class AcceptOfferAlertEvent : BaseAlertEvent;
-

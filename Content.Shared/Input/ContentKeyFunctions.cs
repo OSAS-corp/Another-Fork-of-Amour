@@ -132,6 +132,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction Sprint = "Sprint";
         public static readonly BoundKeyFunction UseItemInHand = "ActivateItemInHand";
         public static readonly BoundKeyFunction AltUseItemInHand = "AltActivateItemInHand";
+        public static readonly BoundKeyFunction OfferItem = "OfferItem";
         public static readonly BoundKeyFunction ActivateItemInWorld = "ActivateItemInWorld";
         public static readonly BoundKeyFunction AltActivateItemInWorld = "AltActivateItemInWorld";
         public static readonly BoundKeyFunction Drop = "Drop";
@@ -189,7 +190,6 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
         public static readonly BoundKeyFunction ResistGrab = "ResistGrab"; // Goobstation - Grab Intent
-        public static readonly BoundKeyFunction OfferItem = "OfferItem"; // Amour port from WWDP
         // Orion-Start
         public static readonly BoundKeyFunction TogglePosing = "TogglePosing";
         public static readonly BoundKeyFunction PosingOffsetLeft = "PosingOffsetLeft";

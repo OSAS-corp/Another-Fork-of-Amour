@@ -18,21 +18,26 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
     public override void Initialize()
     {
         base.Initialize();
+
         Subs.CVar(_cfg, CCVars.OfferModeIndicatorsPointShow, OnShowOfferIndicatorsChanged, true);
     }
 
     public override void Shutdown()
     {
         _overlayManager.RemoveOverlay<OfferItemIndicatorsOverlay>();
+
         base.Shutdown();
     }
 
     public bool IsInOfferMode()
     {
         var entity = _playerManager.LocalEntity;
-        return entity != null && IsInOfferMode(entity.Value);
-    }
 
+        if (entity == null)
+            return false;
+
+        return IsInOfferMode(entity.Value);
+    }
     private void OnShowOfferIndicatorsChanged(bool isShow)
     {
         if (isShow)
@@ -44,9 +49,6 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
                 this));
         }
         else
-        {
             _overlayManager.RemoveOverlay<OfferItemIndicatorsOverlay>();
-        }
     }
 }
-

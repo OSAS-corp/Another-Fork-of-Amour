@@ -1,6 +1,7 @@
+using Content.Shared.Popups;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Hands.Components;
 using Content.Shared.Input;
+using Content.Shared.Hands.Components;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
@@ -9,6 +10,7 @@ namespace Content.Shared.OfferItem;
 public abstract partial class SharedOfferItemSystem
 {
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private void InitializeInteractions()
     {
@@ -20,6 +22,7 @@ public abstract partial class SharedOfferItemSystem
     public override void Shutdown()
     {
         base.Shutdown();
+
         CommandBinds.Unregister<SharedOfferItemSystem>();
     }
 
@@ -28,19 +31,23 @@ public abstract partial class SharedOfferItemSystem
         if (session is not { } playerSession)
             return;
 
-        if (playerSession.AttachedEntity is not { Valid: true } uid || !Exists(uid) ||
+        if ((playerSession.AttachedEntity is not { Valid: true } uid || !Exists(uid)) ||
             !_actionBlocker.CanInteract(uid, null))
             return;
 
         if (!TryComp<OfferItemComponent>(uid, out var offerItem))
             return;
 
-        if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId == null)
+        if (!TryComp<HandsComponent>(uid, out var hands))
             return;
 
-        offerItem.Item = _hands.GetActiveItem((uid, hands));
+        var activeHand = _hands.GetActiveHand((uid, hands));
+        if (activeHand == null)
+            return;
 
-        if (!offerItem.IsInOfferMode)
+        offerItem.Item = _hands.GetHeldItem((uid, hands), activeHand);
+
+        if (offerItem.IsInOfferMode == false)
         {
             if (offerItem.Item == null)
             {
@@ -51,7 +58,8 @@ public abstract partial class SharedOfferItemSystem
             if (offerItem.Hand == null || offerItem.Target == null)
             {
                 offerItem.IsInOfferMode = true;
-                offerItem.Hand = hands.ActiveHandId;
+                offerItem.Hand = activeHand;
+
                 Dirty(uid, offerItem);
                 return;
             }
@@ -68,4 +76,3 @@ public abstract partial class SharedOfferItemSystem
         UnOffer(uid, offerItem);
     }
 }
-

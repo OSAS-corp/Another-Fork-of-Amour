@@ -1,6 +1,6 @@
-using Content.Shared.Alert;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Alert;
 using Content.Shared.OfferItem;
 
 namespace Content.Server.OfferItem;
@@ -17,11 +17,11 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
         var query = EntityQueryEnumerator<OfferItemComponent>();
         while (query.MoveNext(out var uid, out var offerItem))
         {
-            if (!TryComp<HandsComponent>(uid, out var hands) || hands.ActiveHandId == null)
+            if (!TryComp<HandsComponent>(uid, out var hands) || _hands.GetActiveHand((uid, hands)) == null)
                 continue;
 
             if (offerItem.Hand != null &&
-                (!_hands.TryGetHeldItem((uid, hands), offerItem.Hand, out var held) || held == null))
+                !_hands.TryGetHeldItem((uid, hands), offerItem.Hand, out _))
             {
                 if (offerItem.Target != null)
                 {
@@ -30,9 +30,7 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
                     Dirty(uid, offerItem);
                 }
                 else
-                {
                     UnOffer(uid, offerItem);
-                }
             }
 
             if (!offerItem.IsInReceiveMode)
@@ -45,4 +43,3 @@ public sealed class OfferItemSystem : SharedOfferItemSystem
         }
     }
 }
-
