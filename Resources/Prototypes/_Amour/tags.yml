@@ -1,8 +1,14 @@
 - type: Tag
+  id: AmourTape
+
+- type: Tag
+  id: AmourTapeRecorderCoin
+
+- type: Tag
+  id: Socks
+
+- type: Tag
   id: Underwear
 
 - type: Tag
   id: Undershirt
-
-- type: Tag
-  id: Socks

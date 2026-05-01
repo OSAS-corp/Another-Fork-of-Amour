@@ -172,6 +172,7 @@ using Content.Server._RMC14.LinkAccount;
 using Content.Server._Amour.Loadouts;
 using Content.Server._Amour.Discord;
 using Content.Shared._Amour.Loadouts.Effects;
+using Content.Server._Amour.Jukebox;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server._Amour.TTS;
@@ -248,6 +249,7 @@ namespace Content.Server.IoC
             IoCManager.Register<PlayerRateLimitManager>();
             IoCManager.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             IoCManager.Register<MappingManager>();
+            IoCManager.Register<ServerAmourJukeboxSongsSyncManager>(); // Amour edit
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();

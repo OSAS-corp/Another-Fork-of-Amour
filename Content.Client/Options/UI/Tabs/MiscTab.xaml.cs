@@ -132,6 +132,7 @@ public sealed partial class MiscTab : Control
         Control.AddOptionCheckBox(GoobCVars.CoalesceIdenticalMessages, CoalesceIdenticalMessagesCheckBox); // WD EDIT
         Control.AddOptionCheckBox(GoobCVars.DetailedExamine, DetailedExamineCheckBox); // Goobstation Change
         Control.AddOptionCheckBox(CCVars.HudHeldItemShow, ShowHeldItemCheckBox);
+        Control.AddOptionCheckBox(CCVars.OfferModeIndicatorsPointShow, ShowOfferModeIndicatorsCheckBox);
         // Goobstation - ShowCombatModeIndicatorsCheckBox removed (amour commented)
         Control.AddOptionCheckBox(CCVars.OpaqueStorageWindow, OpaqueStorageWindowCheckBox);
         Control.AddOptionCheckBox(GoobCVars.AutoFocusSearchOnBuildMenu, AutoFocusSearchOnBuildMenuCheckBox); // Goobstation Change
