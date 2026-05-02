@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Content.Shared._Amour;
 using Content.Shared._Amour.Jukebox;
 using Content.Shared.GameTicking;
+using Content.Shared.Item;
 using Content.Shared.Physics;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
@@ -26,6 +27,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
     [Dependency] private readonly IAudioManager _clydeAudio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedItemSystem _itemSystem = default!;
 
     private const CollisionGroup CollisionMask = CollisionGroup.Impassable;
     private const float PlaybackDriftTolerance = 1.5f;
@@ -297,6 +299,18 @@ public sealed class AmourJukeboxSystem : EntitySystem
 
         if (sprite.LayerMapTryGet("bars", out var layer))
             sprite.LayerSetVisible(layer, visible);
+
+        if (TryComp<ItemComponent>(jukebox, out var item))
+        {
+            if (visible)
+            {
+                _itemSystem.SetHeldPrefix(jukebox, null, false, item);
+            }
+            else
+            {
+                _itemSystem.SetHeldPrefix(jukebox, "off", false, item);
+            }
+        }
     }
 
     private sealed class JukeboxAudio(IAudioSource playingStream, AudioResource audioStream, AmourPlayingSongData songData)
