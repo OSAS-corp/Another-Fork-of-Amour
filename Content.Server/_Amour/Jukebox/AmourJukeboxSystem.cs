@@ -91,7 +91,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
         {
             Text = "Вытащить кассету",
             Priority = 10000,
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/remove_tape.png")),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/_Amour/Interface/VerbIcons/remove_tape.png")),
             Act = () =>
             {
                 var tapes = jukeboxComponent.TapeContainer.ContainedEntities.ToList();
