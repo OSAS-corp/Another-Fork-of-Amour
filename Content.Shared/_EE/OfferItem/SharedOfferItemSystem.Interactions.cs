@@ -47,15 +47,26 @@ public abstract partial class SharedOfferItemSystem
 
         offerItem.Item = _hands.GetHeldItem((uid, hands), activeHand);
 
-        if (offerItem.IsInOfferMode == false)
+        var isInOfferMode = offerItem.IsInOfferMode || IsLocalOfferMode();
+
+        if (!isInOfferMode)
         {
             if (offerItem.Item == null)
             {
-                _popup.PopupClient(Loc.GetString("offer-item-empty-hand"), uid, uid);
+                if (_net.IsServer)
+                    _popup.PopupEntity(Loc.GetString("offer-item-empty-hand"), uid, uid);
+
                 return;
             }
+
             if (offerItem.Hand == null || offerItem.Target == null)
             {
+                if (_net.IsClient)
+                {
+                    SetLocalOfferMode(true);
+                    return;
+                }
+
                 offerItem.IsInOfferMode = true;
                 offerItem.Hand = activeHand;
 
@@ -66,10 +77,33 @@ public abstract partial class SharedOfferItemSystem
 
         if (offerItem.Target != null)
         {
+            if (_net.IsClient)
+            {
+                SetLocalOfferMode(false);
+                return;
+            }
+
             UnReceive(offerItem.Target.Value, offerItem: offerItem);
+            offerItem.IsInOfferMode = false;
+            Dirty(uid, offerItem);
+            return;
+        }
+
+        if (_net.IsClient)
+        {
+            SetLocalOfferMode(false);
             return;
         }
 
         UnOffer(uid, offerItem);
+    }
+
+    protected virtual void SetLocalOfferMode(bool enabled)
+    {
+    }
+
+    protected virtual bool IsLocalOfferMode()
+    {
+        return false;
     }
 }
