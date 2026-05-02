@@ -6,7 +6,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Robust.Shared.Player;
 
-namespace Content.Shared.OfferItem;
+namespace Content.Shared._EE.OfferItem;
 
 public abstract partial class SharedOfferItemSystem : EntitySystem
 {

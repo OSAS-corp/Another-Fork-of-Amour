@@ -1,10 +1,10 @@
+using System;
 using Content.Shared._Amour.Jukebox;
 using Content.Shared.Popups;
 using Robust.Client.GameObjects;
-using Robust.Client.UserInterface.Controls;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using System;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Amour.Jukebox;
 
@@ -25,16 +25,17 @@ public sealed class AmourJukeboxBUI : BoundUserInterface
 
         if (!_entityManager.TryGetComponent(Owner, out AmourJukeboxComponent? jukeboxComponent))
         {
-            _entityManager.System<SharedPopupSystem>().PopupEntity("Тут нет AmourJukeboxComponent", Owner);
+            _entityManager.System<SharedPopupSystem>()
+                .PopupEntity(Loc.GetString("amour-jukebox-missing-component"), Owner);
             Close();
             return;
         }
 
         _window = new AmourJukeboxMenu(Owner, jukeboxComponent);
-        _window.RepeatButton.OnToggled += OnRepeatButtonToggled;
-        _window.StopButton.OnPressed += OnStopButtonPressed;
-        _window.EjectButton.OnPressed += OnEjectButtonPressed;
         _window.PlayPausePressed += OnPlayPausePressed;
+        _window.StopPressed += OnStopPressed;
+        _window.EjectPressed += OnEjectPressed;
+        _window.RepeatToggled += OnRepeatToggled;
         _window.SetPlaybackPosition += OnSetPlaybackPosition;
         _window.SetVolume += OnSetVolume;
         _window.OpenCentered();
@@ -51,7 +52,7 @@ public sealed class AmourJukeboxBUI : BoundUserInterface
         SendMessage(new AmourJukeboxSetVolume(volume));
     }
 
-    private void OnEjectButtonPressed(BaseButton.ButtonEventArgs obj)
+    private void OnEjectPressed()
     {
         SendMessage(new AmourJukeboxEjectRequest());
     }
@@ -61,14 +62,14 @@ public sealed class AmourJukeboxBUI : BoundUserInterface
         SendMessage(new AmourJukeboxStopRequest());
     }
 
-    private void OnStopButtonPressed(BaseButton.ButtonEventArgs obj)
+    private void OnStopPressed()
     {
         SendMessage(new AmourJukeboxStopRequest());
     }
 
-    private void OnRepeatButtonToggled(BaseButton.ButtonToggledEventArgs obj)
+    private void OnRepeatToggled(bool newState)
     {
-        SendMessage(new AmourJukeboxRepeatToggled(obj.Pressed));
+        SendMessage(new AmourJukeboxRepeatToggled(newState));
     }
 
     protected override void Dispose(bool disposing)

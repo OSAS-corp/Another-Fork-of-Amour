@@ -2,14 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared._Amour.Jukebox;
+using Content.Shared.Audio.Jukebox;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
-using Robust.Shared.Containers;using Robust.Shared.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Amour.Jukebox;
@@ -20,8 +25,11 @@ public sealed class AmourJukeboxSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverrideSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    private readonly List<AmourJukeboxComponent> _playingJukeboxes = new();
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
+    private readonly List<AmourJukeboxComponent> _playingJukeboxes = new();
     private const float UpdateTimerDefaultTime = 1f;
     private float _updateTimer;
 
@@ -139,28 +147,38 @@ public sealed class AmourJukeboxSystem : EntitySystem
         if (containedEntities.Count >= 1)
         {
             var removedTapes = _containerSystem.EmptyContainer(component.TapeContainer, true).ToList();
-            _containerSystem.Insert(args.Used, component.TapeContainer);
 
             foreach (var tapeUid in removedTapes)
             {
                 _handsSystem.PickupOrDrop(args.User, tapeUid);
             }
         }
-        else
-        {
-            _containerSystem.Insert(args.Used, component.TapeContainer);
-        }
+
+        _containerSystem.Insert(args.Used, component.TapeContainer);
 
         _uiSystem.CloseUi(uid, AmourJukeboxUIKey.Key);
     }
+
     private void OnSongRequestPlay(AmourJukeboxRequestSongPlay msg, EntitySessionEventArgs args)
     {
-        if (msg.Jukebox == null)
+        if (msg.Jukebox == null || msg.SongPath == null)
             return;
 
         var entity = GetEntity(msg.Jukebox.Value);
+        if (!Exists(entity) || !TryComp<AmourJukeboxComponent>(entity, out var jukebox))
+            return;
 
-        if (!TryComp<AmourJukeboxComponent>(entity, out var jukebox))
+        var session = args.SenderSession;
+        if (session.AttachedEntity is not { } sender || !Exists(sender))
+            return;
+
+        if (!_uiSystem.IsUiOpen(entity, AmourJukeboxUIKey.Key, sender))
+            return;
+
+        if (!_interaction.InRangeUnobstructed(sender, entity))
+            return;
+
+        if (!TryResolveSongDuration(msg.SongPath.Value, out var duration))
             return;
 
         jukebox.Playing = true;
@@ -169,7 +187,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
         {
             SongName = msg.SongName,
             SongPath = msg.SongPath,
-            ActualSongLengthSeconds = msg.SongDuration,
+            ActualSongLengthSeconds = duration,
             PlaybackPosition = 0f
         };
 
@@ -177,6 +195,42 @@ public sealed class AmourJukeboxSystem : EntitySystem
             _playingJukeboxes.Add(jukebox);
 
         Dirty(entity, jukebox);
+    }
+
+    private bool TryResolveSongDuration(ResPath songPath, out float duration)
+    {
+        duration = 0f;
+
+        foreach (var proto in _proto.EnumeratePrototypes<JukeboxPrototype>())
+        {
+            if (proto.Path.Path != songPath)
+                continue;
+
+            try
+            {
+                duration = (float) _audio.GetAudioLength(songPath.ToString()).TotalSeconds;
+            }
+            catch
+            {
+                duration = 0f;
+            }
+            return true;
+        }
+
+        var query = EntityQueryEnumerator<AmourTapeComponent>();
+        while (query.MoveNext(out _, out var tape))
+        {
+            foreach (var song in tape.Songs)
+            {
+                if (song.SongPath != songPath)
+                    continue;
+
+                duration = song.SongDurationSeconds;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public override void Update(float frameTime)
@@ -215,8 +269,16 @@ public sealed class AmourJukeboxSystem : EntitySystem
                 }
                 else
                 {
-                    RaiseNetworkEvent(new AmourJukeboxStopPlaying());
+                    playingJukeboxData.PlayingSongData = null;
                     _playingJukeboxes.RemoveAt(i);
+
+                    RaiseNetworkEvent(new AmourJukeboxStopPlaying
+                    {
+                        JukeboxUid = GetNetEntity(playingJukeboxData.Owner)
+                    });
+
+                    Dirty(playingJukeboxData.Owner, playingJukeboxData);
+                    continue;
                 }
             }
 

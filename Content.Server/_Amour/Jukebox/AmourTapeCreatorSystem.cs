@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Content.Server.Popups;
 using Content.Shared._Amour.Jukebox;
@@ -7,10 +8,14 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.IoC;
+using Robust.Shared.Log;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Amour.Jukebox;
@@ -22,6 +27,9 @@ public sealed class AmourTapeCreatorSystem : EntitySystem
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private const string TapeCreatorContainerName = "amour_tape_creator_container";
     private const string CoinTag = "AmourTapeRecorderCoin";
@@ -101,26 +109,22 @@ public sealed class AmourTapeCreatorSystem : EntitySystem
         {
             var containedEntities = component.TapeContainer.ContainedEntities;
 
-            if (containedEntities.Count > 1)
+            if (containedEntities.Count >= 1)
             {
                 var removedTapes = _container.EmptyContainer(component.TapeContainer, true).ToList();
-                _container.Insert(args.Used, component.TapeContainer);
 
                 foreach (var tape in removedTapes)
                 {
                     _hands.PickupOrDrop(args.User, tape);
                 }
             }
-            else
-            {
-                _container.Insert(args.Used, component.TapeContainer);
-            }
+
+            _container.Insert(args.Used, component.TapeContainer);
 
             component.InsertedTape = GetNetEntity(args.Used);
             Dirty(uid, component);
             return;
         }
-
         if (_tag.HasTag(args.Used, CoinTag))
         {
             Del(args.Used);
@@ -132,9 +136,34 @@ public sealed class AmourTapeCreatorSystem : EntitySystem
     private void OnSongUploaded(AmourJukeboxSongUploadRequest ev, EntitySessionEventArgs args)
     {
         var tapeCreator = GetEntity(ev.TapeCreatorUid);
-        if (!TryComp<AmourTapeCreatorComponent>(tapeCreator, out var tapeCreatorComponent))
+        if (!Exists(tapeCreator) || !TryComp<AmourTapeCreatorComponent>(tapeCreator, out var tapeCreatorComponent))
         {
             SendUploadResponse(args, ev.TapeCreatorUid, false, "Записывающее устройство не найдено.");
+            return;
+        }
+
+        var session = args.SenderSession;
+        if (session.AttachedEntity is not { } sender || !Exists(sender))
+        {
+            SendUploadResponse(args, ev.TapeCreatorUid, false, "Нет привязанной сущности.");
+            return;
+        }
+
+        if (!_uiSystem.IsUiOpen(tapeCreator, AmourTapeCreatorUIKey.Key, sender))
+        {
+            SendUploadResponse(args, ev.TapeCreatorUid, false, "Интерфейс не открыт.");
+            return;
+        }
+
+        if (!_interaction.InRangeUnobstructed(sender, tapeCreator))
+        {
+            SendUploadResponse(args, ev.TapeCreatorUid, false, "Слишком далеко.");
+            return;
+        }
+
+        if (ev.SongBytes.Count > AmourJukeboxSongUploadNetMessage.MaxDataLength)
+        {
+            SendUploadResponse(args, ev.TapeCreatorUid, false, "Файл слишком большой.");
             return;
         }
 
@@ -145,32 +174,71 @@ public sealed class AmourTapeCreatorSystem : EntitySystem
             return;
         }
 
-        tapeCreatorComponent.CoinBalance -= 1;
-        tapeCreatorComponent.Recording = true;
-
         var insertedTape = GetEntity(tapeCreatorComponent.InsertedTape.Value);
         if (!TryComp<AmourTapeComponent>(insertedTape, out var tapeComponent))
         {
-            tapeCreatorComponent.Recording = false;
             SendUploadResponse(args, ev.TapeCreatorUid, false, "Кассета недоступна.");
             return;
         }
 
-        var songData = _songsSyncManager.SyncSongData(ev.SongName, ev.SongBytes);
-
-        var song = new AmourJukeboxSong
+        if (tapeCreatorComponent.Recording)
         {
-            SongName = songData.SongName,
-            SongPath = songData.Path
-        };
+            SendUploadResponse(args, ev.TapeCreatorUid, false, "Уже идёт запись.");
+            return;
+        }
 
-        tapeComponent.Songs.Add(song);
+        tapeCreatorComponent.Recording = true;
+        Dirty(tapeCreator, tapeCreatorComponent);
 
-        DirtyEntity(tapeCreator);
-        Dirty(insertedTape, tapeComponent);
+        try
+        {
+            (string SongName, ResPath Path) songData;
+            try
+            {
+                songData = _songsSyncManager.SyncSongData(ev.SongName, ev.SongBytes);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"AmourTapeCreator: SyncSongData failed: {e}");
+                SendUploadResponse(args, ev.TapeCreatorUid, false, "Не удалось сохранить песню.");
+                return;
+            }
 
-        FinishRecording(tapeCreator, tapeCreatorComponent);
-        SendUploadResponse(args, ev.TapeCreatorUid, true, "Запись на кассету завершена.");
+            var durationSeconds = 0f;
+            try
+            {
+                durationSeconds = (float) _audio.GetAudioLength(songData.Path.ToString()).TotalSeconds;
+            }
+            catch (Exception e)
+            {
+                Log.Warning($"AmourTapeCreator: failed to resolve audio length for {songData.Path}: {e}");
+            }
+
+            tapeCreatorComponent.CoinBalance -= 1;
+
+            var song = new AmourJukeboxSong
+            {
+                SongName = songData.SongName,
+                SongPath = songData.Path,
+                SongDurationSeconds = durationSeconds
+            };
+
+            tapeComponent.Songs.Add(song);
+
+            DirtyEntity(tapeCreator);
+            Dirty(insertedTape, tapeComponent);
+
+            FinishRecording(tapeCreator, tapeCreatorComponent);
+            SendUploadResponse(args, ev.TapeCreatorUid, true, "Запись на кассету завершена.");
+        }
+        finally
+        {
+            if (tapeCreatorComponent.Recording)
+            {
+                tapeCreatorComponent.Recording = false;
+                Dirty(tapeCreator, tapeCreatorComponent);
+            }
+        }
     }
 
     private void SendUploadResponse(EntitySessionEventArgs args, NetEntity tapeCreatorUid, bool success, string? message)

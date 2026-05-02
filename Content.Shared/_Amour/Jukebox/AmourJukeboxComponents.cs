@@ -48,7 +48,8 @@ public sealed partial class AmourJukeboxComponent : Component
     public AmourPlayingSongData? PlayingSongData { get; set; }
 }
 
-[Serializable, NetSerializable]public sealed class AmourPlayingSongData
+[Serializable, NetSerializable]
+public sealed class AmourPlayingSongData
 {
     public ResPath? SongPath;
     public string? SongName;
@@ -64,6 +65,9 @@ public sealed partial class AmourJukeboxSong
 
     [DataField("path")]
     public ResPath? SongPath;
+
+    [DataField]
+    public float SongDurationSeconds;
 }
 
 [Serializable, NetSerializable]
@@ -122,6 +126,10 @@ public sealed class AmourJukeboxSongUploadNetMessage : NetMessage
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
     {
+        if (Data.Length > MaxDataLength)
+            throw new InvalidOperationException(
+                $"AmourJukeboxSongUploadNetMessage: data length {Data.Length} exceeds max {MaxDataLength}.");
+
         buffer.WriteVariableInt32(Data.Length);
         buffer.Write(Data);
         buffer.Write(RelativePath.ToString());

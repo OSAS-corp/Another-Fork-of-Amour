@@ -11,10 +11,11 @@ public abstract class AmourJukeboxSongsSyncManager : IDisposable
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] protected readonly IResourceManager ResourceManager = default!;
 
-    // Отдельная корневая папка, чтобы не пересекаться со штатным Jukebox.
     public static readonly ResPath Prefix = ResPath.Root / "AmourJukebox";
 
     protected readonly MemoryContentRoot ContentRoot = new();
+
+    private bool _disposed;
 
     public virtual void Initialize()
     {
@@ -27,6 +28,17 @@ public abstract class AmourJukeboxSongsSyncManager : IDisposable
 
     public void Dispose()
     {
-        ContentRoot.Dispose();
+        Dispose(true);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+
+        if (disposing)
+            ContentRoot.Dispose();
+
+        _disposed = true;
     }
 }

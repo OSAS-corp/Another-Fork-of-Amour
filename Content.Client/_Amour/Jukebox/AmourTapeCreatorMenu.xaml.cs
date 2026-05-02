@@ -55,11 +55,9 @@ public sealed partial class AmourTapeCreatorMenu : DefaultWindow
 
         var input = SongNameField.Text;
 
-        // Очистка имени от спецсимволов
-        string pattern = @"[^a-zA-Zа-яА-Я ]+";
+        const string pattern = @"[^a-zA-Zа-яА-ЯёЁ ]+";
         var songName = Regex.Replace(input, pattern, "");
         songName = Regex.Replace(songName, @"\s+", " ").Trim();
-
         if (string.IsNullOrWhiteSpace(songName))
         {
             _popupSystem.PopupEntity("Имя песни не должно быть пустым.", _component.Owner);

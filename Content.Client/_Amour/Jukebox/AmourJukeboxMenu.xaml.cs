@@ -34,8 +34,13 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
     private float _lockTimer;
 
     public event Action? PlayPausePressed;
+    public event Action? StopPressed;
+    public event Action? EjectPressed;
+    public event Action<bool>? RepeatToggled;
     public event Action<float>? SetPlaybackPosition;
     public event Action<float>? SetVolume;
+
+    private bool _repeatButtonHeld;
 
     public AmourJukeboxMenu(EntityUid jukeboxEntity, AmourJukeboxComponent component)
     {
@@ -52,6 +57,12 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
         TabContainer.SetTabTitle(TapeSongsTab, "Песенки с кассеты");
 
         PlayButton.OnPressed += _ => PlayPausePressed?.Invoke();
+        StopButton.OnPressed += _ => StopPressed?.Invoke();
+        EjectButton.OnPressed += _ => EjectPressed?.Invoke();
+
+        RepeatButton.OnButtonDown += _ => _repeatButtonHeld = true;
+        RepeatButton.OnButtonUp += _ => _repeatButtonHeld = false;
+        RepeatButton.OnToggled += args => RepeatToggled?.Invoke(args.Pressed);
 
         PlaybackSlider.OnReleased += _ => OnPlaybackSliderReleased();
         VolumeSlider.OnReleased += _ => OnVolumeSliderReleased();
@@ -59,6 +70,7 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
         PopulateDefaultSongsContainer(DefaultSongsContainer);
         PopulateTapeSongsContainer(TapeSongsContainer);
 
+        RepeatButton.Pressed = _component.Playing;
         SetPlayPauseButton(_component.Playing, force: true);
     }
 
@@ -122,7 +134,9 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
             VolumeSlider.SetValueWithoutEvent(_component.Volume * 100f);
         }
 
-        RepeatButton.Pressed = _component.Playing;
+        if (!_repeatButtonHeld && RepeatButton.Pressed != _component.Playing)
+            RepeatButton.Pressed = _component.Playing;
+
         SetPlayPauseButton(_component.PlayingSongData != null);
     }
 

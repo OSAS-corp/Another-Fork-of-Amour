@@ -1,9 +1,10 @@
+using System;
 using Content.Shared._Amour.Jukebox;
 using Content.Shared.Popups;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using System;
+using Robust.Shared.Localization;
 
 namespace Content.Client._Amour.Jukebox;
 
@@ -25,7 +26,8 @@ public sealed class AmourTapeCreatorBUI : BoundUserInterface
 
         if (!_entityManager.TryGetComponent<AmourTapeCreatorComponent>(Owner, out var tapeCreatorComponent))
         {
-            _entityManager.System<SharedPopupSystem>().PopupEntity("Тут нет AmourTapeCreatorComponent", Owner);
+            _entityManager.System<SharedPopupSystem>()
+                .PopupEntity(Loc.GetString("amour-tape-creator-missing-component"), Owner);
             Close();
             return;
         }

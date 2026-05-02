@@ -5,7 +5,7 @@ using Content.Shared.Hands.Components;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
-namespace Content.Shared.OfferItem;
+namespace Content.Shared._EE.OfferItem;
 
 public abstract partial class SharedOfferItemSystem
 {

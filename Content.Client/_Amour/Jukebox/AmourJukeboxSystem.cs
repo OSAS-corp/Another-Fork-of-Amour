@@ -48,9 +48,12 @@ public sealed class AmourJukeboxSystem : EntitySystem
     private void JukeboxVolumeChanged(float volume)
     {
         _jukeboxVolume = volume;
-        CleanUp();
-    }
 
+        foreach (var (component, audio) in _playingJukeboxes)
+        {
+            SetStreamVolume(component, audio);
+        }
+    }
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         CleanUp();
