@@ -39,6 +39,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
         SubscribeNetworkEvent<AmourJukeboxRequestSongPlay>(OnSongRequestPlay);
         SubscribeLocalEvent<AmourJukeboxComponent, InteractUsingEvent>(OnInteract);
         SubscribeLocalEvent<AmourJukeboxComponent, AmourJukeboxStopRequest>(OnRequestStop);
+        SubscribeLocalEvent<AmourJukeboxComponent, AmourJukeboxPlayPauseRequest>(OnPlayPauseRequest);
         SubscribeLocalEvent<AmourJukeboxComponent, AmourJukeboxRepeatToggled>(OnRepeatToggled);
         SubscribeLocalEvent<AmourJukeboxComponent, AmourJukeboxEjectRequest>(OnEjectRequest);
         SubscribeLocalEvent<AmourJukeboxComponent, AmourJukeboxSetPlaybackPosition>(OnSetPlaybackPosition);
@@ -67,11 +68,17 @@ public sealed class AmourJukeboxSystem : EntitySystem
 
         if (component.TapeContainer.ContainedEntities.Count > 0)
         {
+            var tapes = component.TapeContainer.ContainedEntities.ToList();
             _containerSystem.EmptyContainer(component.TapeContainer, true);
+
+            foreach (var tape in tapes)
+            {
+                _handsSystem.PickupOrDrop(args.Actor, tape);
+            }
+
             _uiSystem.CloseUi(uid, AmourJukeboxUIKey.Key);
         }
     }
-
     private void OnGetVerb(EntityUid uid, AmourJukeboxComponent jukeboxComponent, GetVerbsEvent<Verb> ev)    {
         if (ev.Hands == null)
             return;
@@ -131,9 +138,18 @@ public sealed class AmourJukeboxSystem : EntitySystem
     private void OnRequestStop(EntityUid uid, AmourJukeboxComponent component, AmourJukeboxStopRequest args)
     {
         component.PlayingSongData = null;
+        component.Paused = false;
         Dirty(uid, component);
     }
 
+    private void OnPlayPauseRequest(EntityUid uid, AmourJukeboxComponent component, AmourJukeboxPlayPauseRequest args)
+    {
+        if (component.PlayingSongData == null)
+            return;
+
+        component.Paused = !component.Paused;
+        Dirty(uid, component);
+    }
     private void OnInteract(EntityUid uid, AmourJukeboxComponent component, InteractUsingEvent args)
     {
         if (component.PlayingSongData != null)
@@ -182,6 +198,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
             return;
 
         jukebox.Playing = true;
+        jukebox.Paused = false;
 
         jukebox.PlayingSongData = new AmourPlayingSongData
         {
@@ -255,6 +272,12 @@ public sealed class AmourJukeboxSystem : EntitySystem
             if (playingJukeboxData.PlayingSongData == null)
             {
                 _playingJukeboxes.RemoveAt(i);
+                continue;
+            }
+
+            if (playingJukeboxData.Paused)
+            {
+                Dirty(playingJukeboxData.Owner, playingJukeboxData);
                 continue;
             }
 

@@ -59,9 +59,8 @@ public sealed class AmourJukeboxBUI : BoundUserInterface
 
     private void OnPlayPausePressed()
     {
-        SendMessage(new AmourJukeboxStopRequest());
+        SendMessage(new AmourJukeboxPlayPauseRequest());
     }
-
     private void OnStopPressed()
     {
         SendMessage(new AmourJukeboxStopRequest());

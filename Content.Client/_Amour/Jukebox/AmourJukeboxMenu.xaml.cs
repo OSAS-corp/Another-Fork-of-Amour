@@ -71,7 +71,7 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
         PopulateTapeSongsContainer(TapeSongsContainer);
 
         RepeatButton.Pressed = _component.Playing;
-        SetPlayPauseButton(_component.Playing, force: true);
+        SetPlayPauseButton(_component.PlayingSongData != null && !_component.Paused, force: true);
     }
 
     private void OnPlaybackSliderReleased()
@@ -137,7 +137,7 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
         if (!_repeatButtonHeld && RepeatButton.Pressed != _component.Playing)
             RepeatButton.Pressed = _component.Playing;
 
-        SetPlayPauseButton(_component.PlayingSongData != null);
+        SetPlayPauseButton(_component.PlayingSongData != null && !_component.Paused);
     }
 
     private void PopulateDefaultSongsContainer(BoxContainer defaultSongsContainer)

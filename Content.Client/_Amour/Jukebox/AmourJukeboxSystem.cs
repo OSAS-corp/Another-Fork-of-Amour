@@ -140,10 +140,29 @@ public sealed class AmourJukeboxSystem : EntitySystem
 
             if (_playingJukeboxes.TryGetValue(jukeboxComponent, out var jukeboxAudio))
             {
+                if (jukeboxComponent.Paused)
+                {
+                    if (jukeboxAudio.PlayingStream.Playing)
+                        jukeboxAudio.PlayingStream.Pause();
+                    continue;
+                }
+
                 if (!jukeboxAudio.PlayingStream.Playing)
                 {
-                    HandleDoneStream(uid, player, jukeboxAudio, jukeboxComponent);
-                    continue;
+                    var songData = jukeboxComponent.PlayingSongData;
+                    var sameSong = songData != null && jukeboxAudio.SongData.SongPath == songData.SongPath;
+                    var notFinished = songData != null
+                        && songData.PlaybackPosition + PlaybackDriftTolerance < songData.ActualSongLengthSeconds;
+
+                    if (sameSong && notFinished)
+                    {
+                        jukeboxAudio.PlayingStream.StartPlaying();
+                    }
+                    else
+                    {
+                        HandleDoneStream(uid, player, jukeboxAudio, jukeboxComponent);
+                        continue;
+                    }
                 }
 
                 if (jukeboxAudio.SongData.SongPath != jukeboxComponent.PlayingSongData?.SongPath)

@@ -35,6 +35,8 @@ public sealed partial class AmourJukeboxComponent : Component
     [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public bool Playing { get; set; } = true;
 
+    [ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public bool Paused { get; set; }
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
     public float Volume { get; set; }
 
@@ -147,6 +149,8 @@ public sealed class AmourJukeboxSongUploadResponse : EntityEventArgs
 [Serializable, NetSerializable]
 public class AmourJukeboxStopRequest : BoundUserInterfaceMessage { }
 
+[Serializable, NetSerializable]
+public sealed class AmourJukeboxPlayPauseRequest : BoundUserInterfaceMessage { }
 [Serializable, NetSerializable]
 public class AmourJukeboxRepeatToggled : BoundUserInterfaceMessage
 {
