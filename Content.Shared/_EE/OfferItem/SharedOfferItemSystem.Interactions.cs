@@ -51,10 +51,9 @@ public abstract partial class SharedOfferItemSystem
         {
             if (offerItem.Item == null)
             {
-                _popup.PopupEntity(Loc.GetString("offer-item-empty-hand"), uid, uid);
+                _popup.PopupClient(Loc.GetString("offer-item-empty-hand"), uid, uid);
                 return;
             }
-
             if (offerItem.Hand == null || offerItem.Target == null)
             {
                 offerItem.IsInOfferMode = true;
