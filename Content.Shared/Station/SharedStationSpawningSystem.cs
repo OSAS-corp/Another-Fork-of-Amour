@@ -151,6 +151,54 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         EquipRoleName(entity, loadout, roleProto);
     }
 
+    // Amour edit start
+
+    public void EquipRoleLoadoutStorage(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    {
+        foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+        {
+            foreach (var items in group.Value)
+            {
+                if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
+                    continue;
+
+                EquipStartingGearStorage(entity, loadoutProto);
+
+                if (PrototypeManager.TryIndex(loadoutProto.StartingGear, out var gearProto))
+                    EquipStartingGearStorage(entity, gearProto);
+            }
+        }
+    }
+
+    private void EquipStartingGearStorage(EntityUid entity, IEquipmentLoadout startingGear)
+    {
+        if (startingGear.Storage.Count == 0)
+            return;
+
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        _inventoryQuery.TryComp(entity, out var inventoryComp);
+        if (inventoryComp == null)
+            return;
+
+        foreach (var (slotName, entProtos) in startingGear.Storage)
+        {
+            if (entProtos == null || entProtos.Count == 0)
+                continue;
+
+            if (!InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp))
+                continue;
+
+            if (!_storageQuery.TryComp(slotEnt, out var storage))
+                continue;
+
+            foreach (var entProto in entProtos)
+            {
+                var spawnedEntity = Spawn(entProto, coords);
+                _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
+            }
+        }
+    }
+    // Amour edit end
     /// <summary>
     /// Applies the role's name as applicable to the entity.
     /// </summary>

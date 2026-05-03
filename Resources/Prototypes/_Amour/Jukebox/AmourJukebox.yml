@@ -8,6 +8,8 @@
   - type: Sprite
     sprite: Objects/Devices/jukeboxStuff/tape.rsi
     state: tape
+  - type: Item
+    size: Tiny
   - type: AmourTape
   - type: Tag
     tags:
@@ -42,7 +44,7 @@
       map: ["tape"]
       visible: false
   - type: Item
-    size: Small
+    size: Normal
   - type: AmourTapeCreator
     coins: 3
   - type: UserInterface
