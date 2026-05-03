@@ -115,7 +115,7 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
             var total = _component.PlayingSongData.ActualSongLengthSeconds;
             DurationLabel.Text = $"{TimeSpan.FromSeconds(current):mm\\:ss} / {TimeSpan.FromSeconds(total):mm\\:ss}";
 
-            if (!PlaybackSlider.Grabbed)
+            if (!PlaybackSlider.Grabbed && _lockTimer <= 0f)
             {
                 PlaybackSlider.MaxValue = total;
                 PlaybackSlider.SetValueWithoutEvent(current);
@@ -129,7 +129,7 @@ public sealed partial class AmourJukeboxMenu : DefaultWindow
         }
 
         VolumeNumberLabel.Text = $"{VolumeSlider.Value:0.##}%";
-        if (!VolumeSlider.Grabbed)
+        if (!VolumeSlider.Grabbed && _lockTimer <= 0f)
         {
             VolumeSlider.SetValueWithoutEvent(_component.Volume * 100f);
         }
