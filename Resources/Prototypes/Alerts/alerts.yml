@@ -324,11 +324,11 @@
   name: alerts-buckled-name
   description: alerts-buckled-desc
 
-- type: alert
+- type: alert # amour port from EE
   id: Offer
   clickEvent: !type:AcceptOfferAlertEvent
   icons:
-  - sprite: /Textures/Interface/Alerts/offer_item.rsi
+  - sprite: /Textures/_EE/Interface/Alerts/offer_item.rsi
     state: offer_item
   name: alerts-offer-name
   description: alerts-offer-desc

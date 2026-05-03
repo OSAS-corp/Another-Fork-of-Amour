@@ -296,3 +296,36 @@
     minTierLevel: 3
   equipment:
     head: DoommaxCapCapBoosty
+
+#
+# DJ
+#
+
+- type: loadout
+  id: LoadoutBoostyBoombox
+  effects:
+  - !type:BoostyTierLoadoutEffect
+    minTierLevel: 4
+  storage:
+    back:
+    - AmourBoombox
+
+- type: loadout
+  id: LoadoutBoostyTapeRecorder
+  effects:
+  - !type:BoostyTierLoadoutEffect
+    minTierLevel: 4
+  storage:
+    back:
+    - AmourTapeRecorder
+
+- type: loadout
+  id: LoadoutBoostyTape
+  effects:
+  - !type:BoostyTierLoadoutEffect
+    minTierLevel: 4
+  storage:
+    back:
+    - AmourTape
+    - AmourTape
+    - AmourTape
