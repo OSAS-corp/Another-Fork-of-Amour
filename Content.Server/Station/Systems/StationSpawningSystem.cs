@@ -258,6 +258,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             EquipRoleLoadoutStorage(entity.Value, loadout, roleProto!);
         }
         // Amour edit end
+
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 

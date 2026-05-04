@@ -71,9 +71,15 @@
     - state: on
       map: ["bars"]
       visible: false
+    - state: light
+      map: ["light"]
+      visible: false
+      shader: unshaded
   - type: Item
     size: Normal
     sprite: _Amour/Objects/Devices/jukebox.rsi
+    shape:
+    - 0,0,1,2
   - type: AmourJukebox
     volume: 0.7
     maxAudioRange: 25
@@ -86,6 +92,22 @@
   - type: ContainerContainer
     containers:
       amour_jukebox_tapes: !type:Container
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    energy: 3.5
+    color: "#FF1493"
+    mask: /Textures/Effects/LightMasks/double_cone.png
+    containerOcclusionMargin: 10
+  - type: RotatingLight
+    speed: 90
+  - type: Anchorable
+    delay: 1.5
+  - type: Pullable
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 800
+      Plastic: 400
 
 # Walkman
 - type: entity

@@ -28,6 +28,7 @@ public sealed class AmourJukeboxSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly PointLightSystem _pointLight = default!;
 
     private readonly List<AmourJukeboxComponent> _playingJukeboxes = new();
     private const float UpdateTimerDefaultTime = 1f;
@@ -139,6 +140,10 @@ public sealed class AmourJukeboxSystem : EntitySystem
     {
         component.PlayingSongData = null;
         component.Paused = false;
+
+        if (TryComp<PointLightComponent>(uid, out var pointLight))
+            _pointLight.SetEnabled(uid, false, pointLight);
+
         Dirty(uid, component);
     }
 
@@ -210,6 +215,9 @@ public sealed class AmourJukeboxSystem : EntitySystem
 
         if (!_playingJukeboxes.Contains(jukebox))
             _playingJukeboxes.Add(jukebox);
+
+        if (TryComp<PointLightComponent>(entity, out var pointLight))
+            _pointLight.SetEnabled(entity, true, pointLight);
 
         Dirty(entity, jukebox);
     }
@@ -294,6 +302,9 @@ public sealed class AmourJukeboxSystem : EntitySystem
                 {
                     playingJukeboxData.PlayingSongData = null;
                     _playingJukeboxes.RemoveAt(i);
+
+                    if (TryComp<PointLightComponent>(playingJukeboxData.Owner, out var pointLight))
+                        _pointLight.SetEnabled(playingJukeboxData.Owner, false, pointLight);
 
                     RaiseNetworkEvent(new AmourJukeboxStopPlaying
                     {

@@ -108,6 +108,12 @@ public sealed partial class AudioTab : Control
             SliderVolumeTTS,
             scale: ContentAudioSystem.MasterVolumeMultiplier);
 
+        // Amour - Jukebox Volume
+        Control.AddOptionPercentSlider(
+            AmourCVars.JukeboxVolume,
+            SliderVolumeJukebox,
+            scale: 1f);
+
         InitializeVoiceTypeSelector(); // Amour - TTS
 
         Control.AddOptionPercentSlider(

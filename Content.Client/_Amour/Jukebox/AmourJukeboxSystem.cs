@@ -319,6 +319,9 @@ public sealed class AmourJukeboxSystem : EntitySystem
         if (sprite.LayerMapTryGet("bars", out var layer))
             sprite.LayerSetVisible(layer, visible);
 
+        if (sprite.LayerMapTryGet("light", out var lightLayer))
+            sprite.LayerSetVisible(lightLayer, visible);
+
         if (TryComp<ItemComponent>(jukebox, out var item))
         {
             if (visible)
