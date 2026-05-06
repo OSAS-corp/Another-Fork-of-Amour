@@ -105,3 +105,14 @@
   loadouts:
   - LoadoutBoostySocksBlack
   - LoadoutBoostySocksGray
+
+# TRINKETS
+- type: loadoutGroup
+  id: AmourBoostyTrinkets
+  name: loadout-group-amour-boosty-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - LoadoutBoostyBoombox
+  - LoadoutBoostyTapeRecorder
+  - LoadoutBoostyTape

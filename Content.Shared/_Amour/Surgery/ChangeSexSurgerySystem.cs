@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared._Amour.TTS;
 using Content.Shared._Shitmed.Medical.Surgery;
 using Content.Shared._Shitmed.Medical.Surgery.Steps;

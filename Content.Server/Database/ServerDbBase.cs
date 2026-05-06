@@ -420,6 +420,7 @@ namespace Content.Server.Database
 
             var barkVoice = profile.BarkVoice ?? SharedHumanoidAppearanceSystem.DefaultBarkVoice; // Goob Station - Barks
             var voice = profile.Voice ?? string.Empty; // Amour - TTS
+            var bodyType = profile.BodyType ?? "HumanNormal"; // Amour port: WD Slim body types
 
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -442,6 +443,7 @@ namespace Content.Server.Database
                 profile.Width, // Goobstation: port EE height/width sliders
                 profile.Age,
                 sex,
+                bodyType, // Amour port: WD Slim body types
                 gender,
                 new HumanoidCharacterAppearance
                 (
@@ -496,6 +498,7 @@ namespace Content.Server.Database
             profile.Width = humanoid.Width; // Goobstation: port EE height/width sliders
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
+            profile.BodyType = humanoid.BodyType; // Amour port: WD Slim body types
             profile.Gender = humanoid.Gender.ToString();
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
@@ -2529,6 +2532,46 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .GroupBy(v => v.PollOptionId)
                 .Select(g => new { OptionId = g.Key, Count = g.Count() })
                 .ToDictionaryAsync(x => x.OptionId, x => x.Count, cancel);
+        }
+
+        public async Task<bool> MarkPollSeenAsync(int pollId, NetUserId userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var existing = await db.DbContext.PollSeen
+                .AnyAsync(s => s.PollId == pollId && s.PlayerUserId == userId.UserId, cancel);
+
+            if (existing)
+                return false;
+
+            db.DbContext.PollSeen.Add(new PollSeen
+            {
+                PollId = pollId,
+                PlayerUserId = userId.UserId,
+                SeenAt = DateTime.UtcNow,
+            });
+            await db.DbContext.SaveChangesAsync(cancel);
+            return true;
+        }
+
+        public async Task<HashSet<int>> GetSeenPollIdsAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            var ids = await db.DbContext.PollSeen
+                .Where(s => s.PlayerUserId == userId.UserId)
+                .Select(s => s.PollId)
+                .ToListAsync(cancel);
+
+            return [..ids];
+        }
+
+        public async Task<int> GetPollSeenCountAsync(int pollId, CancellationToken cancel = default)
+        {
+            await using var db = await GetDb(cancel);
+
+            return await db.DbContext.PollSeen
+                .CountAsync(s => s.PollId == pollId, cancel);
         }
 
         #endregion

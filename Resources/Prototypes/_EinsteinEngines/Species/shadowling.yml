@@ -3,14 +3,20 @@
   name: species-name-shadowling
   roundStart: false
   prototype: MobShadowling
-  sprites: MobShadowlingSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - ShadowlingNormal
+# Amour port: WD Slim body types START
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobShadowlingDummy
   skinColoration: HumanToned
   defaultSkinTone: "#000000"
 
-- type: speciesBaseSprites
-  id: MobShadowlingSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ShadowlingNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobShadowlingHead
     HeadTop: MobHumanoidAnyMarking

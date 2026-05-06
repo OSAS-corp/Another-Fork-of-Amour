@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2022 Rane <60792108+Elijahrane@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2023 eclips_e <67359748+Just-a-Unity-Dev@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Adrian16199 <144424013+Adrian16199@users.noreply.github.com>
@@ -20,7 +20,11 @@
   name: species-name-slime
   roundStart: true
   prototype: MobSlimePerson
-  sprites: MobSlimeSprites
+  metabolismLimit: 6 # Amour add
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - SlimeNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
@@ -32,6 +36,7 @@
   - Получают на 40% меньше урона от ушибов и на 20% меньше от ядов.
   - Способны прожить в условиях вакуума дольше чем человек.
   - Обладают встроенным хранилищем внутри себя.
+  - Могут переваривать одновременно 6 реагентов.
   special:
   - Быстрее пьянеют.
   - Дышат реже человека в 5 раз, следовательно получают по 0.2 урона удушьем.
@@ -44,14 +49,19 @@
   - Получают повышенный урон от давления.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobSlimeSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: SlimeNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Face: MobHumanoidAnyMarking
     Head: MobSlimeHead
     HeadSide: MobHumanoidAnyMarking
     Hair: MobSlimeMarkingFollowSkin
     FacialHair: MobSlimeMarkingFollowSkin
+    Tail: MobSlimeMarkingFollowSkin # Amour edit
+    HeadTop: MobSlimeMarkingFollowSkin # Amour edit
 #    Underwear: MobHumanoidAnyMarking # Orion-Edit: Removed
 #    Undershirt: MobHumanoidAnyMarking # Orion-Edit: Removed
     Chest: MobSlimeChest
@@ -77,6 +87,12 @@
       required: false
     FacialHair:
       points: 1
+      required: false
+    Tail: # Amour edit
+      points: 1
+      required: false
+    HeadTop: # Amour edit
+      points: 3
       required: false
     Chest:
       points: 8
@@ -114,7 +130,7 @@
 
 - type: humanoidBaseSprite
   id: MobSlimeMarkingFollowSkin
-  markingsMatchSkin: true
+  markingsMatchSkin: false # Amour edit
   layerAlpha: 0.75
 
 - type: humanoidBaseSprite

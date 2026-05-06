@@ -45,10 +45,11 @@
   name: Arm Lock
   martialArtsForm: ArmyHandCombat
   attacks:
-    - Grab
     - Disarm
+    - Grab
   staminaDamage: 32
   event: !type:ArbArmLockPerformedEvent {}
+  canDoWhileProne: false
 
 - type: combo
   id: ArbSweep
@@ -57,10 +58,11 @@
   attacks:
     - Disarm
     - Disarm
-  paralyzeTime: 3
-  staminaDamage: 25
-  dropItems: true
+  paralyzeTime: 1
+  staminaDamage: 10
+  dropItems: false
   event: !type:ArbSweepPerformedEvent {}
+  canDoWhileProne: false
 
 - type: combo
   id: ArbHipThrow
@@ -74,6 +76,7 @@
   thrownSpeed: 6
   dropItems: true
   event: !type:ArbHipThrowPerformedEvent {}
+  canDoWhileProne: false
 
 - type: combo
   id: ArbArmbar
@@ -87,6 +90,7 @@
   paralyzeTime: 5
   staminaDamage: 10
   dropItems: true
+  canDoWhileProne: false
 
 - type: combo
   id: ArbWheelThrow
@@ -108,10 +112,10 @@
     - Grab
     - Disarm
     - Harm
-    - Grab
   paralyzeTime: 5
   staminaDamage: 55
   damageType: Asphyxiation
-  extraDamage: 5
+  extraDamage: 60
   dropItems: true
   event: !type:ArbChokePerformedEvent {}
+  canDoWhileProne: false

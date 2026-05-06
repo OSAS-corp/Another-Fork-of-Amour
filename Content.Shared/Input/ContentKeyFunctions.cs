@@ -132,6 +132,7 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction Sprint = "Sprint";
         public static readonly BoundKeyFunction UseItemInHand = "ActivateItemInHand";
         public static readonly BoundKeyFunction AltUseItemInHand = "AltActivateItemInHand";
+        public static readonly BoundKeyFunction OfferItem = "OfferItem";
         public static readonly BoundKeyFunction ActivateItemInWorld = "ActivateItemInWorld";
         public static readonly BoundKeyFunction AltActivateItemInWorld = "AltActivateItemInWorld";
         public static readonly BoundKeyFunction Drop = "Drop";

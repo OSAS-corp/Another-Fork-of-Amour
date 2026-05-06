@@ -27,27 +27,26 @@
   ### Болевой замок
   Наносит урон выносливости и перехватывает предметы из рук.
   <Box>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
+    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
   </Box>
 
   ### Подсечка
-  Сбивает цель с ног на 3 секунды и заставляет выронить вещи.
+  Сбивает цель с ног на 1 секунду и наносит урон выносливости.
   <Box>
     <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
   </Box>
 
   ### Бросок через бедро
-  Отправляет цель в полет, выбивая предметы.
+  Отправляет цель в полет на 4 секунды, выбивая предметы.
   <Box>
     <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
   </Box>
 
   ### Рычаг
-  Работает только на поверженных противников. Наносит урон выносливости, обезоруживает их и удерживает в рычаге руки, пока они не смогут подняться.
-  Рычаг руки работает аналогично нокдауну и захвату за горло, а его длительность зависит от их сопротивляемости урону выносливости.
+  Работает только на поверженных противников. Наносит урон выносливости, обезоруживает их и удерживает в рычаге руки на 5 секунд.
   <Box>
     <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
@@ -55,7 +54,7 @@
   </Box>
 
   ### Колесо
-  Работает только на противниках, удерживаемых в руках. Перекидывает противника через плечо, нанося огромный урон выносливости, и заставляет пользователя снова подняться на ноги.
+  Перекидывает противника через плечо, нанося огромный урон выносливости (120).
   <Box>
     <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
@@ -63,13 +62,12 @@
   </Box>
 
   ### Удушение
-  Удушение в стойке. Наносит урон удушьем и по выносливости, заставляет выронить предметы.
+  Удушение в стойке. Наносит урон удушьем и по выносливости, оглушает на 5 секунд и заставляет выронить предметы. После комбо вы получаете замедление атаки на 0.3(плюсом к особенности АРБ) на 5 секунд.
   <Box>
     <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookDisarm" Caption=""/>
     <GuideEntityEmbed Entity="GuidebookHarm" Caption=""/>
-    <GuideEntityEmbed Entity="GuidebookGrab" Caption=""/>
   </Box>
 
 </Document>

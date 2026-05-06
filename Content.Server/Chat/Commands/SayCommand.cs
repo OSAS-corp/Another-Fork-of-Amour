@@ -29,15 +29,16 @@ using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
-
+using Content.Server._Amour.Chat;
 namespace Content.Server.Chat.Commands
 {
     [AnyCommand]
     internal sealed class SayCommand : LocalizedEntityCommands
     {
         [Dependency] private readonly ChatSystem _chatSystem = default!;
-        public override string Command => "say";
+        [Dependency] private readonly SayFloodAutoBanManager _sayFloodAutoBan = default!;  // Amour edit
 
+        public override string Command => "say";
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (shell.Player is not { } player)
@@ -61,6 +62,10 @@ namespace Content.Server.Chat.Commands
             var message = string.Join(" ", args).Trim();
             if (string.IsNullOrEmpty(message))
                 return;
+
+            // Amour edit start
+            _sayFloodAutoBan.RegisterSayUsage(player);
+            // Amour edit end
 
             _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player);
         }

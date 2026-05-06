@@ -1,0 +1,17 @@
+using Robust.Shared.Configuration;
+
+namespace Content.Shared._Amour;
+
+[CVarDefs]
+public sealed class AmourCVars
+{
+    /*
+     * Jukebox
+     */
+
+    public static readonly CVarDef<float> JukeboxVolume =
+        CVarDef.Create("amour.jukebox_volume", 0.5f, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    public static readonly CVarDef<double> MaxJukeboxSongSizeInMb =
+        CVarDef.Create("amour.max_jukebox_song_size_mb", 10.0d, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+}

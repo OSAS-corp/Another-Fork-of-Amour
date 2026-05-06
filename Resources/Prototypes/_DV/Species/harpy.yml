@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2024 Adeinitas <147965189+adeinitas@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Danger Revolution! <142105406+DangerRevolution@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Timemaster99 <57200767+Timemaster99@users.noreply.github.com>
@@ -22,7 +22,11 @@
   name: species-name-harpy
   roundStart: true
   prototype: MobHarpy
-  sprites: MobHarpySprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - HarpyNormal
+  - HarpySlim
+  # Amour port: WD Slim body types END
   markingLimits: MobHarpyMarkingLimits
   dollPrototype: MobHarpyDummy
   skinColoration: HumanToned
@@ -50,8 +54,11 @@
   maxWidth: 1.2
   # end Goobstation: port EE height/width sliders
 
-- type: speciesBaseSprites
-  id: MobHarpySprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: HarpyNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobHarpyHead
     Hair: MobHumanoidAnyMarking

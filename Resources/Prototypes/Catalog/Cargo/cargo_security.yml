@@ -31,7 +31,7 @@
     sprite: Clothing/OuterClothing/Armor/bulletproof.rsi
     state: icon
   product: CrateSecurityArmor
-  cost: 1000 # Goobstation - less of a nerf
+  cost: 4000 # Amour edit - 1000 > 4000
   category: cargoproduct-category-name-security
   group: market
 
@@ -41,7 +41,7 @@
     sprite: Clothing/Head/Helmets/security.rsi
     state: icon
   product: CrateSecurityHelmet
-  cost: 550
+  cost: 1500 # Amour edit - 550 > 1500
   category: cargoproduct-category-name-security
   group: market
 

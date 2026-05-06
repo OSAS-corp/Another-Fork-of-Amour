@@ -23,7 +23,8 @@ public sealed class ChatTriggerSystem : EntitySystem
         ChatSelectChannel.Local |
         ChatSelectChannel.Whisper |
         ChatSelectChannel.Radio |
-        ChatSelectChannel.Emotes;
+        ChatSelectChannel.Emotes |
+        ChatSelectChannel.QuietEmotes;
 
     public override void Initialize()
     {
@@ -49,7 +50,7 @@ public sealed class ChatTriggerSystem : EntitySystem
 
     private bool OnBeforeMessageSent(string text, ChatSelectChannel channel)
     {
-        if ((channel & IcChannels) == 0)
+        if ((channel & IcChannels) != channel)
             return true;
 
         foreach (var proto in _protoManager.EnumeratePrototypes<GrammarnaziBotTriggerPrototype>())

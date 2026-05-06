@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 EmoGarbage404 <98561806+EmoGarbage404@users.noreply.github.com>
+﻿// SPDX-FileCopyrightText: 2022 EmoGarbage404 <98561806+EmoGarbage404@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2022 Javier Guardia Fernández <DrSmugleaf@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
@@ -77,8 +77,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     // sprite layout, and leave this null. Keep in mind that this will disable
     // sprite accessories.
 
-    [DataField("sprites")]
-    public ProtoId<HumanoidSpeciesBaseSpritesPrototype> SpriteSet { get; private set; } = default!;
+    // Amour port: WD Slim body types START
+    /// <summary>
+    ///     Default body type for this species.
+    /// </summary>
+    [DataField(required: true)]
+    public List<string> BodyTypes { get; } = default!;
+    // Amour port: WD Slim body types END
 
     /// <summary>
     ///     Default skin tone for this species. This applies for non-human skin tones.
@@ -231,6 +236,12 @@ public sealed partial class SpeciesPrototype : IPrototype
     public float AverageWidth = 40f;
 
     // end Goobstation: port EE height/width sliders
+
+    /// <summary>
+    ///     Amour add
+    /// </summary>
+    [DataField]
+    public int? MetabolismLimit;
 }
 
 public enum SpeciesNaming : byte

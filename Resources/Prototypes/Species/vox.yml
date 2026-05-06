@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
@@ -21,7 +21,10 @@
   name: species-name-vox
   roundStart: true
   prototype: MobVox
-  sprites: MobVoxSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - VoxNormal
+  # Amour port: WD Slim body types END
   markingLimits: MobVoxMarkingLimits
   dollPrototype: MobVoxDummy
   skinColoration: VoxFeathers
@@ -45,8 +48,11 @@
   - Не могут быть клонированы.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobVoxSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: VoxNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobVoxHead
     Snout: MobHumanoidAnyMarking

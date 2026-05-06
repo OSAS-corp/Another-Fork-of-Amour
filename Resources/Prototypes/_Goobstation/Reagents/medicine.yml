@@ -778,10 +778,10 @@
         ignoreBlockers: false
         damage:
           types:
-            Heat: -1.5
-            Cold: -1.5
-            Shock: -1
-            Caustic: -1
+            Heat: -0.3 # Amour edit: -1.5 -> -0.3
+            Cold: -0.3 # Amour edit: -1.5 -> -0.3
+            Shock: -0.2 # Amour edit: -1 -> -0.2
+            Caustic: -0.2 # Amour edit: -1 -> -0.2
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -794,8 +794,8 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -1
-            Cold: -1
+            Heat: -0.3 # Amour edit: -1 -> -0.3
+            Cold: -0.3 # Amour edit: -1 -> -0.3
       - !type:HealthChange
         damage:
           types:
@@ -843,16 +843,16 @@
         ignoreBlockers: false
         damage:
           types:
-            Blunt: -2
-            Piercing: -1 # limits combat effectivness
-            Slash: -2
+            Blunt: -0.4 # Amour edit: -2 -> -0.4
+            Piercing: -0.2 # Amour edit: -1 -> -0.2
+            Slash: -0.4 # Amour edit: -2 -> -0.4
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
           - type: PressureProtection # can't get through this to reach the bodyparts!
           invert: true
       - !type:ModifyBleedAmount
-        amount: -2
+        amount: -0.4 # Amour edit: -2 -> -0.4
         conditions:
         - !type:HasComponentOnEquipmentCondition
           components:
@@ -865,7 +865,7 @@
       - !type:HealthChange
         damage:
           groups:
-            Brute: -2
+            Brute: -0.6 # Amour edit: -2 -> -0.6
       - !type:HealthChange
         damage:
           types:
@@ -1445,7 +1445,7 @@
             Toxin: -3
             Airloss: -3
             Genetic: -3
-      - !type:ModifyStatusEffect 
+      - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
         time: 3
         type: Remove
@@ -1489,9 +1489,9 @@
     Medicine:
       effects:
       # it's a cheap mass-produceable cure-all so it's rather weak
-      - !type:ImmunityModifier
-        gainRateModifier: 0.0015
-        strengthModifier: 0.01
+      - !type:ImmunityModifier # should increase healing speed by 50% and limit infection development about 0.5
+        gainRateModifier: 0.000366666666666 # speed up immunity gain by 33%
+        strengthModifier: 0.0044444444444 # increase strength of immunity by 50%
         statusLifetime: 3 # 3s per 1u
 
 - type: reagent
@@ -1507,10 +1507,10 @@
       effects:
       - !type:DiseaseProgressChange
         affectedType: Bacterial
-        progressModifier: -0.1 # strong
+        progressModifier: -0.033333333333 # cure disease with 15u without immunity (30 secs)
       - !type:ImmunityModifier
-        gainRateModifier: -0.0008
-        strengthModifier: -0.004
+        gainRateModifier: -0.000555555555555 # reduce immunity speed progression by half
+        strengthModifier: -0.0044444444444 # reduce strength by half
         statusLifetime: 1.5 # 1.5s per 1u
 
 - type: reagent
@@ -1526,7 +1526,7 @@
       effects:
       - !type:DiseaseProgressChange
         affectedType: Viral
-        progressModifier: -0.08 # strong
+        progressModifier: -0.033333333333 # cure disease with 15u without immunity (30 secs)
       - !type:HealthChange
         damage:
           types:

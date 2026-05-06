@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
+﻿// SPDX-FileCopyrightText: 2022 Alex Evgrashin <aevgrashin@yandex.ru>
 // SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
 // SPDX-FileCopyrightText: 2022 Moony <moonheart08@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2022 metalgearsloth <31366439+metalgearsloth@users.noreply.github.com>
@@ -114,6 +114,11 @@ public sealed partial class ClothingComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan StripDelay = TimeSpan.Zero;
+
+    // Amour port: WD Slim body types START
+    [DataField]
+    public string? ClothingType;
+    // Amour port: WD Slim body types END
 }
 
 public enum ClothingMask : byte

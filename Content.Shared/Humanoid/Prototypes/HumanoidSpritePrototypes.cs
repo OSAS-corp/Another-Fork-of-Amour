@@ -9,6 +9,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Prototypes;
 
+/* Amour comented
 /// <summary>
 ///     Base sprites for a species (e.g., what replaces the empty tagged layer,
 ///     or settings per layer)
@@ -28,6 +29,7 @@ public sealed partial class HumanoidSpeciesBaseSpritesPrototype : IPrototype
      [DataField("sprites", required: true)]
      public Dictionary<HumanoidVisualLayers, string> Sprites = new();
 }
+*/
 
 /// <summary>
 ///     Humanoid species sprite layer. This is what defines the base layer of

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2022 Kara <lunarautomaton6@gmail.com>
 # SPDX-FileCopyrightText: 2023 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2023 Repo <47093363+Titian3@users.noreply.github.com>
@@ -12,7 +12,10 @@
   name: species-name-skeleton
   roundStart: false
   prototype: MobSkeletonPerson
-  sprites: MobSkeletonSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - SkeletonNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#fff9e2"
   markingLimits: MobHumanMarkingLimits
   maleFirstNames: NamesSkeletonFirst
@@ -23,8 +26,11 @@
   category: Special
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobSkeletonSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: SkeletonNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobSkeletonHead
     Chest: MobSkeletonChest

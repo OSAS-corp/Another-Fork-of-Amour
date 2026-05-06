@@ -323,6 +323,10 @@
       sprite: _Amour/Fluff/Boosty/skates.rsi
     - type: Clothing
       sprite: _Amour/Fluff/Boosty/skates.rsi
+      clothingVisuals:
+        shoes:
+        - state: equipped-FEET
+          offset: "0, -0.04"
 
 # egoruch17 - Techpriest
 - type: entity

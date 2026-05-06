@@ -3,7 +3,10 @@
   name: species-name-feroxi
   roundStart: true
   prototype: MobFeroxi
-  sprites: MobFeroxiSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - FeroxiNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#8DB9D6"
   markingLimits: MobFeroxiMarkingLimits
   dollPrototype: MobFeroxiDummy
@@ -28,8 +31,11 @@
   - Испытывают жажду на 100% быстрее.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobFeroxiSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: FeroxiNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobFeroxiHead
     Hair: MobHumanoidAnyMarking

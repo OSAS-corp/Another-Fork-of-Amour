@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+﻿# SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
@@ -19,7 +19,10 @@
   name: species-name-vulpkanin
   roundStart: true
   prototype: MobVulpkanin
-  sprites: MobVulpkaninSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - VulpkaninNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#985629"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy
@@ -38,8 +41,11 @@
   - Получают на 15% больше теплового урона.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobVulpkaninSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: VulpkaninNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobVulpkaninHead
     Face: MobHumanoidAnyMarking

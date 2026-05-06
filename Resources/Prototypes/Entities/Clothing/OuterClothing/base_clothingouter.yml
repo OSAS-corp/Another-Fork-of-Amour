@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2021 Swept <sweptwastaken@protonmail.com>
+﻿# SPDX-FileCopyrightText: 2021 Swept <sweptwastaken@protonmail.com>
 # SPDX-FileCopyrightText: 2021 xRiriq <94037592+xRiriq@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2021 xRiriq <xRiriq.git@gmail.com>
 # SPDX-FileCopyrightText: 2022 CommieFlowers <rasmus.cedergren@hotmail.com>
@@ -339,6 +339,8 @@
     - PlasmamanSafe # EE Plasmeme Change
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  - type: Clothing
+    clothingType: hardsuit # Amour port: WD Slim body types
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
@@ -409,6 +411,8 @@
   - type: Tag
     tags:
     - PlasmamanSafe # EE Plasmeme Change
+  - type: Clothing
+    clothingType: hardsuit # Amour port: WD Slim body types
 
 - type: entity
   parent: ClothingOuterBase

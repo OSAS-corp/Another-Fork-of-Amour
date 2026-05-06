@@ -119,6 +119,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Client._Amour.Jukebox;
 using Content.Shared._Amour.Loadouts.Effects;
 using Content.Client._Amour.TTS;
 using Content.Client.Administration.Managers;
@@ -312,6 +313,7 @@ namespace Content.Client.Entry
             _ttsManager.Initialize(); // WD EDIT TTS
             _boostyTierManager.Initialize(); // Amour - Boosty tier
             _clientMetrics.Initialize(); // Amour edit
+            IoCManager.Resolve<ClientAmourJukeboxSongsSyncManager>().Initialize(); // Amour edit
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

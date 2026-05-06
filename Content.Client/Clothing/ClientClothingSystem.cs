@@ -39,6 +39,7 @@ using System.Linq;
 using Content.Client.DisplacementMap;
 using Content.Client.Inventory;
 using Content.Goobstation.Common.Clothing;
+using Content.Shared._Amour.Humanoid.Prototypes;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -46,9 +47,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
+using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Utility;
 using static Robust.Client.GameObjects.SpriteComponent;
@@ -94,6 +97,9 @@ public sealed class ClientClothingSystem : ClothingSystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    [Dependency] private readonly IPrototypeManager _prototype = default!; // Amour port: WD Slim body types
+    [Dependency] private readonly TagSystem _tag = default!; // Amour port: WD Slim body types
 
     public override void Initialize()
     {
@@ -146,6 +152,15 @@ public sealed class ClientClothingSystem : ClothingSystem
 
         List<PrototypeLayerData>? layers = null;
 
+        // Amour port: WD Slim body types START
+        // body type specific
+        if (TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid))
+        {
+            var bodyTypeName = _prototype.Index<BodyTypePrototype>(humanoid.BodyType).Name;
+            item.ClothingVisuals.TryGetValue($"{args.Slot}-{bodyTypeName}", out layers);
+        }
+        // Amour port: WD Slim body types END
+
         // first attempt to get species specific data.
         if (inventory.SpeciesId != null)
             item.ClothingVisuals.TryGetValue($"{args.Slot}-{inventory.SpeciesId}", out layers);
@@ -154,7 +169,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         if (layers == null && !item.ClothingVisuals.TryGetValue(args.Slot, out layers))
         {
             // No generic data either. Attempt to generate defaults from the item's RSI & item-prefixes
-            if (!TryGetDefaultVisuals(uid, item, args.Slot, inventory.SpeciesId, out layers))
+            if (!TryGetDefaultVisuals(uid, item, args.Slot, inventory.SpeciesId, args.Equipee, out layers)) // Amour port: WD Slim body types
                 return;
         }
 
@@ -182,7 +197,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     ///     Useful for lazily adding clothing sprites without modifying yaml. And for backwards compatibility.
     /// </remarks>
     private bool TryGetDefaultVisuals(EntityUid uid, ClothingComponent clothing, string slot, string? speciesId,
-        [NotNullWhen(true)] out List<PrototypeLayerData>? layers)
+        EntityUid target, [NotNullWhen(true)] out List<PrototypeLayerData>? layers) // Amour port: WD Slim body types
     {
         layers = null;
 
@@ -208,6 +223,16 @@ public sealed class ClientClothingSystem : ClothingSystem
 
         if (clothing.EquippedState != null)
             state = $"{clothing.EquippedState}";
+
+        // Amour port: WD Slim body types START
+        // body type specific
+        if (TryComp(target, out HumanoidAppearanceComponent? humanoid))
+        {
+            var bodyTypeName = _prototype.Index<BodyTypePrototype>(humanoid.BodyType).Name;
+            if (rsi.TryGetState($"{state}-{bodyTypeName}", out _))
+                state = $"{state}-{bodyTypeName}";
+        }
+        // Amour port: WD Slim body types END
 
         // species specific
         if (speciesId != null && rsi.TryGetState($"{state}-{speciesId}", out _))
@@ -327,21 +352,47 @@ public sealed class ClientClothingSystem : ClothingSystem
         // Select displacement maps
         var displacementData = inventory.Displacements.GetValueOrDefault(slot); //Default unsexed map
 
-        var equipeeSex = CompOrNull<HumanoidAppearanceComponent>(equipee)?.Sex;
-        if (equipeeSex != null)
+        // Amour port: WD Slim body types START
+        string? bodyTypeName = null;
+        if (TryComp(equipee, out HumanoidAppearanceComponent? humanoid))
         {
-            switch (equipeeSex)
+            bodyTypeName = _prototype.Index(humanoid.BodyType).Name;
+            switch (humanoid.Sex)
             {
                 case Sex.Male:
                     if (inventory.MaleDisplacements.Count > 0)
-                        displacementData = inventory.MaleDisplacements.GetValueOrDefault(slot);
+                    {
+                        if (!string.IsNullOrEmpty(clothingComponent.ClothingType))
+                        {
+                            displacementData = inventory.MaleDisplacements.GetValueOrDefault($"{clothingComponent.ClothingType}-{bodyTypeName}")
+                                ?? inventory.MaleDisplacements.GetValueOrDefault(clothingComponent.ClothingType)
+                                ?? inventory.MaleDisplacements.GetValueOrDefault(slot);
+                            break;
+                        }
+
+                        displacementData = inventory.MaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
+                            ?? inventory.MaleDisplacements.GetValueOrDefault(slot);
+                    }
+
                     break;
                 case Sex.Female:
                     if (inventory.FemaleDisplacements.Count > 0)
-                        displacementData = inventory.FemaleDisplacements.GetValueOrDefault(slot);
+                    {
+                        if (!string.IsNullOrEmpty(clothingComponent.ClothingType))
+                        {
+                            displacementData = inventory.FemaleDisplacements.GetValueOrDefault($"{clothingComponent.ClothingType}-{bodyTypeName}")
+                                ?? inventory.FemaleDisplacements.GetValueOrDefault(clothingComponent.ClothingType);
+                            break;
+                        }
+
+                        displacementData = inventory.FemaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
+                            ?? inventory.FemaleDisplacements.GetValueOrDefault(slot);
+                    }
+
                     break;
             }
         }
+        // Amour port: WD Slim body types END
 
         // add the new layers
         foreach (var (key, layerData) in ev.Layers)
@@ -389,7 +440,8 @@ public sealed class ClientClothingSystem : ClothingSystem
             if (displacementData is not null)
             {
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
-                if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
+                if (layerData.State is not null && (inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId)
+                    || bodyTypeName is not null && layerData.State.EndsWith(bodyTypeName))) // Amour port: WD Slim body types
                     continue;
 
                 if (_displacement.TryAddDisplacement(displacementData, (equipee, sprite), index, key, out var displacementKey))

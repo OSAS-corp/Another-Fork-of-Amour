@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 VMSolidus <evilexecutive@gmail.com>
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
@@ -11,7 +11,10 @@
   name: species-name-ipc
   roundStart: true
   prototype: MobIPC
-  sprites: MobIPCSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - IPCNormal
+  # Amour port: WD Slim body types END
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: Hues
@@ -45,8 +48,11 @@
 # be defined as a 'custom base layer'
 # in either the mob's starting marking prototype,
 # or it has to be added in C#.
-- type: speciesBaseSprites
-  id: MobIPCSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: IPCNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobIPCHead
     Face: MobHumanoidAnyMarking

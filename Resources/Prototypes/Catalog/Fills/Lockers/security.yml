@@ -175,8 +175,6 @@
     #  prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
-    - id: ClothingBeltArmyHandCombat #Amour
-      prob: 0.5
     - id: ClothingHeadsetAltSecurityRegular # Goobstation
     - id: PanicButton # Goobstation
 #    - id: PepperSpray # Goobstation # Orion-Edit: Removed

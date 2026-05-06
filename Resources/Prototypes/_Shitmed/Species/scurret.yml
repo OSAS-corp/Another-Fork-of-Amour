@@ -3,14 +3,20 @@
   name: species-name-scurret
   roundStart: false
   prototype: MobScurret
-  sprites: MobScurretSprites
+# Amour port: WD Slim body types START
+  bodyTypes:
+  - ScurretNormal
+# Amour port: WD Slim body types START
   dollPrototype: MobScurretDummy
   skinColoration: Hues
   defaultSkinTone: "#ffffff"
   markingLimits: MobScurretMarkingLimits
 
-- type: speciesBaseSprites
-  id: MobScurretSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ScurretNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobScurretHead
     Chest: MobScurretChest

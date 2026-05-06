@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Adrian16199 <144424013+Adrian16199@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Ubaser <134914314+UbaserB@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 coolsurf6 <coolsurf24@yahoo.com.au>
@@ -25,7 +25,11 @@
   name: species-name-reptilian
   roundStart: true
   prototype: MobReptilian
-  sprites: MobReptilianSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - ReptilianNormal
+    - ReptilianSlim
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#34a223"
   markingLimits: MobReptilianMarkingLimits
   dollPrototype: MobReptilianDummy
@@ -46,8 +50,11 @@
   - На 30% чувствительнее к холоду, чем человек.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobReptilianSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ReptilianNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobReptilianHead
     Face: MobHumanoidAnyMarking
@@ -64,10 +71,12 @@
     RArm: MobReptilianRArm
     LHand: MobReptilianLHand
     RHand: MobReptilianRHand
-    LLeg: MobReptilianLLegDigi # WWDP-Edit
-    RLeg: MobReptilianRLegDigi # WWDP-Edit
-    LFoot: MobReptilianLFootDigi # WWDP-Edit
-    RFoot: MobReptilianRFootDigi # WWDP-Edit
+    # Amour port: WD Slim body types START
+    LLeg: MobReptilianDigiLLeg
+    RLeg: MobReptilianDigiRLeg
+    LFoot: MobReptilianDigiLFoot
+    RFoot: MobReptilianDigiRFoot
+    # Amour port: WD Slim body types END
 
 - type: markingPoints
   id: MobReptilianMarkingLimits

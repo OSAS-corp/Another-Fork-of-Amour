@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2022 Flipp Syder <76629141+vulppine@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
 # SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
@@ -29,7 +29,11 @@
   name: species-name-human
   roundStart: true
   prototype: MobHuman
-  sprites: MobHumanSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+  - HumanNormal
+  - HumanSlim
+  # Amour port: WD Slim body types END
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobHumanDummy
   skinColoration: HumanToned
@@ -52,8 +56,11 @@
 # be defined as a 'custom base layer'
 # in either the mob's starting marking prototype,
 # or it has to be added in C#.
-- type: speciesBaseSprites
-  id: MobHumanSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: HumanNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Special: MobHumanoidAnyMarking
     Head: MobHumanHead

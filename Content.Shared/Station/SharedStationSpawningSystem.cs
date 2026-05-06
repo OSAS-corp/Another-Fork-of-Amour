@@ -151,6 +151,51 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         EquipRoleName(entity, loadout, roleProto);
     }
 
+    // Amour edit start
+    public void EquipRoleLoadoutStorage(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    {
+        foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+        {
+            foreach (var items in group.Value)
+            {
+                if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
+                    continue;
+
+                EquipStartingGearStorageOnly(entity, loadoutProto);
+            }
+        }
+    }
+
+    private void EquipStartingGearStorageOnly(EntityUid entity, IEquipmentLoadout startingGear)
+    {
+        if (startingGear.Storage.Count == 0)
+            return;
+
+        var coords = _xformSystem.GetMapCoordinates(entity);
+        _inventoryQuery.TryComp(entity, out var inventoryComp);
+        if (inventoryComp == null)
+            return;
+
+        foreach (var (slotName, entProtos) in startingGear.Storage)
+        {
+            if (entProtos == null || entProtos.Count == 0)
+                continue;
+
+            if (!InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp))
+                continue;
+
+            if (!_storageQuery.TryComp(slotEnt, out var storage))
+                continue;
+
+            foreach (var entProto in entProtos)
+            {
+                var spawnedEntity = Spawn(entProto, coords);
+                _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
+            }
+        }
+    }
+    // Amour edit end
+
     /// <summary>
     /// Applies the role's name as applicable to the entity.
     /// </summary>
@@ -177,7 +222,8 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     public void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent = true)
     {
         EquipStartingGear(entity, loadout.StartingGear, raiseEvent);
-        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent);
+        // Amour: Skip storage processing for loadouts - it will be handled later in EquipRoleLoadoutStorage
+        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent, skipStorage: true);
     }
 
     /// <summary>
@@ -209,7 +255,8 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <param name="entity">Entity to load out.</param>
     /// <param name="startingGear">Starting gear to use.</param>
     /// <param name="raiseEvent">Should we raise the event for equipped. Set to false if you will call this manually</param>
-    public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true)
+    /// <param name="skipStorage">Skip storage processing (Amour: for loadouts that will process storage later)</param>
+    public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true, bool skipStorage = false)
     {
         if (startingGear == null)
             return;
@@ -254,7 +301,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             }
         }
 
-        if (startingGear.Storage.Count > 0)
+        if (!skipStorage && startingGear.Storage.Count > 0)
         {
             var coords = _xformSystem.GetMapCoordinates(entity);
             _inventoryQuery.TryComp(entity, out var inventoryComp);

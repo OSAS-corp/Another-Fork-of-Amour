@@ -197,6 +197,7 @@ namespace Content.Server.Database
         public DbSet<Poll> Polls { get; set; } = default!;
         public DbSet<PollOption> PollOptions { get; set; } = default!;
         public DbSet<PollVote> PollVotes { get; set; } = default!;
+        public DbSet<PollSeen> PollSeen { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -621,6 +622,23 @@ namespace Content.Server.Database
             modelBuilder.Entity<PollVote>()
                 .HasIndex(v => new { v.PollId, v.PlayerUserId, v.PollOptionId })
                 .IsUnique();
+
+            modelBuilder.Entity<PollSeen>()
+                .HasOne(s => s.Poll)
+                .WithMany()
+                .HasForeignKey(s => s.PollId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollSeen>()
+                .HasOne(s => s.Player)
+                .WithMany()
+                .HasForeignKey(s => s.PlayerUserId)
+                .HasPrincipalKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<PollSeen>()
+                .HasIndex(s => new { s.PollId, s.PlayerUserId })
+                .IsUnique();
         }
 
         public virtual IQueryable<AdminLog> SearchLogs(IQueryable<AdminLog> query, string searchText)
@@ -669,6 +687,7 @@ namespace Content.Server.Database
         // Orion-End
         public int Age { get; set; }
         public string Sex { get; set; } = null!;
+        public string BodyType { get; set; } = null!; // Amour port: WD Slim body types
         public string Gender { get; set; } = null!;
         public string Species { get; set; } = null!;
         public float Height { get; set; } = 1f; // Goobstation: port EE height/width sliders

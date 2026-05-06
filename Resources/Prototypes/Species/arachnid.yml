@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Nairod <110078045+Nairodian@users.noreply.github.com>
+﻿# SPDX-FileCopyrightText: 2023 Nairod <110078045+Nairodian@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2023 PixelTK <85175107+PixelTheKermit@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Adrian16199 <144424013+Adrian16199@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2024 Skubman <ba.fallaria@gmail.com>
@@ -20,7 +20,10 @@
   name: species-name-arachnid
   roundStart: true
   prototype: MobArachnid
-  sprites: MobArachnidSprites
+  # Amour port: WD Slim body types START
+  bodyTypes:
+    - ArachnidNormal
+  # Amour port: WD Slim body types END
   defaultSkinTone: "#385878"
   markingLimits: MobArachnidMarkingLimits
   dollPrototype: MobArachnidDummy
@@ -45,8 +48,11 @@
   - При низкой температуре получают 0.2 холода в секунду. При высокой температуре получают 0.1 ожога в секунду.
   # Orion-End
 
-- type: speciesBaseSprites
-  id: MobArachnidSprites
+# Amour port: WD Slim body types START
+- type: bodyType
+  id: ArachnidNormal
+  name: body-normal
+# Amour port: WD Slim body types END
   sprites:
     Head: MobArachnidHead
     Snout: MobHumanoidAnyMarking
@@ -82,7 +88,7 @@
       points: 1
       required: false
     Tail:
-      points: 1
+      points: 2 # Amour edit
       required: true
       defaultMarkings: [ ArachnidAppendagesDefault ]
     HeadTop:

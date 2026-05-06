@@ -9,6 +9,8 @@
 
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Shared._Amour.Humanoid.Prototypes;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -266,8 +268,8 @@ namespace Content.Shared.Humanoid.Markings
             IoCManager.Resolve(ref prototypeManager);
             var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
             if (
-                !prototypeManager.TryIndex(speciesProto.SpriteSet, out var baseSprites) ||
-                !baseSprites.Sprites.TryGetValue(layer, out var spriteName) ||
+                !prototypeManager.TryIndex(speciesProto.BodyTypes.First(), out BodyTypePrototype? baseBodyType) || // Amour port: WD Slim body types
+                !baseBodyType.Sprites.TryGetValue(layer, out var spriteName) || // Amour port: WD Slim body types
                 !prototypeManager.TryIndex(spriteName, out HumanoidSpeciesSpriteLayer? sprite) ||
                 sprite == null ||
                 !sprite.MarkingsMatchSkin
